@@ -1,0 +1,34 @@
+# Copy labels to folder
+
+cp $FSLDIR/data/atlases/JHU/JHU-ICBM-labels-1mm.nii.gz .
+
+# Create a list of index called jhu_index
+
+# Loop segment indices from JHU
+
+for i in `cat jhu_index`; do fslmaths JHU-ICBM-labels-1mm.nii.gz -thr ${i} -uthr ${i} ${i}; done
+
+# Rename the outputs with anatomical labels
+
+paste OLD NEW|while read OLD NEW;do mv ${OLD} ${NEW};done
+
+# To average, we pick out a list of tracts with L (Left Hemisphere) suffix
+ls -1 *.L.nii.gz* > list_jhu_left
+
+# For tracts with L and R, we run fslmaths to create a total ROI
+
+for i in `cat list_jhu_left`; do fslmaths ${i}.L.nii.gz -add ${i}.R.nii.gz ${i}.LR.nii.gz; done
+
+# Upload tracts to WBIC
+
+# Create a list_roi of all tracts
+
+# For each tract, for each subject, create the mean in FA and store the values in a text file
+
+for i in `cat JHU_ROI/list_roi`; do for subject in `cat list_total`; do cd $subject; fslstats -t dti_FA_fnirt_FMRIB58.nii -k ../JHU_ROI/${i}.nii.gz -M > FA_${i}.txt; cd ..; done; done
+
+# Extract 
+
+for roi in `cat JHU_ROI/list_roi`; do for i in `cat list_total`; do echo $(cat ${i}/FA_${roi}.txt) >> all_${roi}.txt ; done; done
+
+cat all_Anterior.corona.Radiata.LR.txt all_Anterior.Limb.of.internal.capsule.LR.txt | column -s $'\t' -t
