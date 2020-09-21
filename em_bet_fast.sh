@@ -59,7 +59,7 @@ elif [ "${setting}" = "FOV" ]; then
 echo "robustfov -i ${t1_bfc} -r T1w_${subject}_BFC_FOV_crop"
 robustfov -i ${t1_bfc} -r T1w_${subject}_BFC_FOV_crop
 echo "bet T1w_${subject}_BFC_FOV_crop ${t1_bfc}_brain -R"
-bet T1w_${subject}_BFC_FOV_crop ${t1_bfc}_brain -R
+bet T1w_${subject}_BFC_FOV_crop.nii ${t1_bfc}_brain -R
 else
 # Run BET with default settings
 echo "${t1_bfc} ${t1_bfc}_brain"
