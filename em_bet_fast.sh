@@ -56,10 +56,10 @@ echo "${t1_bfc} ${t1_bfc}_brain -B -S -R"
 bet ${t1_bfc} ${t1_bfc}_brain -B -S -R
 elif [ "${setting}" = "FOV" ]; then
 # Run BET with large FOV settings
-echo "robustfov -i ${t1_bfc} -r T1w_WL001_BFC_FOV_crop"
-robustfov -i ${t1_bfc} -r T1w_${i}_BFC_FOV_crop
-echo "bet T1w_${i}_BFC_FOV_crop ${t1_bfc}_brain -R"
-bet T1w_${i}_BFC_FOV_crop ${t1_bfc}_brain -R
+echo "robustfov -i ${t1_bfc} -r T1w_${subject}_BFC_FOV_crop"
+robustfov -i ${t1_bfc} -r T1w_${subject}_BFC_FOV_crop
+echo "bet T1w_${subject}_BFC_FOV_crop ${t1_bfc}_brain -R"
+bet T1w_${subject}_BFC_FOV_crop ${t1_bfc}_brain -R
 else
 # Run BET with default settings
 echo "${t1_bfc} ${t1_bfc}_brain"
