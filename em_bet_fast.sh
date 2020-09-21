@@ -13,6 +13,7 @@
 # 17.9.2029. BET was failing on WL subjects (i.e. excessive neck). 
 #            Added "-B -S -R" to BET command for WL subjects.
 # 21.9.2029. Added FOV as a setting to deal with large FOV.
+# 21.9.2029. Added function to capture QC screenshots.
 
 
 # Module
@@ -46,4 +47,30 @@ fi
 # Run FAST
 fast ${t1_bfc}_brain
 
-# To generate images for QC of segmentations, run em_qc_segmentations.sh
+# Generate QC
+
+# Images 
+T1="T1w_${subject}_BFC.nii"
+BRAIN="T1w_${subject}_BFC_brain.nii"
+GM="T1w_${subject}_BFC_brain_pve_1.nii"
+WM="T1w_${subject}_BFC_brain_pve_2.nii"
+
+# Settings
+outputdir="QC"
+cm="blue-lightblue"
+alpha="75"
+dr="0 1"
+fa_dr="0.2 1"
+cols="5"
+
+# BET
+pkill Xvfb
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.BET.png ${subject}/${T1} ${subject}/${BRAIN} -cm $cm --alpha $alpha -dr $dr
+
+# GM
+pkill Xvfb
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.GM.png ${subject}/${T1} ${subject}/${GM} -cm $cm --alpha $alpha -dr $dr
+
+# WM
+pkill Xvfb
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.WM.png ${subject}/${T1} ${subject}/${WM} -cm $cm --alpha $alpha -dr $dr
