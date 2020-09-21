@@ -44,6 +44,8 @@ echo "Using edited BET [1/3]"
 mask="b0_brain_mask.nii.gz"
 fi 
 
+#
+
 # Perform eddy cuda with s2v correction
 output_edc="edc.repol.s2v"
 input_dti="edc.repol.s2v.nii"
