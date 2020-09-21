@@ -25,7 +25,7 @@ dir="/lustre/archive/p00423/PREVENT_Elijah/FAST"
 
 # Subject
 subject=${1}
-cd ${i}
+cd ${subject}
 setting=${2}
 
 # Images 
