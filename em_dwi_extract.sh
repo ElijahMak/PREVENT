@@ -38,7 +38,7 @@ date >> mean_${fa}.txt
 echo  $PWD  >> mean_${fa}.txt
 echo "fslstats -t ${fa}.nii.gz -k $mask -M" >> mean_${fa}.txt
 fslstats -t ${fa}.nii.gz -k $mask -M >> mean_${fa}.txt
-echo "${subject} extracted."
+echo "${subject} FA extracted."
 else
 date >> mean_${fa}.txt
 echo  $PWD  >> mean_${fa}.txt
@@ -51,11 +51,11 @@ fi
 
 if [ -f ${md}.nii.gz ]
 then
-echo date >> mean_${md}.txt
+date >> mean_${md}.txt
 echo  $PWD  >> mean_${md}.txt
 echo "fslstats -t ${md}.nii.gz -k $mask -M" >> mean_${md}.txt
 fslstats -t ${md}.nii.gz -k $mask -M >> mean_${md}.txt
-echo "${subject} extracted."
+echo "${subject} MD extracted."
 else
 date >> mean_${fa}.txt
 echo  $PWD  >> mean_${md}.txt
@@ -72,9 +72,9 @@ date >> mean_${rd}.txt
 echo  $PWD  >> mean_${rd}.txt
 echo "fslstats -t ${rd}.nii.gz -k $mask -M" >> mean_${rd}.txt
 fslstats -t ${rd}.nii.gz -k $mask -M >> mean_${rd}.txt
-echo "${subject} extracted."
+echo "${subject} RD extracted."
 else
-date >> mean_${fa}.txt
+date >> mean_${rd}.txt
 echo  $PWD  >> mean_${rd}.txt
 echo "fslstats -t ${rd}.nii.gz -k $mask -M" >> mean_${rd}.txt
 echo "${rd} not found" >> mean_${rd}.txt
