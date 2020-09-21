@@ -36,7 +36,7 @@ echo "Initialising diffusion preprocessing for ${subject}"
 cd $subject
 
 # Perform brain extraction
-if [ ${BET} == "0" ]; then
+if [ "${BET}" = "0" ]; then
 echo "Running BET [1/3]"
 echo "fslroi $raw_dwi b0 0 1"
 fslroi $raw_dwi b0 0 1
