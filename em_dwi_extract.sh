@@ -11,6 +11,7 @@
 
 # Updates
 # 16th Sept 2020: Added RD 
+# 21st Sept 2020: Changed WM mask threshold to 90% 
 
 # Subject
 subject=${1}
