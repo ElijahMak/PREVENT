@@ -31,7 +31,7 @@ if [ "${setting}" = "WL" ]; then
 # Run BET with WL settings
 echo "${t1_bfc} ${t1_bfc}_brain -B -S -R"
 bet ${t1_bfc} ${t1_bfc}_brain -B -S -R
-else if [ "${setting}" = "FOV" ]
+elif [ "${setting}" = "FOV" ]; then
 # Run BET with large FOV settings
 echo "robustfov -i ${t1_bfc} -r T1w_WL001_BFC_FOV_crop"
 robustfov -i ${t1_bfc} -r T1w_${i}_BFC_FOV_crop
