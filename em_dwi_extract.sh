@@ -13,6 +13,8 @@
 # 16th Sept 2020: Added RD 
 # 21st Sept 2020: Changed WM mask threshold to 90% 
 
+# Module
+module load freesurfer/6.0.0
 # Subject
 subject=${1}
 cd $subject
