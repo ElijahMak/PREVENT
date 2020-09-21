@@ -30,7 +30,7 @@ mask="b0_brain_mask.nii.gz"
 echo "Initialising diffusion preprocessing for ${subject}"
 
 # Switch to subject directory
-cd $subject
+cd ${subject}v1
 
 # Perform brain extraction
 if [ "${BET}" = "0" ]; then
