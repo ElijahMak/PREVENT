@@ -22,7 +22,7 @@ module load fsl/6.0.1
 subject="${1}"
 BET=${2}
 mask="b0_brain_mask.nii"
-raw_dwi="$subject.nii"
+raw_dwi="${subject}.dwi.nii.gz"
 bval="bval"
 bvec="bvec"
 json="json"
