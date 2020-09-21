@@ -18,7 +18,7 @@
 
 # Module
 module unload fsl/5.0.10
-module load fsl/6.0.1
+module load fsl/6.0.3
 
 # Subject
 i=${1}
