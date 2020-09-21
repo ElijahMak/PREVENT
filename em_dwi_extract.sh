@@ -20,7 +20,7 @@ cd $subject
 fa="FAtoT1_NMI"
 md="MDtoT1_NMI"
 rd="RDtoT1_NMI"
-mask="T1w_${subject}_BFC_brain_pve_2_mask_50.nii"
+mask="T1w_${subject}_BFC_brain_pve_2_mask_90.nii"
 
 # Run script
 
