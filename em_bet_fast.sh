@@ -73,12 +73,12 @@ fast ${t1_bfc}_brain
 
 # BET
 pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.BET.png ${subject}/${T1} ${subject}/${BRAIN} -cm $cm --alpha $alpha -dr $dr
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.BET.png ${T1} ${BRAIN} -cm $cm --alpha $alpha -dr $dr
 
 # GM
 pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.GM.png ${subject}/${T1} ${subject}/${GM} -cm $cm --alpha $alpha -dr $dr
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.GM.png ${T1} ${GM} -cm $cm --alpha $alpha -dr $dr
 
 # WM
 pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.WM.png ${subject}/${T1} ${subject}/${WM} -cm $cm --alpha $alpha -dr $dr
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.WM.png ${T1} ${WM} -cm $cm --alpha $alpha -dr $dr
