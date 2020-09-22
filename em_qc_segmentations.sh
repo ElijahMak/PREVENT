@@ -31,11 +31,13 @@ cm="blue-lightblue"
 alpha="75"
 dr="0 1"
 fa_dr="0.2 1"
+mye_dr="0.2 1"
+
 cols="5"
 
 # MYELIN
 pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.MYELIN.png ${subject}/${T1} ${subject}/${MYELIN} -cm $cm --alpha $alpha -dr $dr
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.MYELIN.png ${subject}/${T1} ${subject}/${MYELIN} -cm $cm --alpha $alpha -dr $mye_dr
 
 # BET
 pkill Xvfb
