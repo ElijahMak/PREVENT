@@ -30,5 +30,5 @@ fslreorient2std ${T2}.nii ${T2}_std.nii
 flirt -in ${T2}_std.nii -ref ${T1}_std.nii -dof 6 -cost normmi -omat $omat -out $rT2
 
 # Derive myelin map
-fslmaths $T1 -div $rT2 ${i}_myelin
+fslmaths ${T1}_std -div $rT2 ${i}_myelin
 
