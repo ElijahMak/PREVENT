@@ -25,6 +25,7 @@ dir="/lustre/archive/p00423/PREVENT_Elijah/FAST"
 subject=${1}
 cd ${subject}
 setting=${2}
+f=${3}
 
 # Images 
 T1="T1w_${subject}_BFC.nii"
@@ -37,8 +38,8 @@ if [ "${setting}" = "FOV" ]; then
 # Run BET with large FOV settings
 echo "robustfov -i ${t1_bfc} -r T1w_${subject}_BFC_FOV_crop"
 robustfov -i ${t1_bfc} -r T1w_${subject}_BFC_FOV_crop
-echo "bet T1w_${subject}_BFC_FOV_crop ${BRAIN} -R -f 0.3 -m"
-bet T1w_${subject}_BFC_FOV_crop.nii ${BRAIN} -R -f 0.3 -m
+echo "bet T1w_${subject}_BFC_FOV_crop ${BRAIN} -R -f ${f} -m"
+bet T1w_${subject}_BFC_FOV_crop.nii ${BRAIN} -R -f ${f} -m
 else
 # Run BET with default settings
 echo "${t1_bfc} ${BRAIN}"
