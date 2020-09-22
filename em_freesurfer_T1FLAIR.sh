@@ -15,6 +15,6 @@ subject=${1}
 recon-all -s ${subject} \
 -i ${SUBJECTS_DIR}/T1w_${subject}.nii \
 -T2 ${SUBJECTS_DIR}/FLAIR_${subject}.nii \
--T2pial
+-T2pial \
 -all \
 -openmp 4
