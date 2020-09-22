@@ -24,7 +24,7 @@ for subject in `cat $input`; do
 
 sbatch --job-name=fs7_t1t2 --account hphi --qos=day.q --partition wbic-cs --error=${subject%.*}_%j.err \
 --output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=${nTask} --mem=${mem} \
---wrap="bash /archive/p00423/PREVENT_Elijah/Freesurfer7_T1T2/PREVENT/em_freesurfer_T1T2.sh ${subject}" --mail-type=ALL
+--wrap="bash /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1T2/PREVENT/em_freesurfer_T1T2.sh ${subject}" --mail-type=ALL
 
 sleep 1
 done
