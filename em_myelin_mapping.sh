@@ -22,13 +22,8 @@ rT2="${i}_T2toT1_NMI"
 # Enter directory
 cd ${i}
 
-# Standardise FSL orientation
-fslreorient2std ${T1}.nii ${T1}_std.nii
-fslreorient2std ${T2}.nii ${T2}_std.nii
-
 # Linear registration
-flirt -in ${T2}_std.nii -ref ${T1}_std.nii -dof 6 -cost normmi -omat $omat -out $rT2
+flirt -in ${T2}.nii -ref ${T1}.nii -dof 6 -cost normmi -omat $omat -out $rT2
 
 # Derive myelin map
-fslmaths ${T1}_std -div $rT2 ${i}_myelin
-
+fslmaths ${T1}.nii -div $rT2 ${i}_myelin
