@@ -38,7 +38,7 @@ fslstats -t ${MYELIN} -k $GM_mask -M >> mean_GM_myelin.txt
 echo "${subject} GM MYELIN extracted."
 
 # Extract WM
-date >> mean_GM_myelin.txt
+date >> mean_WM_myelin.txt
 echo  $PWD  >> mean_WM_${MYELIN}.txt
 echo "fslstats -t ${MYELIN} -k $WM_mask -M" >> mean_WM_myelin.txt
 fslstats -t ${MYELIN} -k $WM_mask -M >> mean_WM_myelin.txt
