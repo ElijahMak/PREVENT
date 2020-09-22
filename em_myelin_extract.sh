@@ -25,7 +25,7 @@ WM_mask="T1w_${subject}_BFC_brain_pve_2_mask_90.nii"
 # Run script
 
 # Create GM mask from FAST
-mri_binarize --i T1w_${subject}_BFC_brain_pve_1.nii --min 0.2 --o T1w_${subject}_BFC_brain_pve_2_mask_20.nii
+mri_binarize --i T1w_${subject}_BFC_brain_pve_1.nii --min 0.2 --o T1w_${subject}_BFC_brain_pve_1_mask_20.nii
 
 # Create WM mask from FAST
 mri_binarize --i T1w_${subject}_BFC_brain_pve_2.nii --min 0.9 --o T1w_${subject}_BFC_brain_pve_2_mask_90.nii
