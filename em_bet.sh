@@ -1,5 +1,5 @@
 # Perform BET extraction.
-]
+
 # Author: Elijah Mak
 # Date : 17th September 2020
 
