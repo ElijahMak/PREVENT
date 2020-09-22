@@ -18,6 +18,7 @@ T1="T1w_${i}_BFC"
 T2="T2w_${i}_BFC"
 omat="${i}_T2toT1_NMI.mat"
 rT2="${i}_T2toT1_NMI"
+mask="T1w_${i}_BFC_brain_mask.nii"
 
 # Enter directory
 cd ${i}
@@ -27,3 +28,6 @@ flirt -in ${T2}.nii -ref ${T1}.nii -dof 6 -cost normmi -omat $omat -out $rT2
 
 # Derive myelin map
 fslmaths ${T1}.nii -div $rT2 ${i}_myelin
+
+# Derive myelin brain map
+fslmaths ${i}_myelin -mul ${mask} ${i}_myelin_brain
