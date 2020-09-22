@@ -55,7 +55,13 @@ echo "eddy_cuda8.0 --imain=$raw_dwi --acqp=acqparams2.txt --index=index.txt \
 --mask=$mask --bvals=$bval --bvecs=$bvec \
 --out=$output_edc --niter=8 --fwhm=10,6,4,2,0,0,0,0 --repol --ol_type=both --mporder=8 --s2v_niter=8 --json=$json --cnr_maps"
 
-eddy_cuda8.0 --imain=$raw_dwi --acqp=/home/fkm24/rds/hpc-work/prevent_700/acqparams2.txt --index=/home/fkm24/rds/hpc-work/prevent_700/index.txt --mask=$mask --bvals=$bval --bvecs=$bvec --out=edc.repol.s2v --niter=8 --fwhm=10,6,4,2,0,0,0,0 --repol --ol_type=both --mporder=8 --s2v_niter=8 --json=$json --cnr_maps
+eddy_cuda8.0 --imain=$raw_dwi --acqp=/home/fkm24/rds/hpc-work/prevent_700/acqparams2.txt \
+--index=/home/fkm24/rds/hpc-work/prevent_700/index.txt \
+--mask=$mask \
+--bvals=$bval \
+--bvecs=$bvec \
+--out=$output_edc \
+--niter=8 --fwhm=10,6,4,2,0,0,0,0 --repol --ol_type=both --mporder=8 --s2v_niter=8 --json=$json --cnr_maps
 
 # DTIFIT
 echo "Running DTIFIT [3/3]"
