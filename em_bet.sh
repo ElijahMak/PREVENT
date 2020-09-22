@@ -45,3 +45,4 @@ echo "${t1_bfc} ${t1_bfc}_brain"
 bet ${t1_bfc} ${t1_bfc}_brain
 fi
 
+cp ${t1_bfc}_brain ${dir}/QC
