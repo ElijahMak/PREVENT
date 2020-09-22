@@ -1,6 +1,5 @@
-# Perform BET extraction and FAST segmentation 
-# for GM, WM and CSF volumes.
-
+# Perform BET extraction.
+]
 # Author: Elijah Mak
 # Date : 17th September 2020
 
