@@ -18,7 +18,7 @@ subject=${1}
 cd $subject
 
 # Parameters
-MYELIN="${subject}_MYELIN.nii"
+MYELIN="${subject}_myelin.nii"
 GM_mask="T1w_${subject}_BFC_brain_pve_1_mask_20.nii"
 WM_mask="T1w_${subject}_BFC_brain_pve_2_mask_90.nii"
 
