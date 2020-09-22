@@ -23,6 +23,7 @@ b0_mask="b0_brain_mask.nii.gz"
 FA_flirt="FAtoT1_NMI.nii.gz"
 FMRIB="FMRIB58_FA_1mm.nii.gz"
 FA_fnirt="dti_FA_fnirt_FMRIB58.nii"
+MYELIN="${subject}_myelin.nii"
 
 # Settings
 outputdir="QC"
@@ -31,6 +32,10 @@ alpha="75"
 dr="0 1"
 fa_dr="0.2 1"
 cols="5"
+
+# MYELIN
+pkill Xvfb
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.MYELIN.png ${subject}/${T1} ${subject}/${MYELIN} -cm $cm --alpha $alpha -dr $dr
 
 # BET
 pkill Xvfb
