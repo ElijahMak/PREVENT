@@ -8,7 +8,7 @@ module load openmpi/3.0.0
 module load freesurfer/7.1.0
 
 # Directory
-export SUBJECTS_DIR="lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1T2"
+export SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1T2"
 subject=${1}
 
 # Recon-all
