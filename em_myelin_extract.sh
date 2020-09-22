@@ -33,13 +33,13 @@ mri_binarize --i T1w_${subject}_BFC_brain_pve_2.nii --min 0.9 --o T1w_${subject}
 # Extract GM
 date >> mean_GM_${MYELIN}.txt
 echo  $PWD  >> mean_GM_${MYELIN}.txt
-echo "fslstats -t ${MYELIN} -k $GM_mask -M" >> mean_GM_${MYELIN}.txt
-fslstats -t ${MYELIN} -k $GM_mask -M >> mean_GM_${MYELIN}.txt
+echo "fslstats -t ${MYELIN} -k $GM_mask -M" >> mean_GM_myelin.txt
+fslstats -t ${MYELIN} -k $GM_mask -M >> mean_GM_myelin.txt
 echo "${subject} GM MYELIN extracted."
 
 # Extract WM
 date >> mean_WM_${MYELIN}.txt
 echo  $PWD  >> mean_WM_${MYELIN}.txt
-echo "fslstats -t ${MYELIN} -k $WM_mask -M" >> mean_WM_${MYELIN}.txt
-fslstats -t ${MYELIN} -k $WM_mask -M >> mean_WM_${MYELIN}.txt
+echo "fslstats -t ${MYELIN} -k $WM_mask -M" >> mean_WM_myelin.txt
+fslstats -t ${MYELIN} -k $WM_mask -M >> mean_WM_myelin.txt
 echo "${subject} WM MYELIN extracted."
