@@ -1,5 +1,6 @@
 # Load modules
 module load cuda/8.0
+module unload fsl/5.0.10
 module load fsl/6.0.3
 
 # Define variables
