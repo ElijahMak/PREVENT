@@ -33,32 +33,18 @@ dr="0 1"
 fa_dr="0.2 1"
 mye_dr="0.2 1"
 
-cols="5"
-
-# MYELIN
+# GM Axial
 pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.MYELIN.png ${subject}/${T1} ${subject}/${MYELIN} -cm $cm --alpha $alpha -dr $mye_dr
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render -outfile ${dir}/${outputdir}/${subject}.MYELIN.png --scene lightbox --hideCursor  --worldLoc -25.040941687671577 -37.32170315056568 -22.79834519205592 --displaySpace /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/T1w_CB001.nii --zaxis 2 --sliceSpacing 6 --zrange 68.22089955694904 194.9572843305086 --ncols 7 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/T1w_CB001.nii --name "T1w_CB001" --overlayType volume --alpha 100.0 --brightness 60.63218390804598 --contrast 71.26436781609196 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 800.0 --clippingRange 0.0 1405.92 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/mri/p1T1w_CB001.nii --name "p1T1w_CB001" --overlayType volume --alpha 48.28306686791663 --brightness 50.0 --contrast 50.0 --cmap red-yellow --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
 
-# BET
+# GM Coronal
 pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.BET.png ${subject}/${T1} ${subject}/${BRAIN} -cm $cm --alpha $alpha -dr $dr
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render -outfile ${dir}/${outputdir}/${subject}.MYELIN.png --scene lightbox --hideCursor  --worldLoc -25.040941687671577 -37.32170315056568 -22.79834519205592 --displaySpace /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/T1w_CB001.nii --zaxis 1 --sliceSpacing 6 --zrange 68.22089955694904 194.9572843305086 --ncols 7 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/T1w_CB001.nii --name "T1w_CB001" --overlayType volume --alpha 100.0 --brightness 60.63218390804598 --contrast 71.26436781609196 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 800.0 --clippingRange 0.0 1405.92 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/mri/p1T1w_CB001.nii --name "p1T1w_CB001" --overlayType volume --alpha 48.28306686791663 --brightness 50.0 --contrast 50.0 --cmap red-yellow --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
 
-# GM
+# GM Sag
 pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.GM.png ${subject}/${T1} ${subject}/${GM} -cm $cm --alpha $alpha -dr $dr
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render -outfile ${dir}/${outputdir}/${subject}.MYELIN.png --scene lightbox --hideCursor --worldLoc -25.040941687671577 -37.32170315056568 -22.79834519205592 --displaySpace /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/T1w_CB001.nii --zaxis 0 --sliceSpacing 6 --zrange 68.22089955694904 194.9572843305086 --ncols 7 --nrows 2 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/T1w_CB001.nii --name "T1w_CB001" --overlayType volume --alpha 100.0 --brightness 60.63218390804598 --contrast 71.26436781609196 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 800.0 --clippingRange 0.0 1405.92 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/mri/p1T1w_CB001.nii --name "p1T1w_CB001" --overlayType volume --alpha 48.28306686791663 --brightness 50.0 --contrast 50.0 --cmap red-yellow --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 
 
 # WM
-pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.WM.png ${subject}/${T1} ${subject}/${WM} -cm $cm --alpha $alpha -dr $dr
+pkill Xvfb -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor  --worldLoc -25.040941687671577 -37.32170315056568 -22.79834519205592 --displaySpace /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/T1w_CB001.nii --zaxis 2 --sliceSpacing 6 --zrange 68.22089955694904 194.9572843305086 --ncols 7 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/T1w_CB001.nii --name "T1w_CB001" --overlayType volume --alpha 100.0 --brightness 60.63218390804598 --contrast 71.26436781609196 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 800.0 --clippingRange 0.0 1405.92 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /Volumes/NEURITE/PREVENT_700/QC/Freesurfer7_T1/mri/p2T1w_CB001.nii --name "p1T1w_CB001" --overlayType volume --alpha 48.28306686791663 --brightness 50.0 --contrast 50.0 --cmap blue-lightblue --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
 
-# B0 and Brain Mask
-pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 5 --ncols $cols --nrows $cols --outfile ${dir}/${outputdir}/${subject}.B0MASK.png ${subject}/${b0} --displayRange 0.0 700.00  ${subject}/${b0_mask} -cm $cm --alpha $alpha -dr $dr.0 --clippingRange 0.0 2602.77 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
-
-# FA FLIRT
-pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 8 --ncols 3 --nrows 3 --outfile ${dir}/${outputdir}/${subject}.FA.FLIRT.T1.png ${subject}/${T1} ${subject}/${FA_flirt} -cm $cm --alpha $alpha -dr $fa_dr
-
-# FA FNIRT FMRIB68
-pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --hideCursor --sliceSpacing 8 --ncols 3 --nrows 3 --outfile ${dir}/${outputdir}/${subject}.FA.FNIRT.FMRIB.png ${FMRIB} ${subject}/${FA_fnirt} -cm $cm --alpha $alpha -dr $fa_dr
