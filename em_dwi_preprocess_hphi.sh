@@ -13,6 +13,8 @@ output_edc="edc.repol";
 input_dti="edc.repol.nii.gz"
 output_dti="dti"
 
+cd $subject
+
 eddy_openmp --imain=$input_edc \
 --mask=$mask --acqp=acqparams.txt \
 --index=index.txt --bvecs=$bvec \
