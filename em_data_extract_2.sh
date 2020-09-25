@@ -7,8 +7,8 @@ wm_mask="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/p2T1w_${subject}_mask_5
 echo subject >> metrics_file.txt
 echo ${subject} >> metrics_file.txt
 echo fa_gm >> metrics_file.txt
-fslstats -t ${fa} -k ${gm_mask} -M >> metrics_file.txt
+echo $(fslstats -t ${fa} -k ${gm_mask} -M) >> metrics_file.txt
 echo fa_wm >> metrics_file.txt
-fslstats -t ${fa} -k ${wm_mask} -M >> metrics_file.txt
+echo $(fslstats -t ${fa} -k ${wm_mask} -M) >> metrics_file.txt
 
 done
