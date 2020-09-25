@@ -7,8 +7,7 @@ fa="FAtoT1_NMI.nii.gz"
 gm_mask="p1T1w_${subject}_mask_20.nii"
 wm_mask="p2T1w_${subject}_mask_50.nii"
 
-if test ls * | wc -l < 3 ; then
-
+if [ `ls * | wc -l` -lt 3  ]; then 
 echo subject >> metrics_file.txt
 echo ${subject} >> metrics_file.txt
 echo fa_gm >> metrics_file.txt
