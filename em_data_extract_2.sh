@@ -1,5 +1,5 @@
-for subject in `cat list`; do
 
+subject = ${1}
 cd $subject 
 
 fa="FAtoT1_NMI.nii.gz"
