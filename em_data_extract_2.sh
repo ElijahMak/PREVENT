@@ -6,7 +6,7 @@ for subject in `cat list`; do
 echo subject >> metrics_file.txt
 echo ${i} >> metrics_file.txt
 echo fa_gm >> metrics_file.txt
-echo $(fslstats -t ${fa_gm} -k ${gm_mask} -M) >> metrics_file.txt
+fslstats -t ${fa_gm} -k ${gm_mask} -M >> metrics_file.txt
 echo fa_wm >> metrics_file.txt
-echo $(fslstats -t ${fa_wm} -k ${wm_mask} -M) >> metrics_file.txt
+fslstats -t ${fa_wm} -k ${wm_mask} -M >> metrics_file.txt
 done
