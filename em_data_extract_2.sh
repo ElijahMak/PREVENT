@@ -6,7 +6,7 @@ fa="FAtoT1_NMI.nii.gz"
 gm_mask="p1T1w_${subject}_mask_20.nii"
 wm_mask="p2T1w_${subject}_mask_50.nii"
 
-outputfile="/archive/p00423/PREVENT_Elijah/data/metrics.txt"
+outputfile="metrics.txt"
 
 if [ `ls * | wc -l` -lt 3  ]
 then
