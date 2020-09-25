@@ -1,5 +1,5 @@
 
-subject = ${1}
+subject=${1}
 cd $subject 
 
 fa="FAtoT1_NMI.nii.gz"
