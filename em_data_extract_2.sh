@@ -19,10 +19,10 @@ else
   echo subject >> $outputfile
   echo ${subject} >> $outputfile
   echo fa_gm >> $outputfile
-  fslstats -t ${fa} -k ${gm_mask -M >> $outputfile
+  fslstats -t ${fa} -k ${gm_mask} -M >> $outputfile
   echo fa_wm >> metrics_file.txt
-  fslstats -t ${fa} -k ${wm_mask} -M >> $outputfile;
-  
-fi
+  fslstats -t ${fa} -k ${wm_mask} -M >> $outputfile
+  fi 
+
 
 done
