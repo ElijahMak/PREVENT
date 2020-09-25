@@ -12,9 +12,9 @@ then
   echo subject >> $outputfile
   echo ${subject} >> $outputfile
   echo fa_gm >> $outputfile
-  echo "files missing" >> $outputfile
+  echo "NA" >> $outputfile
   echo fa_wm >> $outputfile
-  echo "files missing" >> $outputfile
+  echo "NA" >> $outputfile
 else 
   echo subject >> $outputfile
   echo ${subject} >> $outputfile
