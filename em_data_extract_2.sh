@@ -23,6 +23,3 @@ else
   echo fa_wm >> $outputfile
   fslstats -t ${fa} -k ${wm_mask} -M >> $outputfile
   fi 
-
-
-done
