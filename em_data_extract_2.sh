@@ -8,7 +8,7 @@ wm_mask="p2T1w_${subject}_mask_50.nii"
 
 outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
 
-if `ls * | wc -l` -lt 3  
+if [ `ls . | wc -l` -lt 3  ]
 then
   echo subject >> $outputfile
   echo ${subject} >> $outputfile
