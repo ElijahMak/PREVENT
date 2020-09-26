@@ -16,27 +16,29 @@ subject=${1}
 cd $subject
 
 # Initial FLIRT
-FA="dti_FA.nii.gz"
-MD="dti_MD.nii.gz"
+FA="dti_FA.nii"
+MD="dti_MD.nii"
+RD="dti_RD.nii"
 ref="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
-flirt_out="dti_FA_flirt_FMRIB58.nii.gz"
+flirt_out="dti_FA_flirt_FMRIB58.nii"
 omat="dti_FA_flirt_FMRIB58.mat"
 bins="256"
 cost="corratio"
 dof="12"
 interp="trilinear"
 cout="dti_FA_fnirt_FMRIB58.mat"
-FA_fnirt_out="dti_FA_fnirt_FMRIB58.nii.gz"
-MD_fnirt_out="dti_MD_fnirt_FMRIB58.nii.gz"
+FA_fnirt_out="dti_FA_fnirt_FMRIB58.nii"
+MD_fnirt_out="dti_MD_fnirt_FMRIB58.nii"
+RD_fnirt_out="dti_RD_fnirt_FMRIB58.nii"
 
 flirt -in $FA -ref $ref -out $flirt_out -omat $omat -bins $bins -cost $cost \
--searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof $dof -interp $interp 
+-searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof $dof -interp $interp
 
 # FNIRT
 fnirt --ref=$ref --in=$FA --aff=$omat \
 --cout=$cout --config=FA_2_FMRIB58_1mm
 
-# Apply warp 
+# Apply warp
 
 # FA
 applywarp --ref=${ref} --in=$FA --warp=$cout \
@@ -45,3 +47,7 @@ applywarp --ref=${ref} --in=$FA --warp=$cout \
 # MD
 applywarp --ref=${ref} --in=$MD --warp=$cout \
 --out=${MD_fnirt_out}
+
+# RD
+applywarp --ref=${ref} --in=$RD --warp=$cout \
+--out=${RD_fnirt_out}
