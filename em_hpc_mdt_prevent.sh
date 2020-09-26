@@ -7,8 +7,8 @@ module load miniconda3/4.5.1
 
 # Parameters
 mask="b0_brain_mask.nii.gz"
-input="edc.repol.s2v.nii.gz"
-rotated_bvecs="edc.repol.s2v.eddy_rotated_bvecs"
+input="edc.repol.nii"
+rotated_bvecs="edc.repol.eddy_rotated_bvecs"
 bval="bval"
 
 # Create protocol
