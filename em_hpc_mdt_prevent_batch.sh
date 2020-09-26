@@ -6,7 +6,7 @@
 nTask=1
 
 # Time
-time="02:59:0"
+time="02:00:0"
 input=${1}
 
 for subject in `cat $input`;
@@ -15,7 +15,7 @@ do
 
 sbatch --exclusive --job-name=noddi --account MAK-SL3-GPU --partition pascal --error=${subject%.*}_%j.err \
 --output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=$nTask --mem=2500 \
---wrap="bash /home/fkm24/rds/hpc-work/prevent_700/em_hpc_mdt_prevent.sh $subject 1" --mail-type=ALL
+--wrap="bash $code/em_hpc_mdt_prevent.sh $subject 1" 
 
 sleep 1
 
