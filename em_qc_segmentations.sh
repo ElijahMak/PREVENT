@@ -14,8 +14,7 @@
 fmrib="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
 	# Subject
 	subject="${1}"
-
-	input = ${2}
+	input=${2}
 
 	if [ $input = "all" ]; then
 	# GM Axial
