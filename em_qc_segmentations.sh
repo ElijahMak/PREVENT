@@ -10,8 +10,8 @@
 	# Directory
 	dir="/lustre/archive/p00423/PREVENT_Elijah/CAT12"
 	outputdir="/lustre/archive/p00423/PREVENT_Elijah/CAT12/QC"
-	fa_fmrib="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58.nii"
-fmrib="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
+	fa_fmrib="dti_FA_fnirt_FMRIB58.nii"
+	fmrib="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
 	# Subject
 	subject="${1}"
 	input=${2}
