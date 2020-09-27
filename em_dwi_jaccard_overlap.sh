@@ -21,4 +21,4 @@ mri_compute_overlap dti_FA_fnirt_FMRIB58_mask.nii $prevent/templates/MNI152_T1_1
 
 # Extract Jaccard overlap
 
-grep -A 2 "Jaccard" test | awk '{ print $11 }' > em_dwi_mni152_overlap_jaccard.txt
+grep -A 2 "Jaccard" em_dwi_mni152_overlap.txt | awk '{ print $11 }' > em_dwi_mni152_overlap_jaccard.txt
