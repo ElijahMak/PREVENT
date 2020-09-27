@@ -12,6 +12,9 @@
 	outputdir="/lustre/archive/p00423/PREVENT_Elijah/CAT12/QC"
 	fa_fmrib="dti_FA_fnirt_FMRIB58.nii"
 	fmrib="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
+	b0="$/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/{subject}/b0.nii.gz"
+	b0mask="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/b0_brain_mask.nii.gz"
+
 	# Subject
 	subject="${1}"
 	input=${2}
@@ -95,5 +98,10 @@ xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/${subj
 elif [ "$input" = fa_tensor ]; then
 pkill Xvfb
 xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/${subject}.fa.tensor.png --hideCursor --scene ortho --worldLoc 4.730075084169755 -1.9461487140778786 56.261993285775134 --displaySpace /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_V1.nii --xcentre -0.01637  0.48866 --ycentre  0.06170  0.48866 --zcentre  0.06170 -0.01637 --xzoom 1667.0088434980737 --yzoom 1667.0088434980737 --zzoom 1667.0088434980737 --hideLabels --labelSize 14 --layout horizontal --hidez --hideCursor --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii --name "dti_FA" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 1.2247447967529297 --clippingRange 0.0 1.2369922447204589 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_V1 --name "dti_V1" --overlayType linevector --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --lineWidth 3.8377115005715083 --lengthScale 100.0 --xColour 1.0 0.0 0.0 --yColour 0.0 1.0 0.0 --zColour 0.0 0.0 1.0 --suppressMode white --modulateRange 0.0 1.0 --clippingRange 0.0 1.0
+
+elif [ "$input" = dwi_brainmask ]; then
+pkill Xvfb
+xvfb-run -s "-screen 0, 1024x768x24" fsleyes render --scene lightbox --outfile ${outputdir}/${subject}.b0.mask.png --worldLoc 108.2101927736983 124.64060310792524 -42.83765119809547 --displaySpace ${b0} --zaxis 2 --sliceSpacing 2.0 --zrange -1.0 124.99980163574219 --ncols 10 --nrows 10 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --hideCursor --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${b0} --name "b0" --overlayType volume --alpha 100.0 --brightness 67.02551834130782 --contrast 84.05103668261563 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 800.0 --clippingRange 0.0 2533.08 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${b0mask} --name "b0_brain_mask" --overlayType volume --alpha 47.76828976994573 --brightness 50.0 --contrast 50.0 --cmap blue-lightblue --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
+
 
 fi
