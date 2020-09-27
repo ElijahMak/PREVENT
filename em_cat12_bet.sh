@@ -4,7 +4,7 @@ dir="/lustre/archive/p00423/PREVENT_Elijah/CAT12"
 
 subject=${1}
 
-fslmaths ${dir}/p1T1w_${subject}.nii -add ${dir}/mri/p2T1w_${subject}.nii ${dir}/mri/${subject}_cat12_brain.nii
+fslmaths ${dir}/mri/p1T1w_${subject}.nii -add ${dir}/mri/p2T1w_${subject}.nii ${dir}/mri/${subject}_cat12_brain.nii
 
 mri_binarize --i ${dir}/mri/${subject}_cat12_brain.nii --min 0.001 --o ${dir}/mri/${subject}_cat12_brain_mask.nii
 
