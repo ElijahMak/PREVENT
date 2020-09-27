@@ -6,7 +6,7 @@
 module load freesurfer/7.1.0
 
 # Subject
-subject = ${i}
+subject=${i}
 cd ${i}
 
 # Binarise FA map
