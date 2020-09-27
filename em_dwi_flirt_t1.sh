@@ -12,21 +12,19 @@ module load freesurfer/7.1.0
 subject="${1}"
 cd $subject
 
-# Check if FLIRT registration of FA to T1 has been done previously
+fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/CB001/dti_FA.nii"
 
-if [ -f FAtoT1_NMI.mat ]
-then
-echo "FLIRT of FA to T1 has been done"
-echo "Skipping FLIRT to apply warps now"
-else
-echo "FLIRT of FA to T1 not done"
-echo "Running FLIRT of FA to T1 now"
+md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/CB001/dti_MD.nii"
+
+rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/CB001/dti_RD.nii"
+
+t1_brain="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/T1w_${subject}_cat12_brain.nii.gz"
+
 # Register FA to T1
-flirt -in dti_FA.nii.gz -ref T1w_${subject}_BFC_brain.nii -dof 6 -cost normmi -omat FAtoT1_NMI.mat -out FAtoT1_NMI
-fi
+flirt -in ${fa} -ref ${t1_brain} -dof 6 -cost normmi -omat fa_flirt_cat12brain.mat -out fa_flirt_cat12brain
 
 # Warp MD to T1
-applywarp -i dti_MD.nii.gz -o MDtoT1_NMI --premat=FAtoT1_NMI.mat -r T1w_${subject}_BFC_brain.nii
+applywarp -i ${md} -o md_flirt_cat12brain --premat=fa_flirt_cat12brain.mat -r ${t1_brain}
 
 # Warp RD to T1
-applywarp -i dti_RD.nii.gz -o RDtoT1_NMI --premat=FAtoT1_NMI.mat -r T1w_${subject}_BFC_brain.nii
+applywarp -i dti_RD.nii -o rd_flirt_cat12brain --premat=fa_flirt_cat12brain.mat -r ${t1_brain}
