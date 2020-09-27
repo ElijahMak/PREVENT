@@ -30,11 +30,3 @@ applywarp -i dti_MD.nii.gz -o MDtoT1_NMI --premat=FAtoT1_NMI.mat -r T1w_${subjec
 
 # Warp RD to T1
 applywarp -i dti_RD.nii.gz -o RDtoT1_NMI --premat=FAtoT1_NMI.mat -r T1w_${subject}_BFC_brain.nii
-
-# Create WM mask from FAST
-if [ -f  T1w_${subject}_BFC_brain_pve_2_mask_50.nii ]
-then
-echo "Binarised WM from FAST is available. Skipping mri_binarize."
-else
-mri_binarize --i T1w_${subject}_BFC_brain_pve_2.nii --min 0.5 --o T1w_${subject}_BFC_brain_pve_2_mask_50.nii
-fi
