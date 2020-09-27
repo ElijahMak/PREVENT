@@ -1,6 +1,6 @@
 # Generate brain mask from CAT12 segmentations
 module load freesurfer/7.1.0
-dir="/lustre/archive/p00423/PREVENT_Elijah/CAT12/"
+dir="/lustre/archive/p00423/PREVENT_Elijah/CAT12"
 
 subject=${1}
 
