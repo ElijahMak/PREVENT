@@ -6,8 +6,8 @@
 module load freesurfer/7.1.0
 
 # Subject
-subject=${i}
-cd ${i}
+subject=${1}
+cd ${subject}
 
 # Binarise FA map
 mri_binarize --i dti_FA_fnirt_FMRIB58.nii --min 0.0001 --o dti_FA_fnirt_FMRIB58_mask.nii
