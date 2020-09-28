@@ -6,7 +6,7 @@ fa="fa_flirt_cat12brain.nii.gz"
 md="md_flirt_cat12brain.nii.gz"
 rd="rd_flirt_cat12brain.nii.gz"
 gm_mask="p1T1w_${subject}_mask_20.nii"
-wm_mask="p2T1w_${subject}_mask_50.nii"
+wm_mask="p2T1w_${subject}_mask_90.nii"
 outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
 
 
