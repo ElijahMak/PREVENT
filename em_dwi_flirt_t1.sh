@@ -10,13 +10,14 @@ module load freesurfer/7.1.0
 
 # Subject
 subject="${1}"
+
 cd $subject
 
-fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/CB001/dti_FA.nii"
+fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii"
 
-md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/CB001/dti_MD.nii"
+md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_MD.nii"
 
-rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/CB001/dti_RD.nii"
+rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_RD.nii"
 
 t1_brain="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/T1w_${subject}_cat12_brain.nii.gz"
 
