@@ -15,10 +15,9 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
 
   echo fa_gm >> $outputfile
 
-  if [ -f ${fa} -a -f ${gm_mask} ] && 
+  if [ -f ${fa} -a -f ${gm_mask} ] &&
   fslstats -t ${fa} -k ${gm_mask} -M >> $outputfile
-  else
-    echo "NA" >> $outputfile
+  || echo "NA" >> $outputfile
   fi
 
   echo fa_wm >> $outputfile
