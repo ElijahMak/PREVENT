@@ -1,6 +1,6 @@
 #!/bin/sh
 
-in_file=jhu_data.txt      # Input file
+in_file=jhu_data_2.txt      # Input file
 params=47            # Parameters count
 res_file=$(mktemp)  # Temporary file
 sep=' '             # Separator character
