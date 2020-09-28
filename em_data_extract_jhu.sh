@@ -15,7 +15,7 @@ echo fa_${i} >> $outputfile
 fslstats -t ${fa} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
 
 echo md_${i} >> $outputfile
-fslstats -t ${md} -k /lustre/archive/p00423/PREVENT_Elijah/data/${i}.nii.gz -M >> $outputfile
+fslstats -t ${md} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
 
 #echo ${i}_rd >> $outputfile
 #fslstats -t ${rd} -k /lustre/archive/p00423/PREVENT_Elijah/data/${i}.nii.gz -M >> $outputfile
