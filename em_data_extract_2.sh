@@ -42,7 +42,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
   echo md_wm >> $outputfile
 
   if test -a ${md} && test -a ${wm_mask}; then
-    fslstats -t ${fa} -k ${wm_mask} -M >> $outputfile
+    fslstats -t ${md} -k ${wm_mask} -M >> $outputfile
   else
     echo "NA" >> $outputfile
   fi
