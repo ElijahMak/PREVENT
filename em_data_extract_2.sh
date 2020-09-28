@@ -2,9 +2,9 @@
 subject=${1}
 cd $subject
 
-fa="fa_flirt_cat12brain.nii.nii.gz"
-md="md_flirt_cat12brain.nii.nii.gz"
-rd="rd_flirt_cat12brain.nii.nii.gz"
+fa="fa_flirt_cat12brain.nii.gz"
+md="md_flirt_cat12brain.nii.gz"
+rd="rd_flirt_cat12brain.nii.gz"
 gm_mask="p1T1w_${subject}_mask_20.nii"
 wm_mask="p2T1w_${subject}_mask_50.nii"
 outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
@@ -16,11 +16,11 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
   echo fa_gm >> $outputfile
 
 
-  if [[ test -f ${fa} && test -f ${gm_mask} ]];
+  if test -a ${fa} && test -a ${gm_mask};
   then
-  fslstats -t ${fa} -k ${gm_mask} -M >> $outputfile
+    fslstats -t ${fa} -k ${gm_mask} -M >> $outputfile
   else
-    echo "NA" >> $outputfile
+    echo "NA"
   fi
 
   echo fa_wm >> $outputfile
