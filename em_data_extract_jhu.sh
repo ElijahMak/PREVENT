@@ -30,4 +30,5 @@ else
       echo "NA"  >> $outputfile
       echo md_${i} >> $outputfile
       echo "NA"  >> $outputfile
+    done
 fi
