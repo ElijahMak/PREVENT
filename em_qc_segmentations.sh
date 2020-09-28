@@ -19,7 +19,7 @@
 	subject="${1}"
 	input=${2}
 
-	#input = cat12, dwi_fmrib, fa_tensor, all
+	#input = cat12, dwi_fmrib, fa_tensor, all, dwi_flirt
 
 
 	if [ $input = cat12 ]; then
