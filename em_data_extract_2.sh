@@ -20,7 +20,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
   then
     fslstats -t ${fa} -k ${gm_mask} -M >> $outputfile
   else
-    echo "NA"
+    echo "NA"  >> $outputfile
   fi
 
   echo fa_wm >> $outputfile
