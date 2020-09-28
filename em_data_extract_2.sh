@@ -35,9 +35,9 @@ else
   echo md_gm >> $outputfile
   fslstats -t ${md} -k ${gm_mask} -M >> $outputfile
   echo md_wm >> $outputfile
-  fslstats -t ${md} -k ${gm_mask} -M >> $outputfile
+  fslstats -t ${md} -k ${wm_mask} -M >> $outputfile
   echo rd_gm >> $outputfile
   fslstats -t ${rd} -k ${gm_mask} -M >> $outputfile
   echo rd_wm >> $outputfile
-  fslstats -t ${rd} -k ${gm_mask} -M >> $outputfile
+  fslstats -t ${rd} -k ${wm_mask} -M >> $outputfile
   fi
