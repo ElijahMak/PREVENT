@@ -25,8 +25,9 @@ then
   #fslstats -t ${rd} -k /lustre/archive/p00423/PREVENT_Elijah/data/${i}.nii.gz -M >> $outputfile
   done
 else
-  echo fa_${i} >> $outputfile
-  echo "NA"  >> $outputfile
-  echo md_${i} >> $outputfile
-  echo "NA"  >> $outputfile
+    for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`; do
+      echo fa_${i} >> $outputfile
+      echo "NA"  >> $outputfile
+      echo md_${i} >> $outputfile
+      echo "NA"  >> $outputfile
 fi
