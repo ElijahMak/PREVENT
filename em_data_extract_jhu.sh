@@ -12,13 +12,21 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/jhu_data_2.txt"
 echo subject >> $outputfile
 echo $subject >> $outputfile
 
-for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`; do
-echo fa_${i} >> $outputfile
-fslstats -t ${fa} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
+if test -a ${fa};
+then
+  for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`; do
+  echo fa_${i} >> $outputfile
+  fslstats -t ${fa} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
 
-echo md_${i} >> $outputfile
-fslstats -t ${md} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
+  echo md_${i} >> $outputfile
+  fslstats -t ${md} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
 
-#echo ${i}_rd >> $outputfile
-#fslstats -t ${rd} -k /lustre/archive/p00423/PREVENT_Elijah/data/${i}.nii.gz -M >> $outputfile
-done
+  #echo ${i}_rd >> $outputfile
+  #fslstats -t ${rd} -k /lustre/archive/p00423/PREVENT_Elijah/data/${i}.nii.gz -M >> $outputfile
+  done
+else
+  echo fa_${i} >> $outputfile
+  echo "NA"  >> $outputfile
+  echo md_${i} >> $outputfile
+  echo "NA"  >> $outputfile
+fi
