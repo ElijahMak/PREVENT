@@ -10,7 +10,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/jhu_data.txt"
 
 echo $subject >> $outputfile
 
-for i in `cat roi`; do
+for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`; do
 echo fa_${i} >> $outputfile
 echo "fslstats -t ${fa} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M" >> $outputfile
 
