@@ -9,6 +9,7 @@ md="dti_MD_fnirt_FMRIB58.nii"
 #rd="dti_RD_fnirt_FMRIB58.nii"
 outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/jhu_data.txt"
 
+echo subject >> $outputfile
 echo $subject >> $outputfile
 
 for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`; do
