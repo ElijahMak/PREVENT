@@ -15,7 +15,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
 
   echo fa_gm >> $outputfile
 
-  if [ -f ${fa} ] && [ -f ${gm_mask} ]
+  if [ -f ${fa} ] & [ -f ${gm_mask} ]
   then
   fslstats -t ${fa} -k ${gm_mask} -M >> $outputfile
   else
@@ -24,7 +24,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
 
   echo fa_wm >> $outputfile
 
-  if [ -f ${fa} ] && [ -f ${wm_mask} ]; then
+  if [ -f ${fa} ] & [ -f ${wm_mask} ]; then
     fslstats -t ${fa} -k ${wm_mask} -M >> $outputfile
   else
     echo "NA" >> $outputfile
@@ -32,7 +32,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
 
   echo md_gm >> $outputfile
 
-  if [ -f ${md} ] && [ -f ${gm_mask} ]; then
+  if [ -f ${md} ] & [ -f ${gm_mask} ]; then
     fslstats -t ${md} -k ${gm_mask} -M >> $outputfile
   else
     echo "NA" >> $outputfile
@@ -40,7 +40,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
 
   echo md_wm >> $outputfile
 
-  if [ -f ${md} ] && [ -f ${wm_mask} ]; then
+  if [ -f ${md} ] & [ -f ${wm_mask} ]; then
     fslstats -t ${fa} -k ${wm_mask} -M >> $outputfile
   else
     echo "NA" >> $outputfile
@@ -49,7 +49,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
   echo rd_gm >> $outputfile
 
 
-  if [ -f ${rd} ] && [ -f ${gm_mask} ]; then
+  if [ -f ${rd} ] & [ -f ${gm_mask} ]; then
     fslstats -t ${rd} -k ${gm_mask} -M >> $outputfile
   else
     echo "NA" >> $outputfile
@@ -57,7 +57,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/metrics.txt"
 
   echo rd_wm >> $outputfile
 
-  if [ -f ${rd} ] && [ -f ${wm_mask} ]; then
+  if [ -f ${rd} ] & [ -f ${wm_mask} ]; then
     fslstats -t ${rd} -k ${wm_mask} -M >> $outputfile
   else
     echo "NA" >> $outputfile
