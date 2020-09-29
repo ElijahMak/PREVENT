@@ -1,7 +1,7 @@
 #!/bin/sh
 
 in_file=all_dwi_fnirt_jhu_roi.txt      # Input file
-params=47            # Parameters count
+params=70            # Parameters count
 res_file=$(mktemp)  # Temporary file
 sep=' '             # Separator character
 
