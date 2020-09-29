@@ -6,7 +6,7 @@
 nTask=1
 
 # Time
-time="02:00:0"
+time="02:30:0"
 input=${1}
 
 for subject in `cat $input`;
