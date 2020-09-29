@@ -33,12 +33,12 @@ RD_fnirt_out="dti_RD_fnirt_FMRIB58.nii"
 
 # Apply warp
 
-# FA
-applywarp --ref=${ref} --in=$FA --warp=$cout \
+## FA
+#applywarp --ref=${ref} --in=$FA --warp=$cout \
 --out=${FA_fnirt_out}
 
 # MD
-applywarp --ref=${ref} --in=$MD --warp=$cout \
+#applywarp --ref=${ref} --in=$MD --warp=$cout \
 --out=${MD_fnirt_out}
 
 # RD
