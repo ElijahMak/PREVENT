@@ -47,7 +47,7 @@ FW_fnirt_out="dti_FW_fnirt_FMRIB58.nii"
 
 # RD
 #applywarp --ref=${ref} --in=$RD --warp=$cout \
---out=${RD_fnirt_out}
+#--out=${RD_fnirt_out}
 
 
 # ODI
