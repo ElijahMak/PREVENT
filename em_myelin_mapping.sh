@@ -1,7 +1,8 @@
 # Myelin Mapping
 
-# Objective
-# To register bias-corrected T1 and T2, before deriving myelin maps using FSLMATHs.
+# Objectives
+# To register raw T1 and T2, before deriving myelin maps using FSLMATHs.
+# T1 brains were generated from CAT12 segmentations.
 
 # Author: Elijah Mak
 # Date: 17th September 2020
