@@ -3,7 +3,6 @@
 subject=${1}
 
 # CD to subject
-cd $subject
 
 # Files
 fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/fa_flirt_cat12brain.nii.gz"
@@ -12,7 +11,8 @@ rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/rd_flirt_cat12brain.nii.g
 
 gm_mask="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/p1T1w_${subject}_mask_20.nii"
 gm_mask="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/p2T1w_${subject}_mask_90.nii"
-fa_flirt_outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/${i}_dwi_flirt.txt"
+
+outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/${i}_dwi_flirt.txt"
 
 
 echo subject >> $outputfile
