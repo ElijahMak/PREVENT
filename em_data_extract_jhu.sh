@@ -4,16 +4,19 @@
 # Subject
 subject=${1}
 
+# measure
+measure=${2}
+
+# Output
+outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/${subject}_${measure}_fnirt_jhu_roi.txt"
+
+rm $outputfile
+
 # Files
 fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58.nii"
 md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_MD_fnirt_FMRIB58.nii"
 odi="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_ODI_fnirt_FMRIB58.nii"
 fw="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FW_fnirt_FMRIB58.nii"
-
-# Output
-outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/${subject}_NODDI_fnirt_jhu_roi.txt"
-
-rm $outputfile
 
 # Subject
 # ------------------------------------------------------------------------
