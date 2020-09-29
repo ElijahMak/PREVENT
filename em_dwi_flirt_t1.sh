@@ -34,7 +34,7 @@ t1_brain="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/T1w_${subject}_cat12_b
 #applywarp -i dti_RD.nii -o rd_flirt_cat12brain --premat=/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/fa_flirt_cat12brain.mat -r ${t1_brain}
 
 # Warp ODI to T1
-applywarp -i ${odi} -o odi_flirt_cat12brain --premat=/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/fa_flirt_cat12brain.mat -r ${t1_brain}
+#applywarp -i ${odi} -o odi_flirt_cat12brain --premat=/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/fa_flirt_cat12brain.mat -r ${t1_brain}
 
 # Warp FW to T1
 applywarp -i ${fw} -o fw_flirt_cat12brain --premat=/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/fa_flirt_cat12brain.mat -r ${t1_brain}
