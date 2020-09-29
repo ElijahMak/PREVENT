@@ -43,7 +43,7 @@ then
   do
 
   echo dwi_fa_${i} >> $outputfile
-  fslstats -t ${fa} -k ${jhu_dir}/${warped_jhu_${i}.nii -M >> $outputfile
+  fslstats -t ${fa} -k ${jhu_dir}/warped_jhu_${i}.nii -M >> $outputfile
 
   echo dwi_md_${i} >> $outputfile
   fslstats -t ${md} -k ${jhu_dir}/warped_jhu_${i}.nii -M >> $outputfile
