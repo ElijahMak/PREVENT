@@ -12,6 +12,7 @@
 # Load modules
 module unload fsl/5.0.10
 module load fsl/6.0.1
+module load freesurfer/7.1.0
 
 # Parameters
 i="${1}"
@@ -35,7 +36,7 @@ fslmaths ${T1} -div ${rT2} ${i}_myelin
 flirt -in ${T1_brain} -ref ${T1} -dof 6 -cost normmi  -out ${T1_brain}
 
 # Create CAT12 brain mask
-mri_biniarize --i ${T1_brain} --min 0.0001 --o ${mask}
+mri_binarize --i ${T1_brain} --min 0.0001 --o ${mask}
 
 # Derive myelin brain map
 fslmaths ${i}_myelin -mul ${mask} ${i}_myelin_brain
