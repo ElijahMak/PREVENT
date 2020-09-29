@@ -7,6 +7,10 @@
 	module unload fsl/6.0.1
 	module load fsl/6.0.3
 
+	# Subject
+	subject="${1}"
+	input=${2}
+	
 	# Directory
 	dir="/lustre/archive/p00423/PREVENT_Elijah/CAT12"
 	outputdir="/lustre/archive/p00423/PREVENT_Elijah/CAT12/QC"
@@ -15,9 +19,7 @@
 	b0="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/b0.nii.gz"
 	b0mask="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/b0_brain_mask.nii.gz"
 
-	# Subject
-	subject="${1}"
-	input=${2}
+
 
 	#input = cat12, dwi_fmrib, fa_tensor, all, dwi_flirt
 
