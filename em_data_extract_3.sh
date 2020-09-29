@@ -10,7 +10,7 @@ md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/md_flirt_cat12
 rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/rd_flirt_cat12brain.nii.gz"
 
 gm_mask="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/p1T1w_${subject}_mask_20.nii"
-gm_mask="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/p2T1w_${subject}_mask_90.nii"
+wm_mask="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/p2T1w_${subject}_mask_90.nii"
 
 outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/${subject}_dwi_flirt.txt"
 
