@@ -20,23 +20,23 @@ echo $subject >> $outputfile
 if test -a ${fa};
 then
   for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`; do
-  echo fa_${i} >> $outputfile
+  echo dwi_fa_${i} >> $outputfile
   fslstats -t ${fa} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
 
-  echo md_${i} >> $outputfile
+  echo dwi_md_${i} >> $outputfile
   fslstats -t ${md} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
 
-  echo ${i}_rd >> $outputfile
+  echo dwi_rd_${i} >> $outputfile
   fslstats -t ${rd} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
   done
 
 else
     for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`; do
-      echo fa_${i} >> $outputfile
+      echo dwi_fa_${i} >> $outputfile
       echo "NA"  >> $outputfile
-      echo md_${i} >> $outputfile
+      echo dwi_md_${i} >> $outputfile
       echo "NA"  >> $outputfile
-      echo rd_${i} >> $outputfile
+      echo dwi_rd_${i} >> $outputfile
       echo "NA"  >> $outputfile
     done
 fi
