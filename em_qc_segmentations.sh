@@ -10,7 +10,7 @@
 	# Subject
 	subject="${1}"
 	input=${2}
-	
+
 	# Directory
 	dir="/lustre/archive/p00423/PREVENT_Elijah/CAT12"
 	outputdir="/lustre/archive/p00423/PREVENT_Elijah/CAT12/QC"
