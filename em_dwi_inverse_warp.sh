@@ -4,7 +4,7 @@
 
 # subject
 subject=${1}
-cd $Subject
+cd $subject
 
 FA="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii"
 
