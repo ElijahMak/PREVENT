@@ -15,8 +15,8 @@ rm $outputfile
 # Files
 fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58.nii"
 md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_MD_fnirt_FMRIB58.nii"
-odi="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_ODI_fnirt_FMRIB58.nii"
-fw="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FW_fnirt_FMRIB58.nii"
+odi="/lustre/archive/p00423/PREVENT_Elijah/NODDI/${subject}/dti_ODI_fnirt_FMRIB58.nii"
+fw="/lustre/archive/p00423/PREVENT_Elijah/NODDI/${subject}/dti_FW_fnirt_FMRIB58.nii"
 
 # Subject
 # ------------------------------------------------------------------------
