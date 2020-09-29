@@ -1,6 +1,6 @@
 #!/bin/sh
 
-in_file=metrics.txt      # Input file
+in_file=${1}      # Input file
 params=7            # Parameters count
 res_file=$(mktemp)  # Temporary file
 sep=' '             # Separator character
