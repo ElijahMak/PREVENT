@@ -1,6 +1,10 @@
 # Extract mean DTI values from ROIs in the JHU WM atlas
 # Author: Elijah MAK
 
+# Example
+# bash code CB001 DTI
+# bash code CB001 NODDI
+
 # Subject
 subject=${1}
 
