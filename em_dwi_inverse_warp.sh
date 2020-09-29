@@ -18,6 +18,6 @@ do
 
 fslstats -t ${fa} -k /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M >> $outputfile
 
-applywarp -i /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -M -o warped_jhu_${i} -r ${FA} -w invwarp_FMRIB_to_FA.nii.gz --interp=nn
+applywarp -i /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -o warped_jhu_${i} -r ${FA} -w invwarp_FMRIB_to_FA.nii.gz --interp=nn
 
 done
