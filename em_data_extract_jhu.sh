@@ -5,14 +5,14 @@ cd $subject
 
 # Files
 # Files
-fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58.nii.gz"
-md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_MD_fnirt_FMRIB58.nii.gz"
-rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_RD_fnirt_FMRIB58.nii.gz"
+
+fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58.nii"
+md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_MD_fnirt_FMRIB58.nii"
+rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_RD_fnirt_FMRIB58.nii"
 
 outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/${subject}_dwi_fnirt_jhu_roi.txt"
 
 rm $outputfile
-
 
 echo subject >> $outputfile
 echo $subject >> $outputfile
