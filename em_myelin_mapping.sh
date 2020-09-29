@@ -15,8 +15,8 @@ module load fsl/6.0.1
 
 # Parameters
 i="${1}"
-T1="T1w_${i}.nii"
-T2="T2w_${i}.nii"
+T1="T1w_${i}_BFC.nii"
+T2="T2w_${i}_BFC.nii"
 T1_brain="T1w_${i}_cat12_brain.nii.gz"
 omat="${i}_T2toT1_NMI.mat"
 rT2="${i}_T2toT1_NMI"
