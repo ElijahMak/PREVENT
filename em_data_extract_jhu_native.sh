@@ -19,7 +19,7 @@ rm $outputfile
 # Files
 fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii"
 md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_MD.nii"
-md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_RD.nii"
+rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_RD.nii"
 odi="/lustre/archive/p00423/PREVENT_Elijah/NODDI/${subject}/ODI.nii.gz"
 fw="/lustre/archive/p00423/PREVENT_Elijah/NODDI/${subject}/w_csf.w.nii.gz"
 
@@ -83,7 +83,7 @@ else
 # ------------------------------------------------------------------------
 
     if test -a ${odi};
-    
+
     jhu_dir="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/warped_jhu"
 
     then
