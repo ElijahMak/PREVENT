@@ -5,9 +5,9 @@ subject=${1}
 # CD to subject
 
 # Files
-fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/fa_flirt_cat12brain.nii.gz"
-md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/md_flirt_cat12brain.nii.gz"
-rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/rd_flirt_cat12brain.nii.gz"
+fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/fa_flirt_cat12brain.nii.gz"
+md="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/md_flirt_cat12brain.nii.gz"
+rd="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/rd_flirt_cat12brain.nii.gz"
 
 gm_mask="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/p1T1w_${subject}_mask_20.nii"
 gm_mask="/lustre/archive/p00423/PREVENT_Elijah/CAT12/mri/p2T1w_${subject}_mask_90.nii"
