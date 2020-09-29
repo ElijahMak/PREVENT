@@ -19,6 +19,8 @@ cd $subject
 FA="dti_FA.nii"
 MD="dti_MD.nii"
 RD="dti_RD.nii"
+ODI="/lustre/archive/p00423/PREVENT_Elijah/NODDI/${subject}/ODI.nii.gz"
+FW="/lustre/archive/p00423/PREVENT_Elijah/NODDI/${subject}/w_csf.w.nii.gz"
 ref="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
 flirt_out="dti_FA_flirt_FMRIB58.nii"
 omat="dti_FA_flirt_FMRIB58.mat"
@@ -30,6 +32,8 @@ cout="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt
 FA_fnirt_out="dti_FA_fnirt_FMRIB58.nii"
 MD_fnirt_out="dti_MD_fnirt_FMRIB58.nii"
 RD_fnirt_out="dti_RD_fnirt_FMRIB58.nii"
+ODI_fnirt_out="dti_ODI_fnirt_FMRIB58.nii"
+FW_fnirt_out="dti_FW_fnirt_FMRIB58.nii"
 
 # Apply warp
 
@@ -42,5 +46,14 @@ RD_fnirt_out="dti_RD_fnirt_FMRIB58.nii"
 #--out=${MD_fnirt_out}
 
 # RD
-applywarp --ref=${ref} --in=$RD --warp=$cout \
+#applywarp --ref=${ref} --in=$RD --warp=$cout \
 --out=${RD_fnirt_out}
+
+
+# ODI
+applywarp --ref=${ref} --in=$ODI --warp=$cout \
+--out=${ODI_fnirt_out}
+
+# FW
+applywarp --ref=${ref} --in=$FW --warp=$cout \
+--out=${FW_fnirt_out}
