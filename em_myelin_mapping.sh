@@ -26,7 +26,7 @@ mask="${i}_cat12_brain_mask.nii"
 cd ${i}
 
 # Linear registration
-flirt -in ${T2} -ref ${T1_brain} -dof 6 -cost normmi -omat $omat -out $rT2
+flirt -in ${T2} -ref ${T1} -dof 6 -cost normmi -omat $omat -out $rT2
 
 # Derive myelin map
 fslmaths ${T1} -div ${rT2} ${i}_myelin
