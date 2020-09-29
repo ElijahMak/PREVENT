@@ -6,6 +6,8 @@
 subject=${1}
 cd $subject
 
+mkdir warped_jhu
+
 FA="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii"
 
 invwarp --warp=dti_FA_fnirt_FMRIB58.mat.nii \
@@ -16,6 +18,6 @@ for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`
 
 do
 
-applywarp -i /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -o warped_jhu_${i} -r ${FA} -w invwarp_FMRIB_to_FA.nii.gz --interp=nn
+applywarp -i /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -o warped_jhu/warped_jhu_${i} -r ${FA} -w invwarp_FMRIB_to_FA.nii.gz --interp=nn
 
 done
