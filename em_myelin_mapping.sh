@@ -26,14 +26,18 @@ mask="${i}_cat12_brain_mask.nii"
 # Enter directory
 cd ${i}
 
+# FSL RE ORIENT
+fslreorient2std T1w_${i}_BFC.nii ${T1}
+fslreorient2std T2w_${i}_BFC.nii ${T2}
+
 # Linear registration
-# flirt -in ${T2} -ref ${T1} -dof 6 -cost normmi -omat $omat -out $rT2
+flirt -in ${T2} -ref ${T1} -dof 6 -cost normmi -omat $omat -out $rT2
 
 # Derive myelin map
-# fslmaths ${T1} -div ${rT2} ${i}_myelin
+fslmaths ${T1} -div ${rT2} ${i}_myelin
 
 # Register CAT12 brain to T1
-#flirt -in ${T1_brain} -ref ${T1} -dof 6 -cost normmi  -out ${T1_brain}
+flirt -in ${T1_brain} -ref ${T1} -dof 6 -cost normmi  -out ${T1_brain}
 
 # Create CAT12 brain mask
 mri_binarize --i ${T1_brain} --min 0.0001 --o ${mask}
