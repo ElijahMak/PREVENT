@@ -12,6 +12,7 @@ outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/${subject}_native_dti_jhu
 rm $outputfile
 
 #files
+check_file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii"
 file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${m}.nii"
 
 # Subject
@@ -21,7 +22,7 @@ echo $subject >> $outputfile
 
 # Loop through JHU ROIs if FA file is present
 # ------------------------------------------------------------------------
-if test -a ${fa};
+if test -a ${check_file};
 
 then
 
@@ -43,14 +44,17 @@ else
 
 #  Print NA if FA is missing for each ROI
 # ------------------------------------------------------------------------
+
 jhu_dir="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/warped_jhu"
 
 for dti in FA MD RD; do
 
   for i in {1..47}; do
 
-      echo dwi_${dti}_${i} >> $outputfile
-      echo "NA"  >> $outputfile
+    file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${dti}.nii"
+
+    echo dwi_${dti}_${i} >> $outputfile
+    echo "NA"  >> $outputfile
 
     done
   done
