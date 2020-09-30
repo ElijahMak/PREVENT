@@ -18,7 +18,7 @@
 	fmrib="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
 	b0="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/b0.nii.gz"
 	b0mask="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/b0_brain_mask.nii.gz"
-
+	fa_fmrib_mask="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58_mask.nii"
 
 
 	#input =
@@ -121,5 +121,10 @@ elif [ $input = dwi_fmrib ]; then
 pkill Xvfb
 xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/dwi/${subject}.fa.jhu.png --scene ortho --worldLoc -17.675695754542488 -14.857630458022612 7.469650037360893 --displaySpace ${fa_fmrib} --xcentre  0.00000 -0.00000 --ycentre  0.00000  0.00000 --zcentre  0.00000  0.00000 --xzoom 100.0 --yzoom 100.0 --zzoom 100.0 --hideLabels --labelSize 14 --layout horizontal --hideCursor --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${fa_fmrib} --name "dti_FA_fnirt_FMRIB58" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 1.1835488080978394 --clippingRange 0.0 1.1953842961788177 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /lustre/archive/p00423/QualityControl/JHU-ICBM-labels-1mm.nii.gz --name "JHU-ICBM-labels-1mm" --overlayType label --alpha 100.0 --brightness 50.0 --contrast 50.0 --lut harvard-oxford-cortical --outlineWidth 1 --volume 0
 
+elif [ $input = dwi_fov ]; then
+
+pkill Xvfb
+
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/dwi/${subject}.dwi.fov.png --scene lightbox --worldLoc 74.16673546158638 -124.73660349291424 108.75978727118911 --displaySpace ${fa_fmrib_mask} --zaxis 0 --sliceSpacing 4.526647301513387 --zrange 13.569940887656918 163.50602044529867 --ncols 8 --nrows 4 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${dir}/MNI152_T1_1mm_brain.nii.gz --name "MNI152_T1_1mm_brain" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${fa_fmrib_mask} --name "dti_FA_fnirt_FMRIB58_mask" --overlayType volume --alpha 51.55644378428265 --brightness 50.0 --contrast 50.0 --cmap cool --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
 
 fi
