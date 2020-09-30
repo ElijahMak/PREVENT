@@ -84,9 +84,9 @@ else
 
     if test -a ${odi};
 
-    jhu_dir="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/warped_jhu"
-
     then
+
+      jhu_dir="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/warped_jhu"
 
       for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`;
 
