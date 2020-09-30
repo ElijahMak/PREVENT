@@ -4,20 +4,20 @@
 
 # subject
 subject=${1}
+
+cd /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/
 cd $subject
 
 mkdir warped_jhu
 
-FA="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii"
+fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii"
 
-invwarp --warp=dti_FA_fnirt_FMRIB58.mat.nii \
---ref=dti_FA.nii \
---out=invwarp_FMRIB_to_FA
+# invwarp --warp=dti_FA_fnirt_FMRIB58.mat.nii --ref=dti_FA.nii --out=invwarp_FMRIB_to_FA
 
-for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`
+for i in {1..47}
 
 do
 
-applywarp -i /lustre/archive/p00423/PREVENT_Elijah/data/JHU_ROI/${i}.nii.gz -o warped_jhu/warped_jhu_${i} -r ${FA} -w invwarp_FMRIB_to_FA.nii.gz --interp=nn
+  applywarp -i /lustre/archive/p00423/PREVENT_Elijah/data/em_jhu_toolbox  /${i}.nii.gz -o warped_jhu/${i}.nii.gz -r ${fa} -w invwarp_FMRIB_to_FA.nii.gz --interp=nn
 
 done
