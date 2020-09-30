@@ -36,7 +36,7 @@ for dti in `cat list_metrics`; do
   echo dwi_${dti}_${i} >> $outputfile
   fslstats -t ${file} -k ${jhu_dir}/warped_jhu_${i}.nii -M >> $outputfile
 
-done;
+done
 done
 
 else
@@ -52,5 +52,6 @@ for dti in `cat list_metrics`; do
       echo "NA"  >> $outputfile
 
     done
+  done
 
   fi
