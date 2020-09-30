@@ -1,7 +1,7 @@
 #!/bin/sh
 
 in_file=all_DTI_native_jhu_roi.txt      # Input file
-params=49       # Parameters count
+params=145       # Parameters count
 res_file=$(mktemp)  # Temporary file
 sep=' '             # Separator character
 
