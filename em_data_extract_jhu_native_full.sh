@@ -31,7 +31,7 @@ for dti in FA MD RD; do
 
   for i in {1..47}; do
 
-    file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${m}.nii"
+    file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${dti}.nii"
 
   echo dwi_${dti}_${i} >> $outputfile
   fslstats -t ${file} -k ${jhu_dir}/warped_jhu_${i}.nii -M >> $outputfile
@@ -44,7 +44,7 @@ else
 #  Print NA if FA is missing for each ROI
 # ------------------------------------------------------------------------
 
-for dti in `cat list_metrics`; do
+for dti in FA MD RD; do
 
   for i in {1...47}; do
 
