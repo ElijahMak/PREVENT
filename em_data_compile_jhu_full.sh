@@ -1,7 +1,7 @@
 #!/bin/sh
 
-in_file=all_NODDI_native_jhu_roi.txt      # Input file
-params=49       # Parameters count
+in_file=${1}      # Input file
+params=142       # Parameters count
 res_file=$(mktemp)  # Temporary file
 sep=' '             # Separator character
 
