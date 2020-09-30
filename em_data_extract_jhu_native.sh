@@ -90,14 +90,14 @@ else
 
       for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`;
 
-      do
+        do
 
-        echo dwi_ODI_${i} >> $outputfile
+          echo dwi_ODI_${i} >> $outputfile
 
-        fslstats -t ${odi} -k ${jhu_dir}/warped_jhu_${i}.nii -M >> $outputfile
+          fslstats -t ${odi} -k ${jhu_dir}/warped_jhu_${i}.nii -M >> $outputfile
 
-        echo dwi_FW_${i} >> $outputfile
-        fslstats -t ${fw} -k ${jhu_dir}/warped_jhu_${i}.nii -M >> $outputfile
+          echo dwi_FW_${i} >> $outputfile
+          fslstats -t ${fw} -k ${jhu_dir}/warped_jhu_${i}.nii -M >> $outputfile
 
       done
 
@@ -108,6 +108,7 @@ else
         for i in `cat /lustre/archive/p00423/PREVENT_Elijah/data/roi`;
 
         do
+
           echo dwi_ODI_${i} >> $outputfile
           echo "NA"  >> $outputfile
 
