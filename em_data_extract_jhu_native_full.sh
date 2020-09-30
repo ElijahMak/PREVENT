@@ -43,6 +43,7 @@ else
 
 #  Print NA if FA is missing for each ROI
 # ------------------------------------------------------------------------
+jhu_dir="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/warped_jhu"
 
 for dti in FA MD RD; do
 
