@@ -34,7 +34,7 @@ for dti in FA MD RD; do
     file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${dti}.nii"
 
   echo dwi_${dti}_${i} >> $outputfile
-  fslstats -t ${file} -k ${jhu_dir}/warped_jhu_${i}.nii -M >> $outputfile
+  fslstats -t ${file} -k ${jhu_dir}/${i}.nii -M >> $outputfile
 
 done
 done
