@@ -46,7 +46,7 @@ else
 
 for dti in FA MD RD; do
 
-  for i in {1...47}; do
+  for i in {1..47}; do
 
       echo dwi_${dti}_${i} >> $outputfile
       echo "NA"  >> $outputfile
