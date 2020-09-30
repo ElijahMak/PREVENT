@@ -29,7 +29,7 @@ then
 
 for dti in `cat list_metrics`; do
 
-  for i in (1...47); do
+  for i in {1..47}; do
 
     file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${m}.nii"
 
@@ -46,7 +46,7 @@ else
 
 for dti in `cat list_metrics`; do
 
-  for i in (1...47); do
+  for i in {1...47}; do
 
       echo dwi_${dti}_${i} >> $outputfile
       echo "NA"  >> $outputfile
