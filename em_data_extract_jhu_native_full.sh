@@ -27,7 +27,7 @@ then
 
   jhu_dir="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/warped_jhu"
 
-for dti in fa md rd; do
+for dti in FA MD RD; do
 
   for i in {1..47}; do
 
