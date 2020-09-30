@@ -1,7 +1,7 @@
 #!/bin/sh
 
 in_file=all_NODDI_fnirt_jhu_roi.txt      # Input file
-params=48         # Parameters count
+params=49       # Parameters count
 res_file=$(mktemp)  # Temporary file
 sep=' '             # Separator character
 
