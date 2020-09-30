@@ -18,6 +18,6 @@ for i in {1..47}
 
 do
 
-  applywarp -i /lustre/archive/p00423/PREVENT_Elijah/data/em_jhu_toolbox  /${i}.nii.gz -o warped_jhu/${i}.nii.gz -r ${fa} -w invwarp_FMRIB_to_FA.nii.gz --interp=nn
+  applywarp -i /lustre/archive/p00423/PREVENT_Elijah/data/em_jhu_toolbox/${i}.nii.gz -o warped_jhu/${i}.nii.gz -r ${fa} -w invwarp_FMRIB_to_FA.nii.gz --interp=nn
 
 done
