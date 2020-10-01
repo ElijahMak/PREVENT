@@ -39,6 +39,5 @@ for dti in FA MD RD; do
           echo "NA" >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
           paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
         done
-      done
-
       fi
+      done
