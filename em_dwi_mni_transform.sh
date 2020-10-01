@@ -49,5 +49,5 @@ applywarp --ref=${ref} --in=$MD --warp=$cout \
 --out=${MD_fnirt_out}
 
 # RD
-applywarp --ref=${ref} --in=$RD --warp=$cout \
+applywarp --ref=${ref} --in=${RD} --warp=$cout \
 --out=${RD_fnirt_out}
