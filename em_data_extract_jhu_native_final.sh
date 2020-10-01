@@ -37,9 +37,8 @@ for dti in FA MD RD; do
                rm ${subject}_${dti}_jhu_native_roi${padroi}.txt; fi
 
           echo "NA" >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
-
           paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
         done
-      fi
+      done
 
-  #rm *${dti}_jhu_native_roi*.txt
+      fi
