@@ -18,5 +18,3 @@ for dti in FA MD RD; do
   # Remove temp files
   rm temp_1
   rm temp_2
-
-done
