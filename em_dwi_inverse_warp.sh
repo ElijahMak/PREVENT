@@ -12,9 +12,9 @@ mkdir warped_jhu
 
 fa="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii"
 
-# invwarp --warp=dti_FA_fnirt_FMRIB58.mat.nii --ref=dti_FA.nii --out=invwarp_FMRIB_to_FA
+invwarp --warp=dti_FA_fnirt_FMRIB58.mat.nii --ref=dti_FA.nii --out=invwarp_FMRIB_to_FA
 
-for i in {1..47}
+for i in {1..48}
 
 do
 
