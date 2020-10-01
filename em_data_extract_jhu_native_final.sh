@@ -19,7 +19,7 @@ for dti in FA MD RD; do
 
     #echo $(sed "${roinum}q;d" /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/list_jhu) >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
-     echo ${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
+     #echo ${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
      fslmeants -i ${file} -m warped_jhu/${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
