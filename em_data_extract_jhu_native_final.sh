@@ -13,8 +13,7 @@ for roinum in {1..47} ; do
      padroi=`$FSLDIR/bin/zeropad $roinum 3`
 
      rm ${subject}_${dti}_jhu_native_roi${padroi}.txt
-
-     sed '${roinum}q;d' list_jhu >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
+     sed "${roinum}q;d" /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/list_jhu >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
      fslmeants -i ${file} -m warped_jhu/${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
   done
