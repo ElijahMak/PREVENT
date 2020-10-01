@@ -19,6 +19,8 @@
 	b0="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/b0.nii.gz"
 	b0mask="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/b0_brain_mask.nii.gz"
 	fa_fmrib_mask="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58_mask.nii"
+	myelin_gm="/lustre/archive/p00423/PREVENT_Elijah/myelin/${subject}/${subject}_myelin_brain.nii.gz"
+
 
 
 	#input =
@@ -125,5 +127,10 @@ elif [ $input = dwi_fov ]; then
 
 pkill Xvfb
 xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/dwi/${subject}.dwi.fov.png --scene lightbox --hideCursor --worldLoc 74.16673546158638 -124.73660349291424 108.75978727118911 --displaySpace ${fa_fmrib_mask} --zaxis 0 --sliceSpacing 4.526647301513387 --zrange 13.569940887656918 163.50602044529867 --ncols 8 --nrows 4 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${dir}/MNI152_T1_1mm_brain.nii.gz --name "MNI152_T1_1mm_brain" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${fa_fmrib_mask} --name "dti_FA_fnirt_FMRIB58_mask" --overlayType volume --alpha 51.55644378428265 --brightness 50.0 --contrast 50.0 --cmap cool --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
+
+elif [ $input = myelin_flirt ]; then
+
+pkill Xvfb
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/${subject}.myelin.axial.png --scene lightbox --hideCursor  --worldLoc -25.040941687671577 -37.32170315056568 -22.79834519205592 --displaySpace ${dir}/T1w_${subject}.nii --zaxis 2 --sliceSpacing 6 --zrange 68.22089955694904 194.9572843305086 --ncols 7 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${dir}/T1w_${subject}.nii --name "T1w_${subject}" --overlayType volume --alpha 100.0 --brightness 60.63218390804598 --contrast 71.26436781609196 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 800.0 --clippingRange 0.0 1405.92 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${myelin_gm} --name "myelin" --overlayType volume --alpha 48.28306686791663 --brightness 50.0 --contrast 50.0 --cmap blue --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.0 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
 
 fi
