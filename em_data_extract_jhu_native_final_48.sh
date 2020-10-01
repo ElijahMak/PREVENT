@@ -1,61 +1,43 @@
-# Extract mean DTI values from ROIs in the JHU WM atlas
+cd /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/
 
-# Author: Elijah MAK
-
-
-# Subject
 subject=${1}
 
-# Output
-outputfile="/lustre/archive/p00423/PREVENT_Elijah/data/${subject}_native_dti_jhu_roi_full.txt"
-
-rm $outputfile
-
-#files
-check_file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA.nii"
-file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${m}.nii"
-
-# Subject
-# ------------------------------------------------------------------------
-echo subject >> $outputfile
-echo $subject >> $outputfile
-
-# Loop through JHU ROIs if FA file is present
-# ------------------------------------------------------------------------
-if test -a ${check_file};
-
-then
-
-  jhu_dir="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/warped_jhu"
-
-for dti in FA MD RD; do
-    roinum="48"
-
-    file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${dti}.nii"
-
-  echo dwi_${dti}_${i} >> $outputfile
-  fslstats -t ${file} -k ${jhu_dir}/${i}.nii -M >> $outputfile
-
-done
-done
-
-else
-
-#  Print NA if FA is missing for each ROI
-# ------------------------------------------------------------------------
-
-jhu_dir="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/warped_jhu"
+cd $subject
 
 for dti in FA MD RD; do
 
-  for i in {1..47}; do
+  file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${dti}.nii"
 
-    file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${dti}.nii"
+  if [ -f ${file} ]; then
 
-    echo dwi_${dti}_${i} >> $outputfile
-    echo "NA"  >> $outputfile
+  roinum="48"
 
-    done
-  done
+      padroi=`$FSLDIR/bin/zeropad $roinum 3`
 
-  fi
+      if [ -f ${subject}_${dti}_jhu_native_roi${padroi}.txt ]; then
+         rm ${subject}_${dti}_jhu_native_roi${padroi}.txt; fi
+
+          #echo $(sed "${roinum}q;d" /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/list_jhu) >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
+
+          #echo ${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
+
+          fslmeants -i ${file} -m warped_jhu/${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
+
+          paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
+
+
+        else
+
+          roinum="48"
+
+
+            padroi=`$FSLDIR/bin/zeropad $roinum 3`
+
+            if [ -f ${subject}_${dti}_jhu_native_roi${padroi}.txt ]; then
+               rm ${subject}_${dti}_jhu_native_roi${padroi}.txt; fi
+
+          echo "NA" >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
+          paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
+        done
+      fi
+      done
