@@ -27,6 +27,7 @@ for dti in FA MD RD; do
 
         done
 
+
         else
 
           for roinum in {1..47} ; do
@@ -39,8 +40,7 @@ for dti in FA MD RD; do
           echo "NA" >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
           paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
+        fi
         done
-
-  done
 
   #rm *${dti}_jhu_native_roi*.txt
