@@ -29,7 +29,7 @@ for dti in FA MD RD; do
 
         else
 
-          for roinum in {1..47} ; do
+          for roinum in {1..48} ; do
 
             padroi=`$FSLDIR/bin/zeropad $roinum 3`
 
