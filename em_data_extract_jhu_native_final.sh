@@ -8,7 +8,7 @@ for dti in FA MD RD; do
 
   file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${dti}.nii"
 
-  if [-f ${file} ]; then
+  if [ -f ${file} ]; then
 
     for roinum in {1..47} ; do
 
