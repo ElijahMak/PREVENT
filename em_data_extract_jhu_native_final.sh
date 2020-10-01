@@ -25,16 +25,22 @@ for dti in FA MD RD; do
 
           paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
 
+        done
+
         else
+
+          for roinum in {1..47} ; do
+
+            padroi=`$FSLDIR/bin/zeropad $roinum 3`
+
+            if [ -f ${subject}_${dti}_jhu_native_roi${padroi}.txt ]; then
+               rm ${subject}_${dti}_jhu_native_roi${padroi}.txt; fi
 
           echo "NA" >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
           paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
-
-        fi
+        done
 
   done
 
   #rm *${dti}_jhu_native_roi*.txt
-
-done
