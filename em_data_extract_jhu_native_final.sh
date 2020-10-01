@@ -25,6 +25,6 @@ for dti in FA MD RD; do
 
   done
 
-  rm *${dti}_jhu_native_roi*.txt
+  #rm *${dti}_jhu_native_roi*.txt
 
 done
