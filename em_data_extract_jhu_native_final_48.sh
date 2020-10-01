@@ -23,9 +23,6 @@ for dti in FA MD RD; do
 
           fslmeants -i ${file} -m warped_jhu/${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
-          paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
-
-
         else
 
           roinum="48"
