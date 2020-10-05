@@ -22,8 +22,7 @@
 	myelin_gm="/lustre/archive/p00423/PREVENT_Elijah/myelin/${subject}/${subject}_myelin_brain.nii.gz"
 
 
-
-	#input =
+	# inputs
 	# cat12
   # dwi_fmrib, fa_tensor, all, dwi_flirt
 	# dwi_brainmask
