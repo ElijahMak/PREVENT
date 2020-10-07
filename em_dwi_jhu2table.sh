@@ -2,7 +2,7 @@
 # Author: Elijah MAK
 
 # Directory
-cd /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/
+#cd /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/
 
 for dti in FA MD RD; do
 
