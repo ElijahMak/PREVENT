@@ -1,4 +1,3 @@
-cd /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/
 
 subject=${1}
 
