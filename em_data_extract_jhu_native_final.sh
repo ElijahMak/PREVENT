@@ -5,7 +5,7 @@ cd $subject
 
 for dti in FA MD RD; do
 
-  file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/WLV2/dti_${dti}.nii"
+  file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/WLV2/${subject}/dti_${dti}.nii"
 
   if [ -f ${file} ]; then
 
@@ -20,7 +20,7 @@ for dti in FA MD RD; do
 
           #echo ${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
-          fslmeants -i ${file} -m warped_jhu/${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
+          fslmeants -i ${file} -m warped_jhu/${roinum}.nii >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
           paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
 
