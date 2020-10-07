@@ -21,7 +21,6 @@
 	fa_fmrib_mask="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58_mask.nii"
 	myelin_gm="/lustre/archive/p00423/PREVENT_Elijah/myelin/${subject}/${subject}_myelin_brain.nii.gz"
 
-
 	# inputs
 	# cat12
   # dwi_fmrib, fa_tensor, all, dwi_flirt
@@ -115,13 +114,11 @@ elif [ $input = cat12_brainmask ]; then
 elif [ $input = dwi_flirt ]; then
 	pkill Xvfb
 	xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/${subject}.fa.flirt.axial.png --scene lightbox --hideCursor  --worldLoc -25.040941687671577 -37.32170315056568 -22.79834519205592 --displaySpace ${dir}/T1w_${subject}.nii --zaxis 2 --sliceSpacing 6 --zrange 68.22089955694904 194.9572843305086 --ncols 7 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${dir}/T1w_${subject}.nii --name "T1w_${subject}" --overlayType volume --alpha 100.0 --brightness 60.63218390804598 --contrast 71.26436781609196 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 800.0 --clippingRange 0.0 1405.92 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/fa_flirt_cat12brain --name "FA_flirt" --overlayType volume --alpha 70 --brightness 50 --contrast 50.0 --cmap blue --negativeCmap greyscale  --displayRange 0.2 0.7 --clippingRange 0.2 0.7 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
+
 elif [ $input = dwi_fmrib ]; then
 
-# DWI FMRIB normalisation
-
-# FA
 pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/dwi/${subject}.fa.jhu.png --scene ortho --worldLoc -17.675695754542488 -14.857630458022612 7.469650037360893 --displaySpace ${fa_fmrib} --xcentre  0.00000 -0.00000 --ycentre  0.00000  0.00000 --zcentre  0.00000  0.00000 --xzoom 100.0 --yzoom 100.0 --zzoom 100.0 --hideLabels --labelSize 14 --layout horizontal --hideCursor --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${fa_fmrib} --name "dti_FA_fnirt_FMRIB58" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 1.1835488080978394 --clippingRange 0.0 1.1953842961788177 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /lustre/archive/p00423/QualityControl/JHU-ICBM-labels-1mm.nii.gz --name "JHU-ICBM-labels-1mm" --overlayType label --alpha 100.0 --brightness 50.0 --contrast 50.0 --lut harvard-oxford-cortical --outlineWidth 1 --volume 0
+echo xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/dwi/${subject}.fa.jhu.png --scene ortho --worldLoc -17.675695754542488 -14.857630458022612 7.469650037360893 --displaySpace ${fa_fmrib} --xcentre  0.00000 -0.00000 --ycentre  0.00000  0.00000 --zcentre  0.00000  0.00000 --xzoom 100.0 --yzoom 100.0 --zzoom 100.0 --hideLabels --labelSize 14 --layout horizontal --hideCursor --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${fa_fmrib} --name "dti_FA_fnirt_FMRIB58" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 1.1835488080978394 --clippingRange 0.0 1.1953842961788177 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /lustre/archive/p00423/QualityControl/JHU-ICBM-labels-1mm.nii.gz --name "JHU-ICBM-labels-1mm" --overlayType label --alpha 100.0 --brightness 50.0 --contrast 50.0 --lut harvard-oxford-cortical --outlineWidth 1 --volume 0
 
 elif [ $input = dwi_fov ]; then
 
