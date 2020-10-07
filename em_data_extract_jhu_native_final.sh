@@ -5,7 +5,7 @@ cd $subject
 
 for dti in FA MD RD; do
 
-  file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/WLV2/${subject}/dti_${dti}.nii"
+  file="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_${dti}.nii"
 
   if [ -f ${file} ]; then
 
