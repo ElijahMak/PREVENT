@@ -15,7 +15,7 @@ for dti in FA MD RD; do
   # Append subjects to data file
   paste subjects temp_2 > all_${dti}_jhu.txt
 
-
   # Remove temp files
   rm temp_1
   rm temp_2
+done
