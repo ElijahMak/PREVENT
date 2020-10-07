@@ -7,4 +7,3 @@ cp ${i}/bvec BEDPOSTX/${i}/bvecs
 cp ${i}/b0_brain_mask.nii.gz BEDPOSTX/${i}/nodif_brain_mask.nii.gz
 cp ${i}/acqparams.txt BEDPOSTX/${i}/acqparams.txt
 cp ${i}/index.txt BEDPOSTX/${i}/index.txt
-a
