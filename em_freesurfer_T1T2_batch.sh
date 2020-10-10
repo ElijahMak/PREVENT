@@ -7,11 +7,11 @@
 
 # Estimated time on HPHI is _ minutes
 
-# Time
+# Time  
 time="20:00:00"
 
 # Memory
-mem="4000"
+mem="8000"
 
 # Number of tasks
 nTask=1
