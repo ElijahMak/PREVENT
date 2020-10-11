@@ -18,30 +18,30 @@
 # module load fsl/6.0.3
 # module load freesurfer/7.1.0
 #
-# # Define variables
-# subject="${1}"
-# BET=${2}
-# input_denoise="dwi.nii"
-# input_edc="dwi.denoised.nii"
-# mask="b0_brain_mask.nii.gz"
-# bvec="bvec"
-# bval="bval"
-# rotated_bvecs="edc.repol.eddy_rotated_bvecs"
-# output_edc="edc.repol";
-# input_dti="edc.repol.nii.gz"
-# output_dti="dti"
-# outputdir="/lustre/archive/p00423/QualityControl/dwi/"
-# fa_fmrib="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58.nii"
-# fmrib="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
-# fa_fmrib_mask="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58_mask.nii"
-#
-# # Initialising Text
-# echo "Diffusion pipeline started at $(date)"
-# echo "Initialising diffusion preprocessing for ${subject}"
-#
-# # Switch to subject directory
-# cd ${subject}
-#
+# Define variables
+subject="${1}"
+BET=${2}
+input_denoise="dwi.nii"
+input_edc="dwi.denoised.nii"
+mask="b0_brain_mask.nii.gz"
+bvec="bvec"
+bval="bval"
+rotated_bvecs="edc.repol.eddy_rotated_bvecs"
+output_edc="edc.repol";
+input_dti="edc.repol.nii.gz"
+output_dti="dti"
+outputdir="/lustre/archive/p00423/QualityControl/dwi/"
+fa_fmrib="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58.nii"
+fmrib="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
+fa_fmrib_mask="/lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/dti_FA_fnirt_FMRIB58_mask.nii"
+
+# Initialising Text
+echo "Diffusion pipeline started at $(date)"
+echo "Initialising diffusion preprocessing for ${subject}"
+
+# Switch to subject directory
+cd ${subject}
+
 # # 1 Denoise
 # dwidenoise $input_denoise $input_edc
 #
