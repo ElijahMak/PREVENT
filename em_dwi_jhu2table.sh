@@ -4,7 +4,9 @@
 # Directory
 #cd /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/
 
-for dti in FA MD RD; do
+dti=${2}
+
+#for dti in FA MD RD ODI; do
 
   # Merge all data files
     column */all_${dti}_jhu.txt >> temp_1
@@ -18,4 +20,4 @@ for dti in FA MD RD; do
   # Remove temp files
   rm temp_1
   rm temp_2
-done
+#done

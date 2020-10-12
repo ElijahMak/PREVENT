@@ -12,7 +12,7 @@ if [ -f ${file} ]; then
     padroi=`$FSLDIR/bin/zeropad $roinum 3`
 
     if [ -f ${subject}_${dti}_jhu_native_roi${padroi}.txt ]; then
-      rm ${subject}_${dti}_jhu_native_roi${padroi}.txt; fi
+      rm ${subject}_${dti}_jhu_native_roi${padroi}.txt  ; fi
 
       #echo $(sed "${roinum}q;d" /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/list_jhu) >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
 
@@ -37,4 +37,3 @@ if [ -f ${file} ]; then
         paste *${dti}_jhu_native*.txt > all_${dti}_jhu.txt
       done
     fi
-    
