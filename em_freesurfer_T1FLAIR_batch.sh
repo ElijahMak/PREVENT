@@ -24,7 +24,7 @@ for subject in `cat $input`; do
 
 sbatch --job-name=fs7_t1flair --account hphi --qos=long.q --partition wbic-cs --error=${subject%.*}_%j.err \
 --output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=${nTask} --mem=${mem} \
---wrap="bash ${code}/em_freesurfer_T1FLAIR.sh ${subject}" --mail-type=ALL
+--wrap="bash em_freesurfer_T1FLAIR.sh ${subject}" --mail-type=ALL
 
 sleep 1
 done
