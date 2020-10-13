@@ -17,4 +17,4 @@ recon-all -s ${subject} \
 -T2 ${SUBJECTS_DIR}/FLAIR_${subject}.nii \
 -T2pial \
 -all \
--openmp 4
+-openmp 8 \
