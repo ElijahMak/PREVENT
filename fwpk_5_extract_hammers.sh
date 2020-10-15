@@ -13,7 +13,7 @@ if [ -f ${file} ]; then
     if [ -f ${subject}_FW_hammers_whole_${padroi}.txt ]; then
       rm ${subject}_FW_hammers_whole_roi${padroi}.txt  ; fi
 
-      fslmeants -i ${file} -m hammers/${roinum}.nii.gz > ${subject}_FW_hammers_whole_${padroi}.txt
+      fslmeants -i ${file} -m hammers/${roinum}.nii.gz > ${subject}_FW_hammers_whole_roi${padroi}.txt
 
       paste *_FW_hammers_whole_roi*.txt > all_FW_hammers_whole.txt
 
