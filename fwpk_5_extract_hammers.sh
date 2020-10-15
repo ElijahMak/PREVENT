@@ -10,16 +10,12 @@ if [ -f ${file} ]; then
 
     padroi=`$FSLDIR/bin/zeropad $roinum 3`
 
-    if [ -f ${subject}_FW_hammers_native_roi${padroi}.txt ]; then
-      rm ${subject}_FW_hammers_native_roi${padroi}.txt  ; fi
+    if [ -f ${subject}_FW_hammers_whole_${padroi}.txt ]; then
+      rm ${subject}_FW_hammers_whole_roi${padroi}.txt  ; fi
 
-      #echo $(sed "${roinum}q;d" /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/list_jhu) >> ${subject}$
+      fslmeants -i ${file} -m hammers/${roinum}.nii.gz >> ${subject}_FW_hammers_whole_${padroi}.txt
 
-      #echo ${roinum} >> ${subject}_${dti}_jhu_native_roi${padroi}.txt
-
-      fslmeants -i ${file} -m hammers/${roinum}.nii.gz >> ${subject}_FW_hammers_native_roi${padroi}.txt
-
-      paste *_FW_hammers_native_roi*.txt > all_FW_hammers.txt
+      paste *_FW_hammers_whole_roi*.txt > all_FW_hammers_whole.txt
 
     done
 
@@ -27,12 +23,12 @@ if [ -f ${file} ]; then
 
     for roinum in `cat ../index` ; do
 
-          padroi=`$FSLDIR/bin/zeropad $roinum 3`
+      padroi=`$FSLDIR/bin/zeropad $roinum 3`
 
-          if [ -f ${subject}_FW_hammers_native_roi${padroi}.txt ]; then
-            rm ${subject}_FW_hammers_native_roi${padroi}.txt  ; fi
+      if [ -f ${subject}_FW_hammers_native_roi${padroi}.txt ]; then
+        rm ${subject}_FW_hammers_native_roi${padroi}.txt  ; fi
 
-            echo "NA" >> ${subject}_FW_hammers_native_roi${padroi}.txt
-            paste *_FW_hammers_native_roi*.txt > all_FW_hammers.txt
-          done
-        fi
+        echo "NA" >> ${subject}_FW_hammers_whole_${padroi}.txt
+        paste *_FW_hammers_whole_roi*.txt > all_FW_hammers_whole.txt
+      done
+    fi
