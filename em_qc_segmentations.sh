@@ -135,6 +135,8 @@ elif [ $input = freesurfer ]; then
 
 
 module load freesurfer/7.1.0
+module unload fsl/5.1.0
+module load fsl/6.0.3
 
 pkill Xvfb
 
