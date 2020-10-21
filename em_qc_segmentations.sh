@@ -143,9 +143,9 @@ mri_convert /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}
 
 mri_convert /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.mgz /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz
 
-fslreorient2std /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz
+#fslreorient2std /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz
 
-fslreorient2std /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz
+#fslreorient2std /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz
 
 xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/Freesurfer7_T1FLAIR/${subject}.aparcaseg.png --scene lightbox --worldLoc -56.7121864827474 120.40696828206364 -61.52223391754892 --displaySpace /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz --zaxis 2 --sliceSpacing 6.926629123260879 --zrange 74.78679038800814 215.64719640095944  --ncols 5 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz --name "brainmask" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 178.0 --clippingRange 0.0 179.78 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz --name "aparc+aseg" --overlayType label --alpha 45.342759705461276 --brightness 50.0 --contrast 50.0 --lut freesurfercolorlut --outlineWidth 0 --volume 0
 
