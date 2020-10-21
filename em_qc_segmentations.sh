@@ -130,4 +130,22 @@ elif [ $input = myelin_flirt ]; then
 pkill Xvfb
 xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/myelin/${subject}.myelin.axial.png --scene lightbox --hideCursor  --worldLoc -25.040941687671577 -37.32170315056568 -22.79834519205592 --displaySpace ${dir}/T1w_${subject}.nii --zaxis 2 --sliceSpacing 6 --zrange 68.22089955694904 194.9572843305086 --ncols 7 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${dir}/T1w_${subject}.nii --name "T1w_${subject}" --overlayType volume --alpha 100.0 --brightness 60.63218390804598 --contrast 71.26436781609196 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 800.0 --clippingRange 0.0 1405.92 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${myelin_gm} --name "myelin" --overlayType volume --alpha 48.28306686791663 --brightness 50.0 --contrast 50.0 --cmap blue-lightblue --negativeCmap greyscale --displayRange 0.0 0.5 --clippingRange 0.0 0.5 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
 
+
+elif [ $input = freesurfer ]; then
+
+
+module load freesurfer/7.1.0
+
+pkill Xvfb
+
+mri_convert /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.mgz /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz
+
+mri_convert /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.mgz /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz
+
+fslreorient2std /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz
+
+fslreorient2std /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz
+
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile ${outputdir}/Freesurfer7_T1T2/${subject}.aparcaseg.png --scene lightbox --worldLoc 105.28460726262419 85.0208674428277 -78.46741866587254 --displaySpace /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz --zaxis 2 --sliceSpacing 6.926629123260879 --zrange 74.78679038800814 215.64719640095944 --ncols 5 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/brainmask.nii.gz --name "brainmask" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 178.0 --clippingRange 0.0 179.78 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 /archive/lustre/p00423/PREVENT_Elijah/Freesurfer7_T1FLAIR/${subject}/mri/aparc+aseg.nii.gz --name "aparc+aseg" --overlayType label --alpha 45.342759705461276 --brightness 50.0 --contrast 50.0 --lut freesurfercolorlut --outlineWidth 0 --volume 0
+
 fi
