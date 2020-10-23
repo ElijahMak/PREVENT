@@ -12,7 +12,6 @@ module unload fsl/5.0.10
 module load fsl/6.0.3
 
 
-
 # Parameters
 # -----------------------------------------------------------------------------
 
@@ -56,11 +55,10 @@ echo "Initialising diffusion preprocessing for ${subject}"
 
 # Preprocessing
 # -------------------------------------------------------------------------------------------------
-echo "
-_   _   _   _   _   _   _   _   _   _
-  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \
- ( P | r | e | p | r | o | c | e | s | s )
-  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ "
+echo "================================"
+echo "         Preprocessing          "
+echo "================================"
+
 
 cd ${dir}
 cd ${subject}
@@ -99,10 +97,9 @@ eddy_openmp --imain=${denoised_degibbs_dwi} \
 # Bias-field correction and tensor fitting
 # -------------------------------------------------------------------------------------------------
 
-echo "   _   _   _   _   _   _     _   _   _   _   _   _   _
-  / \ / \ / \ / \ / \ / \   / \ / \ / \ / \ / \ / \ / \
- ( T | e | n | s | o | r ) ( F | i | t | t | i | n | g )
-  \_/ \_/ \_/ \_/ \_/ \_/   \_/ \_/ \_/ \_/ \_/ \_/ \_/ "
+echo "================================"
+echo "         Tensor Fitting         "
+echo "================================"
 
 # Convert to mif
 mrconvert ${edc} ${edc_mif} -fslgrad ${output_edc}.eddy_rotated_bvecs bval -datatype float32 -strides 0,0,0,1
@@ -132,10 +129,9 @@ dwi2fod csd ${edc_mif_bfc} tournier_response.txt tournier_response_fod.mif -mask
 
 # Connectome pipeline
 # -------------------------------------------------------------------------------------------------
-echo "   _   _   _   _   _   _   _   _   _   _
-  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \
- ( C | o | n | n | e | c | t | o | m | e )
-  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ "
+echo "================================"
+echo "         Connectomising         "
+echo "================================"
 
 # Freesurfer registration
 export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
@@ -167,11 +163,9 @@ connectome2tck wholebrain.tck assignments2.txt exemplars.tck -files single -exem
 # Extract ROI from JHU ICBM atlas
 # -------------------------------------------------------------------------------------------------
 
-echo "   _   _   _     _   _   _   _
-  / \ / \ / \   / \ / \ / \ / \
- ( J | H | U ) ( I | C | B | M )
-  \_/ \_/ \_/   \_/ \_/ \_/ \_/ "
-
+echo "================================"
+echo "         Extracting ROIs        "
+echo "================================"
 
 # Normalisation to MNI152
 
@@ -231,7 +225,7 @@ done
 echo "Completed: Inverse warp JHU labels ${subject}"
 
 #  Calculate metrics of JHU labels in native space
-echo "Started: Calculating FA, MD, AD, RD in JHU labels ${subject}"
+echo "Started: Calculating FA, MD, AD, RD in JHU labels for ${subject}"
 
 for dti in FA MD RD AD; do
   file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
