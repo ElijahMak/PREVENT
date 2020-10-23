@@ -186,16 +186,16 @@ export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
 #
 # tckgen -seed_gmwmi 5tt_mask.mif -act 5ttseg.mif -crop_at_gmwmi -seeds 5000000 tournier_response_fod.mif wholebrain.tck -force
 
-tcksift wholebrain.tck tournier_response_fod.mif sift1_wholebrain.tck -force
-
-tcksift2 wholebrain.tck tournier_response_fod.mif wholebrain_sift2_weights.txt -force
-
-labelconvert raparcaseg.nii $FREESURFER_HOME/FreeSurferColorLUT.txt $code/fs_default.txt output_parcels.mif -force
-
-tck2connectome -assignment_radial_search 2 -scale_length -out_assignments assignments2.txt -tck_weights_in wholebrain_sift2_weights.txt wholebrain.tck output_parcels.mif connectome.csv -force
-
-connectome2tck wholebrain.tck assignments2.txt exemplars.tck -files single -exemplars output_parcels.mif
-
+# tcksift wholebrain.tck tournier_response_fod.mif sift1_wholebrain.tck -force
+#
+# tcksift2 wholebrain.tck tournier_response_fod.mif wholebrain_sift2_weights.txt -force
+#
+# labelconvert raparcaseg.nii $FREESURFER_HOME/FreeSurferColorLUT.txt $code/fs_default.txt output_parcels.mif -force
+#
+# tck2connectome -assignment_radial_search 2 -scale_length -out_assignments assignments2.txt -tck_weights_in wholebrain_sift2_weights.txt wholebrain.tck output_parcels.mif connectome.csv -force
+#
+# connectome2tck wholebrain.tck assignments2.txt exemplars.tck -files single -exemplars output_parcels.mif
+#
 
 # Extract ROI from JHU ICBM atlas
 # -------------------------------------------------------------------------------------------------
@@ -230,8 +230,7 @@ echo "--------------------------------"
 # FLIRT
 echo "flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -out ${flirt_omat} -omat ${omat} -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp}"
 
-flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -out ${flirt_omat} -omat ${omat} -bins ${bins} -cost ${cost} \
--searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp} -v
+flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -out ${flirt_omat} -omat ${flirt_omat} -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp} -v
 
 echo "--------------------------------"
 echo "            FNIRT               "
