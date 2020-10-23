@@ -14,7 +14,7 @@ module load fsl/6.0.3
 # Parameters
 # -----------------------------------------------------------------------------
 
-dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX/AFD"
+dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX"
 subject=${1}
 BET=${2}
 raw_dwi="dwi.nii"
