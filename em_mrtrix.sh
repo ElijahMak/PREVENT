@@ -32,7 +32,7 @@ dwi2fod csd edc.repol.mif wm_response.txt fod.mif -mask b0_brain_mask.nii.gz
 # mrview fod.mif -odf.load_sh fod.mif
 
 # Freesurfer registration
-export SUBJECTS_DIR=archive/p00423/PREVENT_Elijah/Freesurfer7_GS
+export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
 
 mri_coreg --s ${subject} --mov /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/b0.nii.gz --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
 
