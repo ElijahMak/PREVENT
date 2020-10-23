@@ -12,12 +12,6 @@ module unload fsl/5.0.10
 module load fsl/6.0.3
 
 
-# Initialising Text
-# -----------------------------------------------------------------------------
-
-echo "Diffusion pipeline started at $(date)"
-echo "Initialising diffusion preprocessing for ${subject}"
-
 
 # Parameters
 # -----------------------------------------------------------------------------
@@ -44,6 +38,20 @@ edc_nii_bfc_tensor_FA="denoised_degibbs.edc.repol.bfc.tensor.FA.nii"
 edc_nii_bfc_tensor_MD="denoised_degibbs.edc.repol.bfc.tensor.MD.nii"
 edc_nii_bfc_tensor_RD="denoised_degibbs.edc.repol.bfc.tensor.RD.nii"
 edc_nii_bfc_tensor_AD="denoised_degibbs.edc.repol.bfc.tensor.AD.nii"
+
+# Initialising Text
+# -----------------------------------------------------------------------------
+
+echo "███████╗███╗   ███╗       ██████╗ ██╗███████╗███████╗██╗   ██╗███████╗██╗ ██████╗ ███╗   ██╗
+██╔════╝████╗ ████║       ██╔══██╗██║██╔════╝██╔════╝██║   ██║██╔════╝██║██╔═══██╗████╗  ██║
+█████╗  ██╔████╔██║       ██║  ██║██║█████╗  █████╗  ██║   ██║███████╗██║██║   ██║██╔██╗ ██║
+██╔══╝  ██║╚██╔╝██║       ██║  ██║██║██╔══╝  ██╔══╝  ██║   ██║╚════██║██║██║   ██║██║╚██╗██║
+███████╗██║ ╚═╝ ██║██╗    ██████╔╝██║██║     ██║     ╚██████╔╝███████║██║╚██████╔╝██║ ╚████║██╗
+╚══════╝╚═╝     ╚═╝╚═╝    ╚═════╝ ╚═╝╚═╝     ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝
+                                                                                               "
+
+echo "Diffusion pipeline started at $(date)"
+echo "Initialising diffusion preprocessing for ${subject}"
 
 
 # Preprocessing
