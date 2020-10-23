@@ -9,6 +9,7 @@ module load freesurfer/7.1.0
 
 # Directory
 export SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_T1T2_BFC"
+
 subject=${1}
 
 # Recon-all
