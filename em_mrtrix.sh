@@ -62,15 +62,17 @@ echo "================================"
 cd ${dir}
 cd ${subject}
 
+cat > start_em_mrtrix
+
 echo "--------------------------------"
-echo "           Denoising            "
+echo "          Denoising             "
 echo "--------------------------------"
 
 # Denoising of DWI
 dwidenoise ${raw_dwi} ${denoised_dwi}
 
 echo "--------------------------------"
-echo "              DeGibbs           "
+echo "            DeGibbs             "
 echo "--------------------------------"
 
 # Remove Gibbs Ringing artifact
@@ -199,6 +201,7 @@ echo "================================"
 
 # Parameters
 FMRIB58_FA_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
+MNI152_T1_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/MNI152_T1_1mm_brain.nii.gz"
 flirt_out="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.nii"
 flirt_omat="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.mat"
 bins="256"
@@ -242,7 +245,7 @@ for dti in FA MD RD AD; do
   file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
   fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.${dti}.fnirt.nii"
   applywarp --ref=${ref} --in=${file} --warp=${fnirt_omat} -v \
---out=${fnirt_out}; done
+  --out=${fnirt_out}; done
 
 echo "--------------------------------"
 echo "     Generate screenshots       "
@@ -250,7 +253,13 @@ echo "--------------------------------"
 
 mkdir QC
 outfile="QC/fa.fmrib.png"
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile $outfile  --size 2500 2500 --scene lightbox --hideCursor --worldLoc 51.881539367386516 91.3974919323673 -51.81227616006569 --displaySpace ${ref} --zaxis 2 --sliceSpacing 4.77867613448265 --zrange 17.798385772692978 162.01332661970616 --ncols 9 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${ref} --name "FMRIB" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${FA_fnirt_out} --name "FA" --overlayType volume --alpha 81.52252905571892 --brightness 61.21621728204645 --contrast 81.6216230427286 --cmap red-yellow --negativeCmap greyscale --displayRange 0 0.7 --clippingRange 0 0.7 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection
+pkill Xvfb
+
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile $outfile  --size 2500 2500 --scene lightbox --hideCursor --worldLoc 51.881539367386516 91.3974919323673 -51.81227616006569 --displaySpace ${FMRIB58_FA_1mm} --zaxis 2 --sliceSpacing 4.77867613448265 --zrange 17.798385772692978 162.01332661970616 --ncols 9 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${FMRIB58_FA_1mm} --name "FMRIB" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${FA_fnirt_out} --name "FA" --overlayType volume --alpha 81.52252905571892 --brightness 61.21621728204645 --contrast 81.6216230427286 --cmap red-yellow --negativeCmap greyscale --displayRange 0 0.7 --clippingRange 0 0.7 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection
+
+outfile="QC/fa.fov.png"
+pkill Xvfb
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile $outfile --size 2500 2500 --scene lightbox --hideCursor --worldLoc 74.16673546158638 -124.73660349291424 108.75978727118911 --displaySpace ${FA_fnirt_out} --zaxis 0 --sliceSpacing 4.526647301513387 --zrange 13.569940887656918 163.50602044529867 --ncols 8 --nrows 4 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${MNI152_T1_1mm} --name "MNI152_T1_1mm_brain" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${FA_fnirt_out} --name "dti_FA_fnirt_FMRIB58_mask" --overlayType volume --alpha 51.55644378428265 --brightness 50.0 --contrast 50.0 --cmap cool --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
 
 echo "Completed: Normalisation to FMRIB using FA for ${subject}"
 
@@ -317,4 +326,4 @@ for dti in FA MD RD AD; do
  | |___| |__| | |  | | |    | |____| |____   | |  | |____| |__| |
   \_____\____/|_|  |_|_|    |______|______|  |_|  |______|_____/
 
-                                                                 "
+  cat > end_em_mrtrix
