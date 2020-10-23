@@ -59,8 +59,8 @@ edc_nii_bfc_tensor_AD="denoised_degibbs.edc.repol.bfc.tensor.AD.nii"
 # echo "         Preprocessing          "
 # echo "================================"
 #
-# cd ${dir}
-# cd ${subject}
+cd ${dir}
+cd ${subject}
 #
 # echo "" | > start_em_mrtrix
 #
