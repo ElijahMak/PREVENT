@@ -21,7 +21,7 @@ BET=${2}
 raw_dwi="dwi.nii"
 denoised_dwi="dwi.denoised.nii"
 denoised_degibbs_dwi="dwi.denoised.degibbs.nii"
-b0="denoised_degibbs_dwi_b0.nii.gz"
+b0="denoised_degibbs_dwi_b0.nii"
 mask="denoised_degibbs_dwi_b0_brain_f02_mask.nii.gz"
 output_edc="denoised_degibbs.edc.repol"
 edc="denoised_degibbs.edc.repol.nii.gz"
@@ -85,7 +85,6 @@ if [ "${BET}" = "0" ]; then
   echo "Running BET [1/3]"
   echo "fslroi $denoised_degibbs_dwi $b0 0 1"
   fslroi ${denoised_degibbs_dwi} ${b0} 0 1
-  echo "bet b0 b0_brain -m -f 0.2"
 
   for f in "0.1 0.2 0.3 0.4"; do
     bet ${b0} denoised_degibbs_dwi_b0_brain_f{$f} -m -f $f; done
