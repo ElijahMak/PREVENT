@@ -239,7 +239,7 @@ echo "--------------------------------"
 # FNIRT
 echo "fnirt --ref=${ref} --in=${FA} --aff=${flirt_omat} --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm"
 
-fnirt --ref=${ref} --in=${FA} --aff=${flirt_omat} \
+fnirt --ref=${FMRIB58_FA_1mm} --in=${FA} --aff=${flirt_omat} \
 --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm -v
 
 echo "--------------------------------"
