@@ -141,31 +141,34 @@ cd ${subject}
 # # Extract tensor maps
 # dwi2tensor -mask ${mask} ${edc_mif_bfc} ${edc_mif_bfc_tensor}
 #
+# # Remove NaNs
+# mrcalc ${edc_mif_bfc_tensor} -finite ${edc_mif_bfc_tensor} 0 -if ${edc_mif_bfc_tensor} -force
+#
 # # Fit tensor maps
 # tensor2metric -fa ${edc_mif_bfc_tensor_FA} ${edc_mif_bfc_tensor} -force
 # tensor2metric -adc ${edc_mif_bfc_tensor_MD} ${edc_mif_bfc_tensor} -force
 # tensor2metric -ad ${edc_mif_bfc_tensor_AD} ${edc_mif_bfc_tensor} -force
 # tensor2metric -rd ${edc_mif_bfc_tensor_RD} ${edc_mif_bfc_tensor} -force
-# mrconvert ${edc_mif_bfc_tensor_FA} ${edc_nii_bfc_tensor_FA}
-# mrconvert ${edc_mif_bfc_tensor_MD} ${edc_nii_bfc_tensor_MD}
-# mrconvert ${edc_mif_bfc_tensor_AD} ${edc_nii_bfc_tensor_AD}
-# mrconvert ${edc_mif_bfc_tensor_RD} ${edc_nii_bfc_tensor_RD}
+# mrconvert ${edc_mif_bfc_tensor_FA} ${edc_nii_bfc_tensor_FA} -force
+# mrconvert ${edc_mif_bfc_tensor_MD} ${edc_nii_bfc_tensor_MD} -force
+# mrconvert ${edc_mif_bfc_tensor_AD} ${edc_nii_bfc_tensor_AD} -force
+# mrconvert ${edc_mif_bfc_tensor_RD} ${edc_nii_bfc_tensor_RD} -force
 #
 # # Estimate response for FOD
 # dwi2response tournier ${edc_mif_bfc} tournier_response.txt -voxels tournier_voxels.mif -mask ${mask}
 #
 # # Perform CSD
 # dwi2fod csd ${edc_mif_bfc} tournier_response.txt tournier_response_fod.mif -mask ${mask}
-
-# Connectome pipeline
-# -------------------------------------------------------------------------------------------------
-echo "================================"
-echo "         Connectomising         "
-echo "================================"
-
-# Freesurfer registration
-export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
 #
+# # Connectome pipeline
+# # -------------------------------------------------------------------------------------------------
+# echo "================================"
+# echo "         Connectomising         "
+# echo "================================"
+#
+# # Freesurfer registration
+# export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
+# #
 # mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
 #
 # # Inverse warp segmentations into DTI displaySpace
@@ -199,106 +202,108 @@ export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
 
 # Extract ROI from JHU ICBM atlas
 # -------------------------------------------------------------------------------------------------
-
-echo "================================"
-echo "         Extracting ROIs        "
-echo "================================"
-
-# Normalisation to MNI152
-
-# Parameters
-FMRIB58_FA_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
-MNI152_T1_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/MNI152_T1_1mm_brain.nii.gz"
-flirt_out="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.nii"
-flirt_omat="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.mat"
-bins="256"
-cost="corratio"
-dof="12"
-interp="trilinear"
-fnirt_omat="denoised_degibbs.edc.repol.bfc.tensor.FA.fnirt.mat"
-FA_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.FA.fnirt.nii"
-MD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.MD.fnirt.nii"
-RD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.RD.fnirt.nii"
-AD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.AD.fnirt.nii"
-
-echo "Started: Normalisation to FMRIB using FA for ${subject}"
-
-echo "--------------------------------"
-echo "            FLIRT               "
-echo "--------------------------------"
-
-# FLIRT
-echo "flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -out ${flirt_out} -omat ${flirt_omat} -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp}"
-
-flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -omat flirt.mat -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp} -v
-
-echo "--------------------------------"
-echo "            FNIRT               "
-echo "--------------------------------"
-
-# FNIRT
-echo "fnirt --ref=${FMRIB58_FA_1mm}  --in=${edc_nii_bfc_tensor_FA} --aff=${flirt_omat} --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm"
-
-fnirt --ref=${FMRIB58_FA_1mm} --in=${edc_nii_bfc_tensor_FA} --aff=flirt.mat --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm -v
-
-echo "--------------------------------"
-echo "            Apply Warps         "
-echo "--------------------------------"
-
-# Apply warps
-for dti in FA MD RD AD; do
-  file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
-  fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.${dti}.fnirt.nii"
-  applywarp --ref=${ref} --in=${file} --warp=${fnirt_omat} -v \
-  --out=${fnirt_out}; done
-
-echo "--------------------------------"
-echo "     Generate screenshots       "
-echo "--------------------------------"
-
-mkdir QC
-outfile="QC/fa.fmrib.png"
-pkill Xvfb
-
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile $outfile  --size 2500 2500 --scene lightbox --hideCursor --worldLoc 51.881539367386516 91.3974919323673 -51.81227616006569 --displaySpace ${FMRIB58_FA_1mm} --zaxis 2 --sliceSpacing 4.77867613448265 --zrange 17.798385772692978 162.01332661970616 --ncols 9 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${FMRIB58_FA_1mm} --name "FMRIB" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${FA_fnirt_out} --name "FA" --overlayType volume --alpha 81.52252905571892 --brightness 61.21621728204645 --contrast 81.6216230427286 --cmap red-yellow --negativeCmap greyscale --displayRange 0 0.7 --clippingRange 0 0.7 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection
-
-outfile="QC/fa.fov.png"
-pkill Xvfb
-xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile $outfile --size 2500 2500 --scene lightbox --hideCursor --worldLoc 74.16673546158638 -124.73660349291424 108.75978727118911 --displaySpace ${FA_fnirt_out} --zaxis 0 --sliceSpacing 4.526647301513387 --zrange 13.569940887656918 163.50602044529867 --ncols 8 --nrows 4 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${MNI152_T1_1mm} --name "MNI152_T1_1mm_brain" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${FA_fnirt_out} --name "dti_FA_fnirt_FMRIB58_mask" --overlayType volume --alpha 51.55644378428265 --brightness 50.0 --contrast 50.0 --cmap cool --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
-
-echo "Completed: Normalisation to FMRIB using FA for ${subject}"
-
-echo "--------------------------------"
-echo "   Inverse warp of JHU labels  "
-echo "--------------------------------"
-
-# Inverse transform JHU labels from FMRIB space
-echo "Started: Inverse warp JHU labels ${subject}"
-
-mkdir JHU
-echo "invwarp --warp=${FA_fnirt_out} --ref=${FA} --out=invwarp_FMRIB_to_FA"
-invwarp --warp=${FA_fnirt_out} --ref=${FA} --out=invwarp_FMRIB_to_FA
-
-for i in {1..48}
-do
-  applywarp -i /lustre/archive/p00423/PREVENT_Elijah/data/em_jhu_toolbox/${i}.nii.gz \
-  -o JHU/${i}.nii.gz \
-  -r ${FA} \
-  -w invwarp_FMRIB_to_FA.nii.gz \
-  --interp=nn -v
-done
-
-echo "Completed: Inverse warp JHU labels ${subject}"
-
-echo "--------------------------------"
-echo "        Calculate metrics       "
-echo "--------------------------------"
+#
+# echo "================================"
+# echo "         Extracting ROIs        "
+# echo "================================"
+#
+# # Normalisation to MNI152
+#
+# # Parameters
+# FMRIB58_FA_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
+# MNI152_T1_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/MNI152_T1_1mm_brain.nii.gz"
+# flirt_out="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.nii"
+# flirt_omat="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.mat"
+# bins="256"
+# cost="corratio"
+# dof="12"
+# interp="trilinear"
+# fnirt_omat="denoised_degibbs.edc.repol.bfc.tensor.FA.fnirt.mat"
+# FA_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.FA.fnirt.nii.gz"
+# MD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.MD.fnirt.nii.gz"
+# RD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.RD.fnirt.nii.gz"
+# AD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.AD.fnirt.nii.gz"
+#
+# echo "Started: Normalisation to FMRIB using FA for ${subject}"
+#
+# echo "--------------------------------"
+# echo "            FLIRT               "
+# echo "--------------------------------"
+#
+# # FLIRT
+# echo "flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -out ${flirt_out} -omat ${flirt_omat} -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp}"
+#
+# flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -omat flirt.mat -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp} -v
+#
+# echo "--------------------------------"
+# echo "            FNIRT               "
+# echo "--------------------------------"
+#
+# # FNIRT
+# echo "fnirt --ref=${FMRIB58_FA_1mm}  --in=${edc_nii_bfc_tensor_FA} --aff=${flirt_omat} --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm"
+#
+# fnirt --ref=${FMRIB58_FA_1mm} --in=${edc_nii_bfc_tensor_FA} --aff=flirt.mat --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm -v
+#
+# echo "--------------------------------"
+# echo "            Apply Warps         "
+# echo "--------------------------------"
+#
+# # Apply warps
+# for dti in FA MD RD AD; do
+#   file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
+#   fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.${dti}.fnirt.nii"
+#   applywarp --ref=${FMRIB58_FA_1mm}  --in=${file} --warp=${fnirt_omat} -v --out=${fnirt_out}; done
+#
+# echo "--------------------------------"
+# echo "     Generate screenshots       "
+# echo "--------------------------------"
+#
+# mkdir QC
+# outfile="QC/fa.fmrib.png"
+# pkill Xvfb
+#
+# xvfb-run -s "-screen 0, 1024x768x24"  fsleyes render --scene lightbox --outfile $outfile --size 2500 2500 --worldLoc 51.881539367386516 91.3974919323673 -51.81227616006569 --displaySpace ${FMRIB58_FA_1mm} --zaxis 2 --sliceSpacing 4.77867613448265 --zrange 17.798385772692978 162.01332661970616 --ncols 9 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --hideCursor --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${FMRIB58_FA_1mm} --name "FMRIB" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${FA_fnirt_out} --name "FA" --overlayType volume --alpha 81.52252905571892 --brightness 61.21621728204645 --contrast 81.6216230427286 --cmap red-yellow --negativeCmap greyscale --displayRange 0 0.7 --clippingRange 0.2 0.7 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection
+#
+# outfile="QC/fa.fov.png"
+# pkill Xvfb
+# xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --outfile $outfile --size 2500 2500 --worldLoc 74.16673546158638 -124.73660349291424 108.75978727118911 --displaySpace ${FA_fnirt_out} --zaxis 0 --sliceSpacing 4.526647301513387 --zrange 13.569940887656918 163.50602044529867 --ncols 8 --nrows 4 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0  --hideCursor --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${MNI152_T1_1mm} --name "MNI152_T1_1mm_brain" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${FA_fnirt_out} --name "dti_FA_fnirt_FMRIB58_mask" --overlayType volume --alpha 51.55644378428265 --brightness 50.0 --contrast 50.0 --cmap cool --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
+#
+# echo "Completed: Normalisation to FMRIB using FA for ${subject}"
+#
+# echo "--------------------------------"
+# echo "   Inverse warp of JHU labels  "
+# echo "--------------------------------"
+#
+# # Inverse transform JHU labels from FMRIB space
+# echo "Started: Inverse warp JHU labels ${subject}"
+#
+# em_jhu_toolbox="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX/em_jhu_toolbox"
+# mkdir JHU
+#
+# echo "invwarp -w ${fnirt_omat} -r ${edc_nii_bfc_tensor_FA} -o invwarp_FMRIB_to_FA"
+# invwarp -w ${fnirt_omat} -r ${edc_nii_bfc_tensor_FA} -o invwarp_FMRIB_to_FA
+#
+# for i in {1..48}
+# do
+#   applywarp -i ${em_jhu_toolbox}/${i}.nii.gz \
+#   -o JHU/${i}.nii.gz \
+#   -r ${edc_nii_bfc_tensor_FA} \
+#   -w invwarp_FMRIB_to_FA.nii.gz \
+#   --interp=nn -v
+# done
+#
+# echo "Completed: Inverse warp JHU labels ${subject}"
+#
+# echo "--------------------------------"
+# echo "        Calculate metrics       "
+# echo "--------------------------------"
 
 #  Calculate metrics of JHU labels in native space
 echo "Started: Calculating FA, MD, AD, RD in JHU labels for ${subject}"
 
-for dti in FA MD RD AD; do
-  file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
+for dti in FA MD RD AD
+do
+file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
   if [ -f ${file} ]; then
     for roinum in {1..48} ; do
       padroi=`$FSLDIR/bin/zeropad $roinum 3`
