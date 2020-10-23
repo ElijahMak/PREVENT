@@ -40,7 +40,7 @@ edc_nii_bfc_tensor_RD="denoised_degibbs.edc.repol.bfc.tensor.RD.nii"
 edc_nii_bfc_tensor_AD="denoised_degibbs.edc.repol.bfc.tensor.AD.nii"
 
 # Initialising Text
-# -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------
 
 echo "███████╗███╗   ███╗       ██████╗ ██╗███████╗███████╗██╗   ██╗███████╗██╗ ██████╗ ███╗   ██╗
 ██╔════╝████╗ ████║       ██╔══██╗██║██╔════╝██╔════╝██║   ██║██╔════╝██║██╔═══██╗████╗  ██║
@@ -55,7 +55,11 @@ echo "Initialising diffusion preprocessing for ${subject}"
 
 
 # Preprocessing
-# -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------
+echo "   _   _   _   _   _   _   _   _   _   _   _   _   _
+  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \
+ ( P | r | e | p | r | o | c | e | s | s | i | n | g )
+  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ "
 
 cd ${dir}
 cd ${subject}
@@ -92,7 +96,12 @@ eddy_openmp --imain=${denoised_degibbs_dwi} \
 
 
 # Bias-field correction and tensor fitting
-# -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------
+
+echo "   _   _   _   _   _   _     _   _   _   _   _   _   _
+  / \ / \ / \ / \ / \ / \   / \ / \ / \ / \ / \ / \ / \
+ ( T | e | n | s | o | r ) ( F | i | t | t | i | n | g )
+  \_/ \_/ \_/ \_/ \_/ \_/   \_/ \_/ \_/ \_/ \_/ \_/ \_/ "
 
 # Convert to mif
 mrconvert ${edc} ${edc_mif} -fslgrad ${output_edc}.eddy_rotated_bvecs bval -datatype float32 -strides 0,0,0,1
@@ -121,7 +130,11 @@ dwi2fod csd ${edc_mif_bfc} tournier_response.txt tournier_response_fod.mif -mask
 
 
 # Connectome pipeline
-# -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------
+echo "   _   _   _   _   _   _   _   _   _   _
+  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \
+ ( C | o | n | n | e | c | t | o | m | e )
+  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ "
 
 # Freesurfer registration
 export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
@@ -151,7 +164,13 @@ connectome2tck wholebrain.tck assignments2.txt exemplars.tck -files single -exem
 
 
 # Extract ROI from JHU ICBM atlas
-# -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------
+
+echo "   _   _   _     _   _   _   _
+  / \ / \ / \   / \ / \ / \ / \
+ ( J | H | U ) ( I | C | B | M )
+  \_/ \_/ \_/   \_/ \_/ \_/ \_/ "
+
 
 # Normalisation to MNI152
 
@@ -237,5 +256,13 @@ for dti in FA MD RD AD; do
     fi
   done
 
-  echo "Completed: Calculating native FA, MD, AD, RD in JHU labels ${subject}"
+  echo "Completed: Calculating native FA, MD, AD, RD in JHU labels for ${subject}"
   echo "Diffusion pipeline completed at $(date)"
+  echo "   _____ ____  __  __ _____  _      ______ _______ ______ _____
+  / ____/ __ \|  \/  |  __ \| |    |  ____|__   __|  ____|  __ \
+ | |   | |  | | \  / | |__) | |    | |__     | |  | |__  | |  | |
+ | |   | |  | | |\/| |  ___/| |    |  __|    | |  |  __| | |  | |
+ | |___| |__| | |  | | |    | |____| |____   | |  | |____| |__| |
+  \_____\____/|_|  |_|_|    |______|______|  |_|  |______|_____/
+
+                                                                 "
