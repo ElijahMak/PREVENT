@@ -304,22 +304,29 @@ echo "Started: Calculating FA, MD, AD, RD in JHU labels for ${subject}"
 for dti in FA MD RD AD
 do
 file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
-  if [ -f ${file} ]; then
-    for roinum in {1..48} ; do
+  if [ -f ${file} ]
+  then
+    for roinum in {1..48}
+     do
       padroi=`$FSLDIR/bin/zeropad $roinum 3`
-      if [ -f JHU/${dti}_JHU_${padroi}.txt ];
-      then
-        rm JHU/${dti}_JHU_${padroi}.txt;
-      fi
+
+        if [ -f JHU/${dti}_JHU_${padroi}.txt ]
+          then
+              rm JHU/${dti}_JHU_${padroi}.txt
+        fi
+
       fslmeants -i ${file} -m warped_jhu/${roinum}.nii >>
       JHU/${dti}_JHU_${padroi}.txt
       paste JHU/*${dti}_JHU_*.txt > JHU/all_${dti}_jhu.txt
     done
   else
-    for roinum in {1..48} ; do
+    for roinum in {1..48}
+     do
       padroi=`$FSLDIR/bin/zeropad $roinum 3`
-      if [ -f JHU/${dti}_JHU_${padroi}.txt ]; then
-        rm JHU/${dti}_JHU_${padroi}.txt; fi
+      if [ -f JHU/${dti}_JHU_${padroi}.txt ]
+      then
+        rm JHU/${dti}_JHU_${padroi}.txt
+      fi
         echo "NA" >> JHU/${dti}_JHU_${padroi}.txt
         paste JHU/*${dti}_JHU_*.txt > JHU/all_${dti}_jhu.txt
       done
