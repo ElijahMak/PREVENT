@@ -208,22 +208,22 @@ cd ${subject}
 # echo "================================"
 #
 # # Normalisation to MNI152
-#
-# # Parameters
-# FMRIB58_FA_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
-# MNI152_T1_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/MNI152_T1_1mm_brain.nii.gz"
-# flirt_out="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.nii"
-# flirt_omat="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.mat"
-# bins="256"
-# cost="corratio"
-# dof="12"
-# interp="trilinear"
-# fnirt_omat="denoised_degibbs.edc.repol.bfc.tensor.FA.fnirt.mat"
-# FA_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.FA.fnirt.nii.gz"
-# MD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.MD.fnirt.nii.gz"
-# RD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.RD.fnirt.nii.gz"
-# AD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.AD.fnirt.nii.gz"
-#
+
+# Parameters
+FMRIB58_FA_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/FMRIB58_FA_1mm.nii.gz"
+MNI152_T1_1mm="/lustre/archive/p00423/PREVENT_Elijah/FAST/MNI152_T1_1mm_brain.nii.gz"
+flirt_out="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.nii"
+flirt_omat="denoised_degibbs.edc.repol.bfc.tensor.FA.flirt.mat"
+bins="256"
+cost="corratio"
+dof="12"
+interp="trilinear"
+fnirt_omat="denoised_degibbs.edc.repol.bfc.tensor.FA.fnirt.mat"
+FA_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.FA.fnirt.nii.gz"
+MD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.MD.fnirt.nii.gz"
+RD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.RD.fnirt.nii.gz"
+AD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.AD.fnirt.nii.gz"
+
 # echo "Started: Normalisation to FMRIB using FA for ${subject}"
 #
 # echo "--------------------------------"

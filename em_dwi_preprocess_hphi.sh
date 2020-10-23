@@ -30,3 +30,17 @@ dtifit --data=$input_dti  \
 --bvecs=$rotated_bvecs \
 --bvals=$bval \
 --out=$output_dti
+
+
+dtifit --data=denoised_degibbs.edc.repol.bfc.nii --mask=denoised_degibbs_dwi_b0_brain_f0.2_mask.nii --bvecs=denoised_degibbs.edc.repol.eddy_rotated_bvecs --bvals=bval --out=FSL_DTIdtifit --data=denoised_degibbs.edc.repol.bfc.nii --mask=denoised_degibbs_dwi_b0_brain_f0.2_mask.nii --bvecs=denoised_degibbs.edc.repol.eddy_rotated_bvecs --bvals=bval --out=FSL_DTI
+
+flirt -in FSL_DTI_FA.nii.gz -ref $FSLDIR/data/standard/FMRIB58_FA_1mm.nii.gz -omat flirt.mat -bins 257 -cost corratio -dof 12 -interp "trilinear" -searchrx -90 90 -searchry -90 90 -searchrz -90 90
+
+
+flirt -in denoised_degibbs.edc.repol.bfc.tensor.FA.nii -ref $FSLDIR/data/standard/FMRIB58_FA_1mm.nii.gz -omat flirt_mrtrx.mat -bins 257 -cost corratio -dof 12 -interp "trilinear" -searchrx -90 90 -searchry -90 90 -searchrz -90 90
+
+flirt -in dt_out.nii -ref $FSLDIR/data/standard/FMRIB58_FA_1mm.nii.gz -omat flirt_mrtrx.mat -bins 257 -cost corratio -dof 12 -interp "trilinear" -searchrx -90 90 -searchry -90 90 -searchrz -90 90
+
+
+
+fnirt --ref=${FMRIB58_FA_1mm} --in=${edc_nii_bfc_tensor_FA} --aff=flirt.mat --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm -v
