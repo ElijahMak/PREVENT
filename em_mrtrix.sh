@@ -237,10 +237,9 @@ echo "            FNIRT               "
 echo "--------------------------------"
 
 # FNIRT
-echo "fnirt --ref=${ref} --in=${FA} --aff=${flirt_omat} --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm"
+echo "fnirt --ref=${FMRIB58_FA_1mm}  --in=${edc_nii_bfc_tensor_FA} --aff=${flirt_omat} --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm"
 
-fnirt --ref=${FMRIB58_FA_1mm} --in=${FA} --aff=${flirt_omat} \
---cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm -v
+fnirt --ref=${FMRIB58_FA_1mm} --in=${edc_nii_bfc_tensor_FA} --aff=${flirt_omat} --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm -v
 
 echo "--------------------------------"
 echo "            Apply Warps         "
