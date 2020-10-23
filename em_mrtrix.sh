@@ -87,7 +87,7 @@ if [ "${BET}" = "0" ]; then
   fslroi ${denoised_degibbs_dwi} ${b0} 0 1
 
   for f in 0.1 0.2 0.3 0.4; do
-    bet ${b0} denoised_degibbs_dwi_b0_brain_f{$f} -m -f $f; done
+    bet ${b0} denoised_degibbs_dwi_b0_brain_f${f} -m -f $f; done
 else
   echo "Using edited BET [1/3]"
 fi
