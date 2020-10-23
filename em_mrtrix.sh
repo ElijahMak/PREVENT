@@ -59,15 +59,26 @@ echo "================================"
 echo "         Preprocessing          "
 echo "================================"
 
-
 cd ${dir}
 cd ${subject}
+
+echo "--------------------------------"
+echo "           Denoising            "
+echo "--------------------------------"
 
 # Denoising of DWI
 dwidenoise ${raw_dwi} ${denoised_dwi}
 
+echo "--------------------------------"
+echo "              DeGibbs           "
+echo "--------------------------------"
+
 # Remove Gibbs Ringing artifact
 mrdegibbs ${denoised_dwi} ${denoised_degibbs_dwi}
+
+echo "--------------------------------"
+echo "              BET               "
+echo "--------------------------------"
 
 # Perform brain extraction
 if [ "${BET}" = "0" ]; then
@@ -75,13 +86,32 @@ if [ "${BET}" = "0" ]; then
   echo "fslroi $denoised_degibbs_dwi $b0 0 1"
   fslroi ${denoised_degibbs_dwi} ${b0} 0 1
   echo "bet b0 b0_brain -m -f 0.2"
-  bet ${b0} denoised_degibbs_dwi_b0_brain_f01 -m -f 0.1
-  bet ${b0} denoised_degibbs_dwi_b0_brain_f02 -m -f 0.2
-  bet ${b0} denoised_degibbs_dwi_b0_brain_f03 -m -f 0.3
-  bet ${b0} denoised_degibbs_dwi_b0_brain_f04 -m -f 0.4
+
+  for f in "0.1 0.2 0.3 0.4"; do
+    bet ${b0} denoised_degibbs_dwi_b0_brain_f{$f} -m -f $f; done
 else
   echo "Using edited BET [1/3]"
 fi
+
+echo "--------------------------------"
+echo "      Generate screenshots      "
+echo "--------------------------------"
+
+mkdir QC
+
+for f in "0.1 0.2 0.3 0.4"; do
+  outfile="QC/b0.mask.f{$f}.png"
+  qc_mask="denoised_degibbs_dwi_b0_brain_f{$f}_mask.nii.gz"
+
+echo "--------------------------------"
+echo "      Generate screenshots      "
+echo "--------------------------------"
+
+xvfb-run -s "-screen 0, 1024x768x24" fsleyes render --scene lightbox --outfile $outfile --size 2500 2500 --worldLoc 108.2101927736983 124.64060310792524 -42.83765119809547 --displaySpace ${b0} --zaxis 2 --sliceSpacing 2.0 --zrange -1.0 124.99980163574219 --ncols 10 --nrows 10 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --hideCursor --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${b0} --name "b0" --overlayType volume --alpha 100.0 --brightness 67.02551834130782 --contrast 84.05103668261563 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 800.0 --clippingRange 0.0 2533.08 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${qc_mask} --name "b0_brain_mask" --overlayType volume --alpha 47.76828976994573 --brightness 50.0 --contrast 50.0 --cmap blue-lightblue --negativeCmap greyscale --displayRange 0.0 1.0 --clippingRange 0.0 1.01 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0
+
+echo "--------------------------------"
+echo "              Eddy              "
+echo "--------------------------------"
 
 # Eddy current correction
 eddy_openmp --imain=${denoised_degibbs_dwi} \
@@ -125,7 +155,6 @@ dwi2response tournier ${edc_mif_bfc} tournier_response.txt -voxels tournier_voxe
 
 # Perform CSD
 dwi2fod csd ${edc_mif_bfc} tournier_response.txt tournier_response_fod.mif -mask ${mask}
-
 
 # Connectome pipeline
 # -------------------------------------------------------------------------------------------------
@@ -183,35 +212,59 @@ MD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.MD.fnirt.nii"
 RD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.RD.fnirt.nii"
 AD_fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.AD.fnirt.nii"
 
-echo "Started: Normalistion to FMRIB using FA ${subject}"
+echo "Started: Normalisation to FMRIB using FA for ${subject}"
+
+echo "--------------------------------"
+echo "            FLIRT               "
+echo "--------------------------------"
 
 # FLIRT
+echo "flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -out ${flirt_omat} -omat ${omat} -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp}"
+
 flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -out ${flirt_omat} -omat ${omat} -bins ${bins} -cost ${cost} \
--searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp}
+-searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp} -v
+
+echo "--------------------------------"
+echo "            FNIRT               "
+echo "--------------------------------"
+
 # FNIRT
+echo "fnirt --ref=${ref} --in=${FA} --aff=${flirt_omat} --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm"
+
 fnirt --ref=${ref} --in=${FA} --aff=${flirt_omat} \
---cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm
+--cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm -v
+
+echo "--------------------------------"
+echo "            Apply Warps         "
+echo "--------------------------------"
 
 # Apply warps
-applywarp --ref=${ref} --in=${FA} --warp=${fnirt_omat} \
---out=${FA_fnirt_out}
-applywarp --ref=${ref} --in=${MD} --warp=${fnirt_omat} \
---out=${MD_fnirt_out}
-applywarp --ref=${ref} --in=${RD} --warp=${fnirt_omat} \
---out=${RD_fnirt_out}
-applywarp --ref=${ref} --in=${AD} --warp=${fnirt_omat} \
---out=${AD_fnirt_out}
+for dti in FA MD RD AD; do
+  file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
+  fnirt_out="denoised_degibbs.edc.repol.bfc.tensor.${dti}.fnirt.nii"
+  applywarp --ref=${ref} --in=${file} --warp=${fnirt_omat} -v \
+--out=${fnirt_out}; done
 
-echo "Completed: Normalistion to FMRIB using FA ${subject}"
+echo "--------------------------------"
+echo "     Generate screenshots       "
+echo "--------------------------------"
+
+mkdir QC
+outfile="QC/fa.fmrib.png"
+xvfb-run -s "-screen 0, 640x480x24" fsleyes render --outfile $outfile  --size 2500 2500 --scene lightbox --hideCursor --worldLoc 51.881539367386516 91.3974919323673 -51.81227616006569 --displaySpace ${ref} --zaxis 2 --sliceSpacing 4.77867613448265 --zrange 17.798385772692978 162.01332661970616 --ncols 9 --nrows 3 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 --movieSync ${ref} --name "FMRIB" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 8364.0 --clippingRange 0.0 8447.64 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 ${FA_fnirt_out} --name "FA" --overlayType volume --alpha 81.52252905571892 --brightness 61.21621728204645 --contrast 81.6216230427286 --cmap red-yellow --negativeCmap greyscale --displayRange 0 0.7 --clippingRange 0 0.7 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection
+
+echo "Completed: Normalisation to FMRIB using FA for ${subject}"
+
+echo "--------------------------------"
+echo "   Inverse warp of JHU labels  "
+echo "--------------------------------"
 
 # Inverse transform JHU labels from FMRIB space
 echo "Started: Inverse warp JHU labels ${subject}"
 
 mkdir JHU
-
-invwarp --warp=${FA_fnirt_out}\
---ref=${FA} \
---out=invwarp_FMRIB_to_FA
+echo "invwarp --warp=${FA_fnirt_out} --ref=${FA} --out=invwarp_FMRIB_to_FA"
+invwarp --warp=${FA_fnirt_out} --ref=${FA} --out=invwarp_FMRIB_to_FA
 
 for i in {1..48}
 do
@@ -219,10 +272,14 @@ do
   -o JHU/${i}.nii.gz \
   -r ${FA} \
   -w invwarp_FMRIB_to_FA.nii.gz \
-  --interp=nn
+  --interp=nn -v
 done
 
 echo "Completed: Inverse warp JHU labels ${subject}"
+
+echo "--------------------------------"
+echo "        Calculate metrics       "
+echo "--------------------------------"
 
 #  Calculate metrics of JHU labels in native space
 echo "Started: Calculating FA, MD, AD, RD in JHU labels for ${subject}"
@@ -253,6 +310,7 @@ for dti in FA MD RD AD; do
 
   echo "Completed: Calculating native FA, MD, AD, RD in JHU labels for ${subject}"
   echo "Diffusion pipeline completed at $(date)"
+
   echo "   _____ ____  __  __ _____  _      ______ _______ ______ _____
   / ____/ __ \|  \/  |  __ \| |    |  ____|__   __|  ____|  __ \
  | |   | |  | | \  / | |__) | |    | |__     | |  | |__  | |  | |

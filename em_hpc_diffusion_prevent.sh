@@ -42,7 +42,7 @@ bet b0 b0_brain -m -f 0.2
 else
 echo "Using edited BET [1/3]"
 mask="b0_brain_mask.nii.gz"
-fi 
+fi
 
 #
 
