@@ -230,7 +230,7 @@ echo "--------------------------------"
 # FLIRT
 echo "flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -out ${flirt_out} -omat ${flirt_omat} -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp}"
 
-flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -omat flirt -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp} -v
+flirt -in ${edc_nii_bfc_tensor_FA} -ref ${FMRIB58_FA_1mm} -omat flirt.mat -bins ${bins} -cost ${cost} -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof ${dof} -interp ${interp} -v
 
 echo "--------------------------------"
 echo "            FNIRT               "
@@ -239,7 +239,7 @@ echo "--------------------------------"
 # FNIRT
 echo "fnirt --ref=${FMRIB58_FA_1mm}  --in=${edc_nii_bfc_tensor_FA} --aff=${flirt_omat} --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm"
 
-fnirt --ref=${FMRIB58_FA_1mm} --in=${edc_nii_bfc_tensor_FA} --aff=${flirt_omat} --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm -v
+fnirt --ref=${FMRIB58_FA_1mm} --in=${edc_nii_bfc_tensor_FA} --aff=flirt.mat --cout=${fnirt_omat} --config=FA_2_FMRIB58_1mm -v
 
 echo "--------------------------------"
 echo "            Apply Warps         "
