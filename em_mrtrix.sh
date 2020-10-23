@@ -315,10 +315,9 @@ file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
               rm JHU/${dti}_JHU_${padroi}.txt
         fi
 
-      fslmeants -i ${file} -m JHU/${roinum}.nii >>
-      JHU/${dti}_JHU_${padroi}.txt
+      fslmeants -i ${file} -m JHU/${roinum}.nii >> JHU/${dti}_JHU_${padroi}.txt
       paste JHU/*${dti}_JHU_*.txt > JHU/all_${dti}_jhu.txt
-      
+
     done
   else
     for roinum in {1..48}
