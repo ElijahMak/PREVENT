@@ -10,7 +10,7 @@ module load freesurfer/7.1.0
 module load ANTS/2.2.0
 module unload fsl/5.0.10
 module load fsl/6.0.3
-
+module load MRtrix/mrtrix-3.0.2
 
 # Parameters
 # -----------------------------------------------------------------------------
@@ -325,5 +325,5 @@ for dti in FA MD RD AD; do
  | |   | |  | | |\/| |  ___/| |    |  __|    | |  |  __| | |  | |
  | |___| |__| | |  | | |    | |____| |____   | |  | |____| |__| |
   \_____\____/|_|  |_|_|    |______|______|  |_|  |______|_____/"
-  
+
   echo "" | > end_em_mrtrix
