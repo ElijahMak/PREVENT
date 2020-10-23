@@ -173,24 +173,24 @@ export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
 #
 # mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
 
-# Estimate response for FOD
-dwi2response tournier ${edc_mif_bfc} tournier_response.txt -voxels tournier_voxels.mif -mask ${mask}
+# # Estimate response for FOD
+# dwi2response tournier ${edc_mif_bfc} tournier_response.txt -voxels tournier_voxels.mif -mask ${mask}
+#
+# # Perform CSD
+# dwi2fod csd ${edc_mif_bfc} tournier_response.txt tournier_response_fod.mif -mask ${mask}
+#
+#
+# 5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
+#
+# 5tt2gmwmi 5ttseg.mif 5tt_mask.mif
+#
+# tckgen -seed_gmwmi 5tt_mask.mif -act 5ttseg.mif -crop_at_gmwmi -seeds 5000000 tournier_response_fod.mif wholebrain.tck -force
 
-# Perform CSD
-dwi2fod csd ${edc_mif_bfc} tournier_response.txt tournier_response_fod.mif -mask ${mask}
+tcksift wholebrain.tck tournier_response_fod.mif sift1_wholebrain.tck -force
 
+tcksift2 wholebrain.tck tournier_response_fod.mif wholebrain_sift2_weights.txt -force
 
-5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
-
-5tt2gmwmi 5ttseg.mif 5tt_mask.mif
-
-tckgen -seed_gmwmi 5tt_mask.mif -act 5ttseg.mif -crop_at_gmwmi -seeds 5000000 tournier_response_fod.mif wholebrain.tck -force
-
-tcksift wholebrain.tck fod.mif sift1_wholebrain.tck -force
-
-tcksift2 wholebrain.tck fod.mif wholebrain_sift2_weights.txt -force
-
-labelconvert raparc+aseg.nii $FREESURFER_HOME/FreeSurferColorLUT.txt $code/fs_default.txt output_parcels.mif -force
+labelconvert raparcaseg.nii $FREESURFER_HOME/FreeSurferColorLUT.txt $code/fs_default.txt output_parcels.mif -force
 
 tck2connectome -assignment_radial_search 2 -scale_length -out_assignments assignments2.txt -tck_weights_in wholebrain_sift2_weights.txt wholebrain.tck output_parcels.mif connectome.csv -force
 
