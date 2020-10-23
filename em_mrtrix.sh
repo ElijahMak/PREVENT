@@ -184,7 +184,7 @@ dwi2fod csd ${edc_mif_bfc} tournier_response.txt tournier_response_fod.mif -mask
 
 5tt2gmwmi 5ttseg.mif 5tt_mask.mif
 
-tckgen -seed_gmwmi 5tt_mask.mif -act 5ttseg.mif -crop_at_gmwmi -seeds 5000000 fod.mif wholebrain.tck -force
+tckgen -seed_gmwmi 5tt_mask.mif -act 5ttseg.mif -crop_at_gmwmi -seeds 5000000 tournier_response_fod.mif wholebrain.tck -force
 
 tcksift wholebrain.tck fod.mif sift1_wholebrain.tck -force
 
