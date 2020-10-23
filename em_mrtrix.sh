@@ -22,7 +22,7 @@ raw_dwi="dwi.nii"
 denoised_dwi="dwi.denoised.nii"
 denoised_degibbs_dwi="dwi.denoised.degibbs.nii"
 b0="denoised_degibbs_dwi_b0.nii"
-mask="denoised_degibbs_dwi_b0_brain_f02_mask.nii.gz"
+mask="denoised_degibbs_dwi_b0_brain_f0.2_mask.nii.gz"
 output_edc="denoised_degibbs.edc.repol"
 edc="denoised_degibbs.edc.repol.nii.gz"
 edc_rotated_bvecs="denoised_degibbs.edc.repol.eddy_rotated_bvecs"
@@ -86,7 +86,7 @@ if [ "${BET}" = "0" ]; then
   echo "fslroi $denoised_degibbs_dwi $b0 0 1"
   fslroi ${denoised_degibbs_dwi} ${b0} 0 1
 
-  for f in "0.1 0.2 0.3 0.4"; do
+  for f in 0.1 0.2 0.3 0.4; do
     bet ${b0} denoised_degibbs_dwi_b0_brain_f{$f} -m -f $f; done
 else
   echo "Using edited BET [1/3]"
@@ -98,7 +98,7 @@ echo "--------------------------------"
 
 mkdir QC
 
-for f in "0.1 0.2 0.3 0.4"; do
+for f in 0.1 0.2 0.3 0.4; do
   outfile="QC/b0.mask.f{$f}.png"
   qc_mask="denoised_degibbs_dwi_b0_brain_f{$f}_mask.nii.gz"
 
