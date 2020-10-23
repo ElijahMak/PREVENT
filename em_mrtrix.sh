@@ -34,7 +34,7 @@ dwi2fod csd edc.repol.mif wm_response.txt fod.mif -mask b0_brain_mask.nii.gz
 # Freesurfer registration
 export SUBJECTS_DIR=archive/p00423/PREVENT_Elijah/Freesurfer7_GS
 
-mri_coreg --s ${subject} --mov /archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/b0.nii.gz --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+mri_coreg --s ${subject} --mov /lustre/archive/p00423/PREVENT_Elijah/dwi_denoised/${subject}/b0.nii.gz --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
 
 # Inverse warp segmentations into DTI displaySpace
 mri_vol2vol --mov b0.nii.gz --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv --interp nearest --o rbrainmask.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
