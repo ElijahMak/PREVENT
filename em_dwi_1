@@ -1,7 +1,5 @@
 # MRTRIX pipeline
-#
-# To generate connectomes from eddy-corrected data.
-# Author: Elijah Mak
+# Perform denoising, degibbs and BET masks
 
 # Modules
 # -----------------------------------------------------------------------------
