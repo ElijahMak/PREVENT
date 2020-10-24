@@ -20,6 +20,7 @@ BET=${2}
 
 # Inputs
 raw_dwi="dwi.nii"
+raw_dwi_mif="dwi.mif"
 denoised_dwi="dwi.denoised.nii"
 denoised_degibbs_dwi="dwi.denoised.degibbs.nii"
 b0="denoised_degibbs_dwi_b0.nii"
