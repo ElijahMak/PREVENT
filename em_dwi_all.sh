@@ -15,10 +15,15 @@ module load MRtrix/mrtrix-3.0.2
 # Parameters
 # -----------------------------------------------------------------------------
 
+# Options
 dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX"
 subject=${1}
 BET=${2}
+
+# Inputs
 raw_dwi="dwi.nii"
+
+
 denoised_dwi="dwi.denoised.nii"
 denoised_degibbs_dwi="dwi.denoised.degibbs.nii"
 b0="denoised_degibbs_dwi_b0.nii"
@@ -121,7 +126,8 @@ echo "--------------------------------"
  --out=$output_edc \
  --cnr_maps \
  --verbose
-#
+
+
 # Bias-field correction and tensor fitting
 # -------------------------------------------------------------------------------------------------
 
@@ -299,35 +305,35 @@ echo "Started: Calculating FA, MD, AD, RD in JHU labels for ${subject}"
 for dti in FA MD RD AD
 do
 file="denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii"
-  if [ -f ${file} ]
-  then
-    for roinum in {1..48}
-     do
-      padroi=`$FSLDIR/bin/zeropad $roinum 3`
+if [ -f ${file} ]
+then
+for roinum in {1..48}
+do
+padroi=`$FSLDIR/bin/zeropad $roinum 3`
 
-        if [ -f JHU/${dti}_JHU_${padroi}.txt ]
-          then
-              rm JHU/${dti}_JHU_${padroi}.txt
-        fi
+if [ -f JHU/${dti}_JHU_${padroi}.txt ]
+then
+rm JHU/${dti}_JHU_${padroi}.txt
+fi
 
-      fslmeants -i ${file} -m JHU/${roinum}.nii >> JHU/${dti}_JHU_${padroi}.txt
-      paste JHU/*${dti}_JHU_*.txt > JHU/all_${dti}_jhu.txt
+fslmeants -i ${file} -m JHU/${roinum}.nii >> JHU/${dti}_JHU_${padroi}.txt
+paste JHU/*${dti}_JHU_*.txt > JHU/all_${dti}_jhu.txt
 
-    done
-  else
-    for roinum in {1..48}
-     do
-      padroi=`$FSLDIR/bin/zeropad $roinum 3`
-      if [ -f JHU/${dti}_JHU_${padroi}.txt ]
-      then
-        rm JHU/${dti}_JHU_${padroi}.txt
-      fi
-        echo "NA" >> JHU/${dti}_JHU_${padroi}.txt
-        paste JHU/*${dti}_JHU_*.txt > JHU/all_${dti}_jhu.txt
-      done
-    fi
-  done
+done
+else
+for roinum in {1..48}
+do
+padroi=`$FSLDIR/bin/zeropad $roinum 3`
+if [ -f JHU/${dti}_JHU_${padroi}.txt ]
+then
+rm JHU/${dti}_JHU_${padroi}.txt
+fi
+echo "NA" >> JHU/${dti}_JHU_${padroi}.txt
+paste JHU/*${dti}_JHU_*.txt > JHU/all_${dti}_jhu.txt
+done
+fi
+done
 
-  echo "Completed: Calculating native FA, MD, AD, RD in JHU labels for ${subject}"
-  echo "Diffusion pipeline completed at $(date)"
-  echo "" | > end_em_mrtrix
+echo "Completed: Calculating native FA, MD, AD, RD in JHU labels for ${subject}"
+echo "Diffusion pipeline completed at $(date)"
+echo "" | > end_em_mrtrix
