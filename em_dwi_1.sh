@@ -74,14 +74,14 @@ echo "          Denoising             "
 echo "--------------------------------"
 
 # Denoising of DWI
-dwidenoise ${raw_dwi} ${denoised_dwi}
+dwidenoise ${raw_dwi} ${denoised_dwi} -force
 
 echo "--------------------------------"
 echo "            DeGibbs             "
 echo "--------------------------------"
 
 # Remove Gibbs Ringing artifact
-mrdegibbs ${denoised_dwi} ${denoised_degibbs_dwi}
+mrdegibbs ${denoised_dwi} ${denoised_degibbs_dwi} -force
 
 echo "--------------------------------"
 echo "              BET               "
