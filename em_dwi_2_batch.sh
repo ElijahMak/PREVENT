@@ -8,7 +8,7 @@
 # Estimated time on HPHI is _ minutes
 
 # Time
-time="4:00:00"
+time="2:30:00"
 
 # Memory
 mem="5000"
