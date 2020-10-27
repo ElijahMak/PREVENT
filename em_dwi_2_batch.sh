@@ -22,9 +22,9 @@ input=${1}
 # Execute job submission
 for subject in `cat $input`; do
 
-sbatch --job-name=fs7_t1t2 --account hphi --qos=long.q --partition wbic-cs --error=${subject%.*}_%j.err \
+sbatch --job-name=em_dwi2 --account hphi --qos=long.q --partition wbic-cs --error=${subject%.*}_%j.err \
 --output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=${nTask} --mem=${mem} \
---wrap="bash ${code}/em_dwi_2.sh ${subject}" --mail-type=ALL
+--wrap="bash ${code}/em_dwi_2.sh ${subject}"
 
 sleep 1
 done
