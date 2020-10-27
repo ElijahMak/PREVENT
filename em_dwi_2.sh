@@ -57,6 +57,10 @@ echo "--------------------------------"
 echo "              Eddy              "
 echo "--------------------------------"
 
+cd ${dir}
+cd ${subject}
+
+
  # Eddy current correction
  eddy_openmp --imain=${denoised_degibbs_dwi} \
  --mask=${mask} --acqp=acqparams.txt \
