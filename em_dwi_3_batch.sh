@@ -1,4 +1,5 @@
 # Job submission for DWI preprocessing on WBIC
+# Approx 20 subjects
 
 #!/bin/bash
 

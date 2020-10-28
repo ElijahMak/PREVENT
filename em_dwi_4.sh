@@ -73,12 +73,6 @@ mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv 
 
 mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
 
-# Estimate response for FOD
-dwi2response tournier ${edc_mif_bfc} tournier_response.txt -voxels tournier_voxels.mif -mask ${mask}
-
-# Perform CSD
-dwi2fod csd ${edc_mif_bfc} tournier_response.txt tournier_response_fod.mif -mask ${mask}
-
 5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
 
 5tt2gmwmi 5ttseg.mif 5tt_mask.mif
@@ -96,6 +90,5 @@ tck2connectome -assignment_radial_search 2 -scale_length -out_assignments assign
 connectome2tck wholebrain.tck assignments2.txt exemplars.tck -files single -exemplars output_parcels.mif
 
 
-echo "Completed: Calculating native FA, MD, AD, RD in JHU labels for ${subject}"
+echo "Completed: Connetomising ${subject}"
 echo "Diffusion pipeline completed at $(date)"
-echo "" | > end_em_mrtrix
