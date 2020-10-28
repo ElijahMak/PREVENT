@@ -1,4 +1,4 @@
-# Perform eddy, tensor fitting, and CSD
+# Perform normnalisation of tensor maps to FMRIB, generate QC of registration and extraction of mean FA etc in JHU ICBM ROIs.
 
 # Modules
 # -----------------------------------------------------------------------------
@@ -41,7 +41,7 @@ edc_nii_bfc_tensor_AD="denoised_degibbs.edc.repol.bfc.tensor.AD.nii"
 
 
 # Initialising Text
-# -------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------
 
 echo "███████╗███╗   ███╗       ██████╗ ██╗███████╗███████╗██╗   ██╗███████╗██╗ ██████╗ ███╗   ██╗
 ██╔════╝████╗ ████║       ██╔══██╗██║██╔════╝██╔════╝██║   ██║██╔════╝██║██╔═══██╗████╗  ██║
@@ -126,7 +126,7 @@ xvfb-run -s "-screen 0, 640x480x24" fsleyes render --scene lightbox --outfile $o
 
 echo "Completed: Normalisation to FMRIB using FA for ${subject}"
 
-echo "--------------------------------"
+echo "--------------s------------------"
 echo "   Inverse warp of JHU labels  "
 echo "--------------------------------"
 
