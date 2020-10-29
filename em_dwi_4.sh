@@ -63,32 +63,31 @@ echo "================================"
 cd ${dir}
 cd ${subject}
 
-# Freesurfer registration
-export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
+# # Freesurfer registration
+# export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
+#
+# mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+#
+# # Inverse warp segmentations into DTI space
+# mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv --interp nearest --o rbrainmask.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+#
+# mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+#
+# 5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
+#
+# 5tt2gmwmi 5ttseg.mif 5tt_mask.mif
 
-mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+tckgen -seed_gmwmi 5tt_mask.mif -act 5ttseg.mif -crop_at_gmwmi -seeds 5000000 tournier_response_fod.mif wholebrain.tck
 
-# Inverse warp segmentations into DTI space
-mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv --interp nearest --o rbrainmask.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+tcksift wholebrain.tck tournier_response_fod.mif sift1_wholebrain.tck
 
-mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+tcksift2 wholebrain.tck tournier_response_fod.mif wholebrain_sift2_weights.txt
 
-5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
-
-5tt2gmwmi 5ttseg.mif 5tt_mask.mif
-
-tckgen -seed_gmwmi 5tt_mask.mif -act 5ttseg.mif -crop_at_gmwmi -seeds 5000000 tournier_response_fod.mif wholebrain.tck -force
-
-tcksift wholebrain.tck tournier_response_fod.mif sift1_wholebrain.tck -force
-
-tcksift2 wholebrain.tck tournier_response_fod.mif wholebrain_sift2_weights.txt -force
-
-labelconvert raparcaseg.nii $FREESURFER_HOME/FreeSurferColorLUT.txt $code/fs_default.txt output_parcels.mif -force
+labelconvert raparcaseg.nii $FREESURFER_HOME/FreeSurferColorLUT.txt $code/fs_default.txt output_parcels.mif
 
 tck2connectome -assignment_radial_search 2 -scale_length -out_assignments assignments2.txt -tck_weights_in wholebrain_sift2_weights.txt wholebrain.tck output_parcels.mif connectome.csv -force
 
 connectome2tck wholebrain.tck assignments2.txt exemplars.tck -files single -exemplars output_parcels.mif
-
 
 echo "Completed: Connetomising ${subject}"
 echo "Diffusion pipeline completed at $(date)"
