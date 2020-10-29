@@ -4,17 +4,16 @@
 # Directory
 
 dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX"
-subject=${1}
 
 cd $dir
 
 for dti in FA MD RD AD; do
 
   # Merge all data files
-  column */JHU/all_${dti}_jhu.txt >> temp_1
+  column */JHU/all_${DTI}_jhu.txt >> temp_1
 
   # Append ROIs to data file
-  sed -e '1i\${dti}_mcp	${dti}_pct	${dti}_gcc	${dti}_bcc	${dti}_scc	${dti}_fornix	${dti}_rh_cst	${dti}_lh_cst	${dti}_rh_mlemn	${dti}_lh_mlemn	${dti}_rh_icp	${dti}_lh_icp	${dti}_rh_scp	${dti}_lh_scp	${dti}_rh_cp	${dti}_lh_cp	${dti}_rh_alic	${dti}_lh_alic	${dti}_rh_plic	${dti}_lh_plic	${dti}_rh_ric	${dti}_lh_ric	${dti}_rh_acr	${dti}_lh_acr	${dti}_rh_scr	${dti}_lh_scr	${dti}_rh_pcr	${dti}_lh_pcr	${dti}_rh_ptr	${dti}_lh_ptr	${dti}_rh_sags	${dti}_lh_sags	${dti}_rh_exc	${dti}_lh_exc	${dti}_rh_ccg	${dti}_lh_ccg	${dti}_rh_chip	${dti}_lh_chip	${dti}_rh_forcr	${dti}_lh_forcr	${dti}_rh_slf	${dti}_lh_slf	${dti}_rh_sfof	${dti}_lh_sfof	${dti}_rh_uncf	${dti}_lh_uncf	${dti}_rh_tap	${dti}_lh_tap' temp_1 > temp_2
+  sed -e '1i\mcp	pct	gcc	bcc	scc	fornix	rh_cst	lh_cst	rh_mlemn	lh_mlemn	rh_icp	lh_icp	rh_scp	lh_scp	rh_cp	lh_cp	rh_alic	lh_alic	rh_plic	lh_plic	rh_ric	lh_ric	rh_acr	lh_acr	rh_scr	lh_scr	rh_pcr	lh_pcr	rh_ptr	lh_ptr	rh_sags	lh_sags	rh_exc	lh_exc	rh_ccg	lh_ccg	rh_chip	lh_chip	rh_forcr	lh_forcr	rh_slf	lh_slf	rh_sfof	lh_sfof	rh_uncf	lh_uncf	rh_tap	lh_tap' temp_1 > temp_2
 
   # Append subjects to data file
   paste subjects temp_2 > all_${dti}.txt
