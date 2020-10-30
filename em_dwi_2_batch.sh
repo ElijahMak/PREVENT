@@ -26,5 +26,5 @@ sbatch --job-name=em_dwi2 --account hphi --qos=long.q --partition wbic-cs --erro
 --output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=${nTask} --mem=${mem} \
 --wrap="bash ${code}/em_dwi_2.sh ${subject}"
 
-sleep 1
+
 done
