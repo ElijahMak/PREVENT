@@ -13,7 +13,7 @@ module load MRtrix/mrtrix-3.0.2
 # -----------------------------------------------------------------------------
 
 # Options
-dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX"
+# dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX"
 subject=${1}
 BET=${2}
 
@@ -57,7 +57,6 @@ echo "--------------------------------"
 echo "              Eddy              "
 echo "--------------------------------"
 
-cd ${dir}
 cd ${subject}
 
 
