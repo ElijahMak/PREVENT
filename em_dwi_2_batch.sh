@@ -11,7 +11,7 @@
 time="2:30:00"
 
 # Memory
-mem="5000"
+mem="4000"
 
 # Number of tasks
 nTask=1
