@@ -1,4 +1,3 @@
-Perform eddy, tensor fitting, and CSD
 
 # Modules
 # -----------------------------------------------------------------------------
@@ -13,7 +12,6 @@ module load MRtrix/mrtrix-3.0.2
 # -----------------------------------------------------------------------------
 
 # Options
-dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX"
 subject=${1}
 BET=${2}
 
@@ -60,22 +58,21 @@ echo "         Connectomising         "
 echo "================================"
 #
 
-cd ${dir}
 cd ${subject}
 
-# # Freesurfer registration
-# export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Freesurfer7_GS
-#
-# mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
-#
-# # Inverse warp segmentations into DTI space
-# mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv --interp nearest --o rbrainmask.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
-#
-# mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
-#
-# 5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
-#
-# 5tt2gmwmi 5ttseg.mif 5tt_mask.mif
+# Freesurfer registration
+export SUBJECTS_DIR=/scratch/hphi/fkm24/projects/freewater_pk
+
+mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+
+# Inverse warp segmentations into DTI space
+mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv --interp nearest --o rbrainmask.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+
+mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+
+5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
+
+5tt2gmwmi 5ttseg.mif 5tt_mask.mif
 
 tckgen -seed_gmwmi 5tt_mask.mif -act 5ttseg.mif -crop_at_gmwmi -seeds 5000000 tournier_response_fod.mif wholebrain.tck
 

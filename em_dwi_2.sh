@@ -83,6 +83,7 @@ mrconvert ${edc} ${edc_mif} -fslgrad ${output_edc}.eddy_rotated_bvecs bval -data
 
 # Perform bias-field correction
 dwibiascorrect ants -mask ${mask} -bias bias.nii ${edc_mif} ${edc_mif_bfc}
+mrconvert ${edc_mif_bfc} denoised_degibbs.edc.repol.bfc.nii -force
 
 # Extract tensor maps
 dwi2tensor -mask ${mask} ${edc_mif_bfc} ${edc_mif_bfc_tensor}
