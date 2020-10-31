@@ -4,7 +4,7 @@
 # Date: 30th October 2020
 
 # Time
-time="2:00:00"
+time="3:00:00"
 
 # Memory
 mem="2500"
