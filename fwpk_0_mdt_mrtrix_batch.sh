@@ -23,6 +23,6 @@ do
 
 sbatch --exclusive --job-name=mdt_mrtrix --account MAK-SL3-GPU --partition pascal --error=${subject%.*}_%j.err \
 --output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=$nTask --mem=$mem \
---wrap="bash /home/fkm24/code/fwpk_0_mdt_mrtrix.sh $subject"
+--wrap="bash /home/fkm24/em_code/fwpk_0_mdt_mrtrix.sh $subject"
 
 done
