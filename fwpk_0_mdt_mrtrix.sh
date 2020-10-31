@@ -33,7 +33,7 @@ prtcl=$subject.prtcl
 
 # Fitting NODDI maps
 mkdir mdt_denoised_degibbs_edc_bfc
-python $(which mdt-model-fit) NODDI $noddi_input $prtcl $mask -o mdt_s2v_fwpk
-python $(which mdt-model-fit) NODDI_GM $noddi_input $prtcl $mask -o mdt_s2v_fwpk
+python $(which mdt-model-fit) NODDI $noddi_input $prtcl $mask -o mdt_denoised_degibbs_edc_bfc
+python $(which mdt-model-fit) NODDI_GM $noddi_input $prtcl $mask -o mdt_denoised_degibbs_edc_bfc
 
 echo "=== MDT completed for ${subject} ==="
