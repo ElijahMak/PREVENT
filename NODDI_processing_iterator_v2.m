@@ -4,7 +4,7 @@
 
 %%Select the input folder - Uncomment your folder path
 %path_data='/lustre/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/rafael_noddi/1_rr/';
-path_data='/scratch/hphi/fkm24/projects/freewater_pk/dwi/Test';
+path_data='/scratch/hphi/fkm24/projects/freewater_pk/dwi/Test/';
 %path_data='/lustre/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/rafael_noddi/3_ng/';
 %path_data='/lustre/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/rafael_noddi/test/';
 %%
