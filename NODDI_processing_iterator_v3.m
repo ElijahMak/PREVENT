@@ -10,7 +10,7 @@ path_data='/scratch/hphi/fkm24/projects/freewater_pk/dwi/Test101/';
 %%
 
 
-addpath('/lustre/scratch/hphi/fkm24/em_code/NODDI_toolbox_v1.0.1/');
+addpath('/lustre/scratch/hphi/fkm24/em_code/NODDI_toolbox_v1.01/');
 addpath('/lustre/scratch/hphi/fkm24/em_code/');
 
 dir_data=dir(path_data);
