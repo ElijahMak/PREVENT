@@ -10,7 +10,7 @@ path_data='/scratch/hphi/fkm24/projects/freewater_pk/dwi/Batch1/';
 %%
 
 
-addpath('/lustre/scratch/hphi/fkm24/em_code/NODDI_toolbox_v1.0/');
+addpath('/lustre/scratch/hphi/fkm24/em_code/NODDI_toolbox_v1.01/');
 addpath('/lustre/scratch/hphi/fkm24/em_code/');
 
 dir_data=dir(path_data);
@@ -22,7 +22,7 @@ for id=3:numel(dir_data)
     path_bvals= [path_subj   'bval'];
     path_bvecs= [path_subj   'denoised_degibbs.edc.repol.eddy_rotated_bvecs'];
     path_mask= [path_subj   'denoised_degibbs_dwi_b0_brain_mask.nii'];
-    path_out=[path_subj '/NODDI_MATLAB/'];
+    path_out=[path_subj '/NODDI_MATLAB_v101/'];
     if not(exist([path_out 'noddi_ficvf.nii.gz']))   && not(exist([path_out 'FittedParams.mat']))
     %NODDI_processing(path_dwi,path_mask,path_bvals,path_bvecs,path_out)
         system(['rm ' path_out 'NODDI_brain.mat']);
