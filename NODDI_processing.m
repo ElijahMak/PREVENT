@@ -13,7 +13,7 @@ end
 
 %Calculate NODDI
 if not(exist([path_out '/noddi_fibredirs_zvec.nii.gz']))
-    protocol = FSL2Protocol_ElijahB0(path_bvals, path_bvecs);
+    protocol = FSL2Protocol(path_bvals, path_bvecs);
     noddi = MakeModel('WatsonSHStickTortIsoV_B0');
     %batch_fitting([path_out '/NODDI_brain.mat'], protocol, noddi,[path_out '/FittedParams.mat'],4);
     batch_fitting_single([path_out '/NODDI_brain.mat'], protocol, noddi,[path_out '/FittedParams.mat']);
