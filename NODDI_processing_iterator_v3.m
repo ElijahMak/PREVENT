@@ -4,13 +4,13 @@
 
 %%Select the input folder - Uncomment your folder path
 %path_data='/lustre/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/rafael_noddi/1_rr/';
-path_data='/scratch/hphi/fkm24/projects/freewater_pk/dwi/Test/';
+path_data='/scratch/hphi/fkm24/projects/freewater_pk/dwi/Test101/';
 %path_data='/lustre/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/rafael_noddi/3_ng/';
 %path_data='/lustre/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/rafael_noddi/test/';
 %%
 
 
-addpath('/lustre/scratch/hphi/fkm24/em_code/NODDI_toolbox_v1.0/');
+addpath('/lustre/scratch/hphi/fkm24/em_code/NODDI_toolbox_v1.0.1/');
 addpath('/lustre/scratch/hphi/fkm24/em_code/');
 
 dir_data=dir(path_data);
@@ -22,7 +22,7 @@ for id=3:numel(dir_data)
     path_bvals= [path_subj   'bval'];
     path_bvecs= [path_subj   'denoised_degibbs.edc.repol.eddy_rotated_bvecs'];
     path_mask= [path_subj   'denoised_degibbs_dwi_b0_brain_mask.nii'];
-    path_out=[path_subj '/NODDI_MATLAB/'];
+    path_out=[path_subj '/NODDI_MATLAB_v101/'];
     if not(exist([path_out 'noddi_ficvf.nii.gz']))   && not(exist([path_out 'FittedParams.mat']))
     %NODDI_processing(path_dwi,path_mask,path_bvals,path_bvecs,path_out)
         system(['rm ' path_out 'NODDI_brain.mat']);
