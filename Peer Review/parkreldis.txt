@@ -1,0 +1,33 @@
+# Morphometric MRI Cortico-subcortical features in Parkinson's Disease with mild cognitive impairment. Evidence from the PACOS study.
+
+This is a study aimed at the quantification of subcortical volumes in PD patients with cognitive impairment. While cortical thinning is an often reported finding across the literature, the authors have rightly acknowledged the lack of consistency regarding subcortical changes. Furthermore, subregions of the midbrain have been relatively understudied. The sample size is adequate. Logistic regression was used to determine the associations of MCI status with imaging changes, adjusting for the relevant covariates.
+
+I have no major concerns over the study design, classiciation of patients and statistical analyses. 
+
+Abstract
+
+1) I would rephrase the conclusion. The statement "...probably due to the cortical projections of the midbrain ..." is very vague and speculative. I suggest focussing on the strength of this study, which is the effect of midbrain atrophy and cortical thinning patterns seen in PD-MCI.
+
+Introduction 
+
+2) I would remove the Donuzuso et al., reference unless it has been peer-reviewed / deposited on a preprint server. 
+
+3) The literature of cortical thinning in PD-MCI is not complete in the current paper. Please include more studies which have found similar results to those that you have cited. This is particularly important here, since the paper is making a point about the lack of consistency in subcortical volumes relative to cortical findings.  Some examples: Baseline and longitudinal grey matter changes in newly diagnosed Parkinson’s disease: ICICLE-PD study, Patterns of cortical thinning in nondemented Parkinson's disease patients, Cortical thinning is associated with disease stages and dementia in Parkinson's disease.
+
+4) The introduction could be improved by summarising some of the key findings from the 2 studies which you have cited [9,15], Lines 9 - 10, Page 4.
+
+5) I would refrain from the sentence "While the role of such methodologies on the differential diagnosis of parkinsonisms has long been established". The study was published fairly recently, and volumetry of the brain stem as a tool for differential diagnosis in PD needs more validation.
+
+6) Please report statistical details in the Results for each of the test. Some measures of effect size would be useful. Have the authors considered performing an AUC analysis, to see how brain volumetry may separate PD-MCI from PD cases?
+
+7) Looking at the p values, I doubt that the associations between midbrain regions and PD-MCI would retain statistical significance after FDR correction. FDR should be performed. If not, the results should be intepreted with this caveat in the Discussion.
+
+8) The correlations between brain stem volumes and cortical thickness is rather difficult to interpret, since many brain regions are very likely to be highly-correlated to begin with. Furthermore, the correlations were not adjusted for multiple comparisons across the cortical ROIs. If the authors wish to pursue this, I would suggest including more details in the Introduction. Inter-regional correlations are typically interpreted as measures of structural covariance (albeit with other limitations). 
+
+9) The Discussion had little elaboration on the key findings, which are the reductions of brain stem volumes in PD-MCI (Lines 43 - 48), Page 9.
+
+10) The Limitations should also include the (a) lack of adjustment for multiple comparisons and findings should be framed as preliminary in this regard.
+
+11) There is a brain stem segmentation module available in Freesurfer. As such, thhis might be an opportunity to investigate whether the authors obtain similar results compared to those from manual tracing. I am not suggesting this as a necessary action, but it might be of interest to the authors in future studies.
+
+
