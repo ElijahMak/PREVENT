@@ -14,8 +14,8 @@ fslorient -setsform 1 0 0 -128 0 1 0 -145 0 0 1 -109 0 0 0 1 filled_${i}_IIT_NN.
 
 autoaq -i ${i}_IIT_NN.nii -a "JHU White-Matter Tractography Atlas" -t 1.3 -o ${i}_IIT_JHU_tracts_mass.txt
 autoaq -i ${i}_IIT_NN.nii -a "JHU White-Matter Tractography Atlas" -t 1.3 -o ${i}_IIT_JHU_tracts_peak.txt -p
-autoaq -i ${i}_IIT_NN.nii -a "JHU White-Matter Labels" -t 1.3 -o ${i}_IIT_JHU_labels_mass.txt
-autoaq -i ${i}_IIT_NN.nii -a "JHU White-Matter Labels" -t 1.3 -o ${i}_IIT_JHU_labels_peak.txt -p
+autoaq -i ${i}_IIT_NN.nii -a "JHU ICBM-DTI-81 White-Matter Labels" -t 1.3 -o ${i}_IIT_JHU_labels_mass.txt
+autoaq -i ${i}_IIT_NN.nii -a "JHU ICBM-DTI-81 White-Matter Labels" -t 1.3 -o ${i}_IIT_JHU_labels_peak.txt -p
 
 
 # FSL
@@ -26,5 +26,5 @@ applywarp -i filled_${i}.nii -o filled_${i}_MNI152.nii.gz -r $FSLDIR/data/standa
 
 autoaq -i ${i}_MNI152.nii -a "JHU White-Matter Tractography Atlas" -t 1.3 -o ${i}_MNI152_JHU_tracts_mass.txt
 autoaq -i ${i}_MNI152.nii -a "JHU White-Matter Tractography Atlas" -t 1.3 -o ${i}_MNI152_JHU_tracts_peak.txt -p
-autoaq -i ${i}_MNI152.nii -a "JHU White-Matter Labels" -t 1.3 -o ${i}_MNI152_JHU_labels_mass.txt
-autoaq -i ${i}_MNI152.nii -a "JHU White-Matter Labels" -t 1.3 -o ${i}_MNI152_JHU_labels_peak.txt -p
+autoaq -i ${i}_MNI152.nii -a "JHU ICBM-DTI-81 White-Matter Labels" -t 1.3 -o ${i}_MNI152_JHU_labels_mass.txt
+autoaq -i ${i}_MNI152.nii -a "JHU ICBM-DTI-81 White-Matter Labels" -t 1.3 -o ${i}_MNI152_JHU_labels_peak.txt -p
