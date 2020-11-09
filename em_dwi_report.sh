@@ -1,3 +1,6 @@
+module unload fsl/5.0.10
+module load fsl/6.0.3
+
 i=${1}
 
 tbss_fill ${i}.nii 1.3 mean_FA.nii.gz filled_${i}.nii
