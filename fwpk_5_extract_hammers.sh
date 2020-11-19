@@ -2,7 +2,7 @@ subject=${1}
 
 cd $subject
 
-file="${subject}.FW.FLIRT.nii.gz"
+file="noddi_fiso_t1.nii.gz"
 
 if [ -f ${file} ]; then
 
@@ -10,12 +10,12 @@ if [ -f ${file} ]; then
 
     padroi=`$FSLDIR/bin/zeropad $roinum 3`
 
-    if [ -f ${subject}_FW_hammers_whole_${padroi}.txt ]; then
-      rm ${subject}_FW_hammers_whole_roi${padroi}.txt  ; fi
+    if [ -f ${subject}_FWNMT_hammers_whole_${padroi}.txt ]; then
+      rm ${subject}_FWNMT_hammers_whole_roi${padroi}.txt  ; fi
 
-      fslmeants -i ${file} -m hammers/${roinum}.nii.gz > ${subject}_FW_hammers_whole_roi${padroi}.txt
+      fslmeants -i ${file} -m hammers/${roinum}.nii.gz > ${subject}_FWNMT_hammers_whole_roi${padroi}.txt
 
-      paste *_FW_hammers_whole_roi*.txt > all_FW_hammers_whole.txt
+      paste *_FWNMT_hammers_whole_roi*.txt > all_FWNMT_hammers_whole.txt
 
     done
 
@@ -25,10 +25,10 @@ if [ -f ${file} ]; then
 
       padroi=`$FSLDIR/bin/zeropad $roinum 3`
 
-      if [ -f ${subject}_FW_hammers_native_roi${padroi}.txt ]; then
-        rm ${subject}_FW_hammers_native_roi${padroi}.txt  ; fi
+      if [ -f ${subject}_FWNMT_hammers_native_roi${padroi}.txt ]; then
+        rm ${subject}_FWNMT_hammers_native_roi${padroi}.txt  ; fi
 
-        echo "NA" >> ${subject}_FW_hammers_whole_${padroi}.txt
-        paste *_FW_hammers_whole_roi*.txt > all_FW_hammers_whole.txt
+        echo "NA" >> ${subject}_FWNMT_hammers_whole_${padroi}.txt
+        paste *_FWNMT_hammers_whole_roi*.txt > all_FWNMT_hammers_whole.txt
       done
     fi
