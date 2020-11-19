@@ -1,8 +1,10 @@
+cd /archive/p00423/PREVENT_Elijah/FWPK
+
 subject=${1}
 
 cd $subject
 
-file="${subject}.FW.nii.gz"
+file="noddi_fiso_t1.nii.gz"
 
 if [ -f ${file} ]; then
 
