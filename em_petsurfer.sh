@@ -33,12 +33,12 @@ hemi="/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/hemi"
 # -----------------------------------------------------------------------------
 
 echo "Motion correction + deriving mean volumes"
-mcflirt -in ${pet} -meanvol -mats -report
+#mcflirt -in ${pet} -meanvol -mats -report
 
 # GTM segmentation
 # -----------------------------------------------------------------------------
 
-gtmseg --s ${subject}
+# gtmseg --s ${subject}
 
 echo "Coregister mean volumes to T1"
 mkdir $SUBJECTS_DIR/${subject}/tau
