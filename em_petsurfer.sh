@@ -23,7 +23,7 @@ reg="$SUBJECTS_DIR/${subject}/tau/mri_coreg_concat_tau_mcf_mean_reg.lta"
 gtmseg="$SUBJECTS_DIR/${subject}/mri/gtmseg.mgz"
 mgxthresh="0.25"
 tac="$SUBJECTS_DIR/dynamic_pet/PET_$tac/tac*.dat"
-hemi="lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/hemi"
+hemi="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/hemi"
 
 # Notes
 # -----------------------------------------------------------------------------
