@@ -3,7 +3,7 @@
 
 # Directory
 
-dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX/DATA_JHU"
+dir="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/DATA_JHU"
 
 for dti in FA MD RD AD; do
 
