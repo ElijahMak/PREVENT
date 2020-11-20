@@ -16,7 +16,7 @@ module load fsl/6.0.3
 # Parameters
 # -----------------------------------------------------------------------------
 subject=${1}
-export SUBJECTS_DIR="/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/include"
+export SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/include"
 pet="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau.nii"
 mov="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau_mcf_mean_reg.nii"
 pet_mcf="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau_mcf.nii"
@@ -35,31 +35,15 @@ mgxthresh="0.25"
 echo "Motion correction + deriving mean volumes"
 mcflirt -in ${pet} -meanvol -mats -report
 
-
 # GTM segmentation
 # -----------------------------------------------------------------------------
 
-echo "gtm seg "
 gtmseg --s ${subject}
 
-# Rename FS folders
-# psub-18066_ses-20140812_acq-mpragend_rec-nd_run-01_T1w
-# for i in `cat list`; do mv psub-${i}_ses-*_acq-mpragend_rec-nd_run-01_T1w ${i}; done
-# for i in `cat list`; do mv psub-${i}_ses-*_acq-repmprag_rec-nd_run-01_T1w ${i}; done
-# for i in `cat x`; do mv psub-${i}_ses-*_acq-mpragend_rec-nd_run-02_T1w ${i}_2; done
-# mv psub-25109_ses-20150805_acq-repmprag_rec-nd_run-01_T1w 25109
-# psub-23343_ses-20140512_acq-mpragend_rec-nd_run-02_T1w
-# psub-23343_ses-20140512_acq-mpragend_rec-nd_run-02_T1w
-# mv: cannot stat ‘psub-23343_ses-*_acq-mpragend_rec-nd_run-02_T1w’: No such file or directory
-# Coregistration
-# -----------------------------------------------------------------------------
-
 echo "Coregister mean volumes to T1"
-mkdir $SUBJECTS_DIR/${subject}/tau
+mkdir ${SUBJECTS_DIR/${subject}/tau
 mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
 
-
-# GTM - PVC
-# -----------------------------------------------------------------------------
-
- mri_gtmpvc --i ${pet_mcf}  --reg ${reg} --psf 6.8 --seg ${gtm_seg} --default-seg-merge --auto-mask PSF .01 --mgx $mgxthresh --o $SUBJECTS_DIR/${i}/tau/dynamic_gtm_thresh_${mgxthresh}/ --km-ref 8 47 --km-hb 11 12 13 50 51 52 --no-rescale
+# -------------------------------------------------------------
+#
+mri_gtmpvc --i ${pet_mcf}  --reg ${reg} --psf 6.8 --seg ${gtm_seg} --default-seg-merge --auto-mask PSF .01 --mgx $mgxthresh --o $SUBJECTS_DIR/${i}/tau/dynamic_gtm_thresh_${mgxthresh}/ --km-ref 8 47 --km-hb 11 12 13 50 51 52 --no-rescale
