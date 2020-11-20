@@ -13,7 +13,7 @@ module load MRtrix/mrtrix-3.0.2
 # -----------------------------------------------------------------------------
 
 # Options
-dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX"
+dir="/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM"
 subject=${1}
 BET=${2}
 
