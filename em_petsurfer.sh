@@ -42,7 +42,7 @@ gtmseg --s ${subject}
 
 echo "Coregister mean volumes to T1"
 mkdir ${SUBJECTS_DIR/${subject}/tau
-mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
+mri_coreg --s ${subject} --mov ${mov} --reg ${reg};
 
 # -------------------------------------------------------------
 #
