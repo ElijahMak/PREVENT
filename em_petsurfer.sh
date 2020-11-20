@@ -33,7 +33,7 @@ mgxthresh="0.25"
 # -----------------------------------------------------------------------------
 
 echo "Motion correction + deriving mean volumes"
-mcflirt -in ${dir_pet}/${subject}_concat_tau.nii -meanvol -mats -report
+mcflirt -in ${pet} -meanvol -mats -report
 
 
 # GTM segmentation
