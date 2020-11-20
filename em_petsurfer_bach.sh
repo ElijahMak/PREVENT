@@ -7,7 +7,7 @@ nTask=1
 # Time
 time="02:30:0"
 input=${1}
-
+mem="2000"
 for subject in `cat $input`;
 
 do
