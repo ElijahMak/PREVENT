@@ -17,10 +17,9 @@ module load fsl/6.0.3
 # -----------------------------------------------------------------------------
 subject=${1}
 export SUBJECTS_DIR="/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/include"
-dir_pet="/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet"
-pet="${subject}_concat_tau.nii"
-mov="${dir_pet}/${subject}_concat_tau_mcf_mean_reg.nii"
-pet_mcf="${dir_pet}/${subject}_concat_tau_mcf.nii"
+pet="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau.nii"
+mov="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau_mcf_mean_reg.nii"
+pet_mcf="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau_mcf.nii"
 reg="$SUBJECTS_DIR/${subject}/tau/mri_coreg_concat_tau_mcf_mean_reg.lta"
 gtmseg="$SUBJECTS_DIR/${i}/mri/gtmseg.mgz"
 mgxthresh="0.25"
