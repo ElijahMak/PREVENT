@@ -12,7 +12,6 @@ module unload fsl/5.0.10
 module unload fsl/6.0.1
 module load fsl/6.0.3
 
-
 # Parameters
 # -----------------------------------------------------------------------------
 subject=${1}
