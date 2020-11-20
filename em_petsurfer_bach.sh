@@ -17,6 +17,3 @@ do
   --wrap="bash ${code}/em_petsurfer.sh ${subject}"
 
   done
-=
-
-done
