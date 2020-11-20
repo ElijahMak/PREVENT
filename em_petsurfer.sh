@@ -64,9 +64,9 @@ echo "Coregister mean volumes to T1"
 # for h in `cat hemi `;  do  k2p=`cat $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mrtm1/k2prime.dat`; mri_glmfit --y $SUBJECTS_DIR/${subject}/surf/${h}.tau.mgx.ctxgm.fsaverage.mgx.thresh.${mgxthresh}.sm0${fwhm}.nii.gz --mrtm2 $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/km.ref.tac.dat $SUBJECTS_DIR/${subject}/tau/tac.dat $k2p --o $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mrtm2/${h}.sm0${fwhm} --no-est-fwhm --nii.gz --surface fsaverage ${h}; done
 
 # Sample to MNI152 FA_2_FMRIB58_1mm
-mri_vol2vol --mov ${SUBJECTS_DIR}/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mgx.gm.nii.gz --reg ${SUBJECTS_DIR}/${subject}/tau/aux/bbpet2anat.lta --tal --talres 2  --o ${SUBJECTS_DIR}/${subject}/tau/mgx.mni305.2mm.sm00.nii.gz
+mri_vol2vol --mov ${SUBJECTS_DIR}/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mgx.gm.nii.gz --reg ${SUBJECTS_DIR}/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/aux/bbpet2anat.lta --tal --talres 2  --o ${SUBJECTS_DIR}/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mgx.mni305.2mm.sm00.nii.gz
 
-mri_fwhm --smooth-only --i ${SUBJECTS_DIR}/${subject}/tau/mgx.mni305.2mm.sm00.nii.gz --fwhm 5 --o ${SUBJECTS_DIR}/${subject}/tau/mgx.mni305.2mm.sm05.nii.gz --mask $FREESURFER_HOME/subjects/fsaverage/mri.2mm/brainmask.mgz
+mri_fwhm --smooth-only --i ${SUBJECTS_DIR}/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mgx.mni305.2mm.sm00.nii.gz --fwhm 5 --o ${SUBJECTS_DIR}/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mgx.mni305.2mm.sm05.nii.gz --mask $FREESURFER_HOME/subjects/fsaverage/mri.2mm/brainmask.mgz
 
 k2p=`cat $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mrtm1/k2prime.dat`
-mri_glmfit --y ${SUBJECTS_DIR}/${subject}/tau/mgx.mni305.2mm.sm00.nii.gz --mrtm2 $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/km.ref.tac.dat $SUBJECTS_DIR/${subject}/tau/tac.dat $k2p --o ${SUBJECTS_DIR}/${subject}/tau/mgx.mni305.2mm.sm05 --no-est-fwhm --nii.gz
+mri_glmfit --y ${SUBJECTS_DIR}/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mgx.mni305.2mm.sm00.nii.gz --mrtm2 $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/km.ref.tac.dat $SUBJECTS_DIR/${subject}/tau/tac.dat $k2p --o ${SUBJECTS_DIR}/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mgx.mni305.2mm.sm05 --no-est-fwhm --nii.gz
