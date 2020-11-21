@@ -61,7 +61,7 @@ echo "================================"
 cd ${subject}
 
 # Freesurfer registration
-export SUBJECTS_DIR=/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/include
+export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/include
 
 mkdir $SUBJECTS_DIR/${subject}/dwi
 mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
