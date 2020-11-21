@@ -1,4 +1,4 @@
-# Job submission for MRTRIx pipeline
+# Job submission for MRTRIX pipeline
 
 #!/bin/bash
 
