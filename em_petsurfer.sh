@@ -33,16 +33,16 @@ fwhm="8"
 # -----------------------------------------------------------------------------
 
 echo "Motion correction + deriving mean volumes"
-#mcflirt -in ${pet} -meanvol -mats -report
+mcflirt -in ${pet} -meanvol -mats -report
 
 # GTM segmentation
 # -----------------------------------------------------------------------------
 
-# gtmseg --s ${subject}
+gtmseg --s ${subject}
 
 echo "Coregister mean volumes to T1"
 # mkdir $SUBJECTS_DIR/${subject}/tau
-# mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
+mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
 
 # MRTM1
 # for i in `cat ../list`; do cp tac_58.dat ../freesurfer/include/${subject}/tau/tac.dat
