@@ -63,12 +63,13 @@ cd ${subject}
 # Freesurfer registration
 export SUBJECTS_DIR=/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/include
 
-mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+mkdir $SUBJECTS_DIR/${subject}/dwi
+mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
 
 # Inverse warp segmentations into DTI space
-mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv --interp nearest --o rbrainmask.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv --interp nearest --o rbrainmask.nii --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
 
-mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/b0.coreg.lta
+mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
 
 5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
 
