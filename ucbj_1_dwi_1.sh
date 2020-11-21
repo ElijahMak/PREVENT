@@ -14,12 +14,13 @@ module load MRtrix/mrtrix-3.0.2
 # -----------------------------------------------------------------------------
 
 # Options
-dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX"
+# dir="/lustre/archive/p00423/PREVENT_Elijah/MRTRIX"
 subject=${1}
 BET=${2}
 
 # Inputs
 raw_dwi="dwi.nii"
+raw_dwi_mif="dwi.mif"
 denoised_dwi="dwi.denoised.nii"
 denoised_degibbs_dwi="dwi.denoised.degibbs.nii"
 b0="denoised_degibbs_dwi_b0.nii"
@@ -59,7 +60,7 @@ echo "================================"
 echo "         Preprocessing          "
 echo "================================"
 
-cd ${dir}
+# cd ${dir}
 cd ${subject}
 
 echo "--------------------------------"
