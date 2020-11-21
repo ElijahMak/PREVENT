@@ -1,7 +1,7 @@
 function cat_expert(filelist)
-matlabbatch{1}.spm.tools.cat.estwrite.data = {filelist};
+matlabbatch{1}.spm.tools.cat.estwrite.data = {'/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/spm/18066.nii'};
 matlabbatch{1}.spm.tools.cat.estwrite.nproc = 0;
-matlabbatch{1}.spm.tools.cat.estwrite.opts.tpm = {'/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/spm/tpm/TPM.nii'};
+matlabbatch{1}.spm.tools.cat.estwrite.opts.tpm = {'/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/spm/spm12/tpm/TPM.nii'};
 matlabbatch{1}.spm.tools.cat.estwrite.opts.affreg = 'mni';
 matlabbatch{1}.spm.tools.cat.estwrite.opts.biasstr = 0.5;
 matlabbatch{1}.spm.tools.cat.estwrite.opts.samp = 3;
@@ -14,8 +14,8 @@ matlabbatch{1}.spm.tools.cat.estwrite.extopts.segmentation.cleanupstr = 0.5;
 matlabbatch{1}.spm.tools.cat.estwrite.extopts.segmentation.WMHC = 1;
 matlabbatch{1}.spm.tools.cat.estwrite.extopts.segmentation.SLC = 0;
 matlabbatch{1}.spm.tools.cat.estwrite.extopts.segmentation.restypes.fixed = [1 0.1];
-matlabbatch{1}.spm.tools.cat.estwrite.extopts.registration.darteltpm = {'/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/spm/toolbox/cat12/templates_1.50mm/Template_1_IXI555_MNI152.nii'};
-matlabbatch{1}.spm.tools.cat.estwrite.extopts.registration.shootingtpm = {'/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/spm/toolbox/cat12/templates_1.50mm/Template_0_IXI555_MNI152_GS.nii'};
+matlabbatch{1}.spm.tools.cat.estwrite.extopts.registration.darteltpm = {'/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/spm/spm12/toolbox/cat12/templates_1.50mm/Template_1_IXI555_MNI152.nii'};
+matlabbatch{1}.spm.tools.cat.estwrite.extopts.registration.shootingtpm = {'/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/spm/spm12/toolbox/cat12/templates_1.50mm/Template_0_IXI555_MNI152_GS.nii'};
 matlabbatch{1}.spm.tools.cat.estwrite.extopts.registration.regstr = 0;
 matlabbatch{1}.spm.tools.cat.estwrite.extopts.vox = 1.5;
 matlabbatch{1}.spm.tools.cat.estwrite.extopts.surface.pbtres = 0.5;
