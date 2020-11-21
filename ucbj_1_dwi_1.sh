@@ -74,7 +74,7 @@ dcmdjpeg $img ${img}.tmp
 mv ${img}.tmp $img
 done
 
-cd ../..
+cd ..
 
 # Concatenate both DWI dicom folders
 mrcat *AP* *PA* ${raw_dwi} -axis 3
