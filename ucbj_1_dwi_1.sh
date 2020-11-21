@@ -52,29 +52,29 @@ echo "███████╗███╗   ███╗       █████�
 echo "Diffusion pipeline started at $(date)"
 echo "Initialising diffusion preprocessing for ${subject}"
 
-# # Preprocessing
-# # -------------------------------------------------------------------------------------------------
-# echo "================================"
-# echo "            NII to MIF          "
-# echo "================================"
-#
-# cd ${subject}
-#
-# cd *AP*
-# for img in **
-# do
-# dcmdjpeg $img ${img}.tmp
-# mv ${img}.tmp $img
-# done
-#
-# cd ../*PA*
-# for img in **
-# do
-# dcmdjpeg $img ${img}.tmp
-# mv ${img}.tmp $img
-# done
-#
-# cd ..
+# Preprocessing
+# -------------------------------------------------------------------------------------------------
+echo "================================"
+echo "            NII to MIF          "
+echo "================================"
+
+cd ${subject}
+
+cd *AP*
+for img in **
+do
+dcmdjpeg $img ${img}.tmp
+mv ${img}.tmp $img
+done
+
+cd ../*PA*
+for img in **
+do
+dcmdjpeg $img ${img}.tmp
+mv ${img}.tmp $img
+done
+
+cd ..
 
 # Concatenate both DWI dicom folders
 mrcat *AP* *PA* ${raw_dwi} -axis 3
