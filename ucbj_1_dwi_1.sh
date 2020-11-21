@@ -91,7 +91,7 @@ echo "            DeGibbs             "
 echo "--------------------------------"
 
 # Remove Gibbs Ringing artifact
-mrdegibbs ${denoised_dwi} ${denoised_degibbs_dwi} -bias
+mrdegibbs ${denoised_dwi} ${denoised_degibbs_dwi} 
 
 #mrcalc dwi_den.mif dwi_den_unr.mif –subtract residualUnringed.mif
 # mrview dwi_den_unr.mif residualUnringed.mif
