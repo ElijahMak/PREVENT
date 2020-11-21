@@ -21,7 +21,7 @@ mov="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subjec
 pet_mcf="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau_mcf.nii"
 reg="$SUBJECTS_DIR/${subject}/tau/mri_coreg_concat_tau_mcf_mean_reg.lta"
 gtmseg="$SUBJECTS_DIR/${subject}/mri/gtmseg.mgz"
-mgxthresh="0.01s"
+mgxthresh="0.25"
 tac="$SUBJECTS_DIR/dynamic_pet/PET_$tac/tac*.dat"
 hemi="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/hemi"
 fwhm="8"
@@ -38,7 +38,7 @@ mcflirt -in ${pet} -meanvol -mats -report
 # GTM segmentation
 # -----------------------------------------------------------------------------
 
-gtmseg --s ${subject}
+gtmseg --s ${subject} --xcerseg
 
 echo "Coregister mean volumes to T1"
 # mkdir $SUBJECTS_DIR/${subject}/tau
