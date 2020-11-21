@@ -1,7 +1,7 @@
 # MRTRIX pipeline
 # Perform denoising, degibbs, top up and eddy corrections from DICOMs. First convert everything to .mif, and then concatenate the results, in which case MRtrix3 handles concatenation of the gradient tables automatically.
 
-
+# Date: 20th Nov 2020
 # Modules
 # -----------------------------------------------------------------------------
 
