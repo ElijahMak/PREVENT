@@ -13,6 +13,8 @@ module load MRtrix/mrtrix-3.0.2
 
 subject=${1}
 
+cd $subject
+
 fslchfiletype NIFTI ${subject}_UCB-J_BP_Neuro.hdr
 fslswapdim ${subject}_UCB-J_BP_Neuro.nii -x y z ${subject}_UCB-J_BP_Radio.nii.gz
 fslorient -swaporient ${subject}_UCB-J_BP_Radio.nii.gz
