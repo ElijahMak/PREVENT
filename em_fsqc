@@ -1,4 +1,5 @@
 subject=${1}
+
 cd $subject
 
 mkdir QC
@@ -7,8 +8,9 @@ mri_convert mri/aparc+aseg.mgz mri/aparc+aseg.nii.gz
 mri_convert mri/brainmask.mgz mri/brainmask.nii.gz
 mri_convert mri/T1.mgz mri/T1.nii.gz
 
-fslreorient2std  mri/aparc+aseg.nii.gz mri/aparc+aseg.nii.gz
-fslreorient2std  mri/brainmask.nii.gz mri/brainmask.nii.gz
-fslreorient2std  mri/T1.nii.gz mri/T1.nii.gz
+fslreorient2std  mri/aparc+aseg.nii.gz mri/aparc+aseg_std.nii.gz
+fslreorient2std  mri/brainmask.nii.gz mri/brainmask_std.nii.gz
+fslreorient2std  mri/T1.nii.gz mri/T1_std.nii.gz
 
- fsleyes render --outfile QC/aparcaseg.png  --size 3200 3200 --scene lightbox --worldLoc 109.48374274545618 112.54796385879337 -90.3550721220162 --displaySpace mri/brainmask.nii.gz --zaxis 2 --sliceSpacing 3.112827050293057 --zrange 72.56973706466293 211.41464021353076 --ncols 7 --nrows 6 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 mri/brainmask.nii.gz --name "brainmask" --overlayType volume --alpha 100.0 --brightness 41.090425531914896 --contrast 46.76407868213689 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 255.0 --clippingRange 0.0 257.55 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 mri/T1.nii.gz --name "T1" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 255.0 --clippingRange 0.0 257.55 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 mri/aparc+aseg.nii.gz --name "aparc+aseg" --overlayType label --alpha 100.0 --brightness 50.0 --contrast 50.0 --lut freesurfercolorlut --outlineWidth 0 --volume 0
+
+fsleyes render --outfile QC/aparcaseg.png  --size 3200 3200 --scene lightbox --worldLoc 109.48374274545618 112.54796385879337 -90.3550721220162 --displaySpace mri/brainmask.nii.gz --zaxis 2 --sliceSpacing 3.112827050293057 --zrange 72.56973706466293 211.41464021353076 --ncols 7 --nrows 6 --bgColour 0.0 0.0 0.0 --fgColour 1.0 1.0 1.0 --cursorColour 0.0 1.0 0.0 --colourBarLocation top --colourBarLabelSide top-left --performance 3 mri/brainmask.nii.gz --name "brainmask" --overlayType volume --alpha 100.0 --brightness 41.090425531914896 --contrast 46.76407868213689 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 255.0 --clippingRange 0.0 257.55 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 mri/T1_std.nii.gz --name "T1" --overlayType volume --alpha 100.0 --brightness 50.0 --contrast 50.0 --cmap greyscale --negativeCmap greyscale --displayRange 0.0 255.0 --clippingRange 0.0 257.55 --gamma 0.0 --cmapResolution 256 --interpolation none --numSteps 100 --blendFactor 0.1 --smoothing 0 --resolution 100 --numInnerSteps 10 --clipMode intersection --volume 0 mri/aparc+aseg.nii.gz --name "aparc+aseg" --overlayType label --alpha 70 --brightness 50.0 --contrast 50.0 --lut freesurfercolorlut --outlineWidth 0 --volume 0
