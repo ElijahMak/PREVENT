@@ -12,5 +12,35 @@ module load MRtrix/mrtrix-3.0.2
 
 
 subject=${1}
-fslswapdim ${subject}_*_Neuro.nii.gz -x y z ${subject}_*_Radio.nii.gz
-fslorient -swaporient ${subject}_*_Radio.nii.gz
+
+fslchfiletype NIFTI ${subject}_UCB-J_BP_Neuro.hdr
+fslswapdim ${subject}_UCB-J_BP_Neuro.nii -x y z ${subject}_UCB-J_BP_Radio.nii.gz
+fslorient -swaporient ${subject}_UCB-J_BP_Radio.nii.gz
+
+fslchfiletype NIFTI ${subject}_UCB-J_PVC_BP_Neuro.hdr
+fslswapdim ${subject}_UCB-J_PVC_BP_Neuro.nii -x y z ${subject}_UCB-J_PVC_BP_Radio.nii.gz
+fslorient -swaporient ${subject}_UCB-J_PVC_BP_Radio.nii.gz
+
+fslchfiletype NIFTI ${subject}_AV-1451_R1_Neuro.hdr
+fslswapdim ${subject}_AV-1451_R1_Neuro.nii -x y z ${subject}_AV-1451_R1_Radio.nii.gz
+fslorient -swaporient ${subject}_AV-1451_R1_Radio.nii.gz
+
+fslchfiletype NIFTI ${subject}_UCB-J_R1_Neuro.hdr
+fslswapdim ${subject}_UCB-J_R1_Neuro.nii -x y z ${subject}_UCB-J_R1_Radio.nii.gz
+fslorient -swaporient ${subject}_UCB-J_R1_Radio.nii.gz
+
+fslchfiletype NIFTI ${subject}_UCB-J_PVC_R1_Neuro.hdr
+fslswapdim ${subject}_UCB-J_PVC_R1_Neuro.nii -x y z ${subject}_UCB-J_PVC_R1_Radio.nii.gz
+fslorient -swaporient ${subject}_UCB-J_PVC_R1_Radio.nii.gz
+
+fslchfiletype NIFTI ${subject}_wRPMV_BP_Neuro.hdr
+fslswapdim ${subject}_wRPMV_BP_Neuro.nii -x y z ${subject}_wRPMV_BP_Radio.nii.gz
+fslorient -swaporient ${subject}_wRPMV_BP_Radio.nii.gz
+
+fslchfiletype NIFTI ${subject}_PK_mean_Neuro.hdr
+fslswapdim ${subject}_PK_mean_Neuro.nii -x y z ${subject}_PK_mean_Radio.nii.gz
+fslorient -swaporient ${subject}_PK_mean_Radio.nii.gz
+
+fslchfiletype NIFTI ${subject}_PIB_SUVR_Neuro.hdr
+fslswapdim ${subject}_PIB_SUVR_Neuro.nii -x y z ${subject}_PIB_SUVR_Radio.nii.gz
+fslorient -swaporient ${subject}_PIB_SUVR_Radio.nii.gz
