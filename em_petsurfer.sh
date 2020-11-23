@@ -53,7 +53,7 @@ mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
 
 mri_gtmpvc --i ${pet_mcf}  --reg ${reg} --psf 6.8 --seg $SUBJECTS_DIR/${subject}/mri/gtmseg.mgz --default-seg-merge --auto-mask PSF .01 --mgx $mgxthresh --o $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/ --km-ref 8 47 --km-hb 11 12 13 50 51 52 --no-rescale
 
- mri_glmfit --y $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/km.hb.tac.nii.gz --mrtm1 $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/km.ref.tac.dat $SUBJECTS_DIR/${subject}/tau/tac.dat --o $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mrtm1 --no-est-fwhm  --nii.gz
+mri_glmfit --y $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/km.hb.tac.nii.gz --mrtm1 $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/km.ref.tac.dat $SUBJECTS_DIR/${subject}/tau/tac.dat --o $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mrtm1 --no-est-fwhm  --nii.gz
 
 k2p=`cat $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/mrtm1/k2prime.dat`
 

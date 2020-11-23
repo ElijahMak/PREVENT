@@ -2,13 +2,11 @@
 %11 Feb 2019
 %Rafael Romero Garcia rr480@cam.ac.uk
 
-%%Select the input folder - Uncomment your folder path
-%path_data='/lustre/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/rafael_noddi/1_rr/';
-path_data='/scratch/hphi/fkm24/projects/freewater_pk/dwi/Batch1/';
-%path_data='/lustre/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/rafael_noddi/3_ng/';
-%path_data='/lustre/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/rafael_noddi/test/';
-%%
+% enter MATLAB and run code without .m
 
+%%Select the input folder - Uncomment your folder path
+path_data='/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/nba_noddi/';
+%%
 
 addpath('/lustre/scratch/hphi/fkm24/em_code/NODDI_toolbox_v1.01/');
 addpath('/lustre/scratch/hphi/fkm24/em_code/');
