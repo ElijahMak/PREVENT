@@ -46,3 +46,7 @@ fslorient -swaporient ${subject}_PK_mean_Radio.nii.gz
 fslchfiletype NIFTI ${subject}_PIB_SUVR_Neuro.hdr
 fslswapdim ${subject}_PIB_SUVR_Neuro.nii -x y z ${subject}_PIB_SUVR_Radio.nii.gz
 fslorient -swaporient ${subject}_PIB_SUVR_Radio.nii.gz
+
+fslchfiletype NIFTI ${subject}_PIB_mean_Neuro.hdr
+fslswapdim ${subject}_PIB_mean_Neuro.nii -x y z ${subject}_PIB_mean_Radio.nii.gz
+fslorient -swaporient ${subject}_PIB_mean_Radio.nii.gz
