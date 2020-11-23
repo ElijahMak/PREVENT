@@ -15,16 +15,16 @@ module load fsl/6.0.3
 # Parameters
 # -----------------------------------------------------------------------------
 subject=${1}
-export SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/include"
-pet="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau.nii"
-mov="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau_mcf_mean_reg.nii"
-pet_mcf="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau_mcf.nii"
-reg="$SUBJECTS_DIR/${subject}/tau/mri_coreg_concat_tau_mcf_mean_reg.lta"
-gtmseg="$SUBJECTS_DIR/${subject}/mri/gtmseg.mgz"
-mgxthresh="0.25"
-tac="$SUBJECTS_DIR/dynamic_pet/PET_$tac/tac*.dat"
-hemi="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/hemi"
-fwhm="8"
+  export SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/include"
+  pet="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau.nii"
+  mov="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau_mcf_mean_reg.nii"
+  pet_mcf="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet/${subject}_concat_tau_mcf.nii"
+  reg="$SUBJECTS_DIR/${subject}/tau/mri_coreg_concat_tau_mcf_mean_reg.lta"
+  gtmseg="$SUBJECTS_DIR/${subject}/mri/gtmseg.mgz"
+  mgxthresh="0.25"
+  tac="$SUBJECTS_DIR/dynamic_pet/PET_$tac/tac*.dat"
+  hemi="/lustre/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/freesurfer/hemi"
+  fwhm="8"
 # Notes
 # -----------------------------------------------------------------------------
 # Files were renamed: fkm24@wbic-gate-2:/archive/p00423/PREVENT_Elijah/NeuroimageClinical_TauWM/pet$ for i in `cat list`; do cp Concat_${subject}_AV-1451_PET*.nii ${subject}_concat_tau.nii; done
@@ -43,6 +43,7 @@ gtmseg --s ${subject} --xcerseg
 echo "Coregister mean volumes to T1"
 # mkdir $SUBJECTS_DIR/${subject}/tau
 mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
+mri_coreg --s ${subject} --mov 24831_concat_tau_mean.nii --reg $SUBJECTS_DIR/24831/tau/mri_coreg_concat_tau_mean_reg.lta
 
 # MRTM1
 # for i in `cat ../list`; do cp tac_58.dat ../freesurfer/include/${subject}/tau/tac.dat
@@ -50,6 +51,10 @@ mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
 # for i in `cat frame_55`; do cp tac_55.dat ../freesurfer/include/${subject}/tau/tac.dat; done
 # for i in `cat frame_54`; do cp tac_54.dat ../freesurfer/include/${subject}/tau/tac.dat; done
 # for i in `cat frame_52`; do cp tac_52.dat ../freesurfer/include/${subject}/tau/tac.dat; done
+
+reg="$SUBJECTS_DIR/${subject}/tau/mri_coreg_concat_tau_mean_reg.lta"
+mri_gtmpvc --i ${pet}  --reg ${reg} --psf 6.8 --seg $SUBJECTS_DIR/${subject}/mri/gtmseg.mgz --default-seg-merge --auto-mask PSF .01 --mgx $mgxthresh --o $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/ --km-ref 8 47 --km-hb 11 12 13 50 51 52 --no-rescale
+
 
 mri_gtmpvc --i ${pet_mcf}  --reg ${reg} --psf 6.8 --seg $SUBJECTS_DIR/${subject}/mri/gtmseg.mgz --default-seg-merge --auto-mask PSF .01 --mgx $mgxthresh --o $SUBJECTS_DIR/${subject}/tau/dynamic_gtm_thresh_${mgxthresh}/ --km-ref 8 47 --km-hb 11 12 13 50 51 52 --no-rescale
 
