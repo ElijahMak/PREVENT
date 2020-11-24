@@ -14,8 +14,7 @@ cd $subject
 
 mri_coreg --mov ${mov}.nii --ref ${brain} --reg ${mov}_coreg.lta
 mri_vol2vol --mov ${mov}.nii --targ ${brain} --lta ${mov}_coreg.lta --trilin --o ${mov}_Anat.nii
-fslmaths ${mov}_Anat.nii -kernel gauss ${fwhm} -fmean ${mov}_Anat_sm${fwmh}.nii
-#create a binary mask for the non-zero voxels
-fslmaths ${subject}.brain.mask.nii.gz -kernel gauss ${fwhm} -fmean ${subject}.brain.mask.sm${fwmh}.nii
+fslmaths ${mov}_Anat.nii -kernel gauss ${fwhm} -fmean ${mov}_Anat_sm${fwhm}.nii
+fslmaths ${subject}.brain.mask.nii.gz -kernel gauss ${fwhm} -fmean ${subject}.brain.mask.sm${fwhm}.nii
 #divide the result from step 1 by the result from step 2 and save this
-fslmaths ${mov}_Anat_sm${fwmh}.nii -div ${subject}.brain.mask.sm${fwmh}.nii  ${mov}_Anat_sm${fwmh}.out.nii
+fslmaths ${mov}_Anat_sm${fwhm}.nii -div ${subject}.brain.mask.sm${fwhm}.nii  ${mov}_Anat_sm${fwhm}.out.nii
