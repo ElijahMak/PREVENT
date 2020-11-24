@@ -5,6 +5,7 @@
 module unload fsl/5.0.10
 module load fsl/6.0.1
 module load freesurfer/7.1.0
+
 subject=${1}
 mov="${subject}_AV-1451_R1_Radio"
 mov2="${subject}_AV-1451_BP_Radio"
