@@ -8,6 +8,7 @@ module load freesurfer/7.1.0
 
 # Parameters
 export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/freesurfer
+subject=${1}
 r1="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/${subject}/${subject}_AV-1451_R1_Radio"
 targ="$SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz"
 lta="$SUBJECTS_DIR/${subject}/r1/coreg.lta"
