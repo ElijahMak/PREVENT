@@ -9,21 +9,21 @@ module load freesurfer/7.1.0
 
 # Parameters
 subject=${1}
-cd ${i}
-
-
 brain="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/t1/mri/${subject}.brain.nii.gz"
 pvgm="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/t1/mri/p1${subject}.nii"
 pvwm="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/t1/mri/p2${subject}.nii"
 pvgm_asl="p1${subject}_asl.nii"
 pvwm_asl="p2${subject}_asl.nii"
 m0="${subject}.asl.m0.nii"
-lc ="${subject}.asl.lc.nii.gz"
+lc="${subject}.asl.lc.nii.gz"
 bolus="0.7"
 slicedt="0.045"
 tis="1.8"
 tr="2.5"
 fwhm="4"
+
+# CD subject directory
+cd ${i}
 
 # Generate M0 and LC
 fslroi ${subject}.asl.nii.gz ${subject}.asl.m0.nii  0 1
