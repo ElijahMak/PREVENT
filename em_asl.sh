@@ -27,14 +27,13 @@ cd ${subject}
 # Generate M0 and LC
 fslroi ${subject}.asl.nii.gz ${subject}.asl.m0.nii.gz 0 1
 fslroi ${subject}.asl.nii.gz ${subject}.asl.lc.nii.gz 1 90
-gunzip *
 
 # Register M0 to T1 skull stripped brain
-mri_coreg --mov ${subject}.asl.m0.nii --ref ${brain} --reg ${subject}.asl.m0.coreg.lta
+mri_coreg --mov ${subject}.asl.m0.nii.gz --ref ${brain} --reg ${subject}.asl.m0.coreg.lta
 
 # Downsample PV images to ASL space
-mri_vol2vol --mov ${subject}.asl.m0.nii --targ ${pvgm} --lta ${subject}.asl.m0.coreg.lta --trilin --o ${pvgm_asl} --inv
-mri_vol2vol --mov ${subject}.asl.m0.nii --targ ${pvwm} --lta ${subject}.asl.m0.coreg.lta --trilin --o ${pvwm_asl} --inv
+mri_vol2vol --mov ${subject}.asl.m0.nii.gz --targ ${pvgm} --lta ${subject}.asl.m0.coreg.lta --trilin --o ${pvgm_asl} --inv
+mri_vol2vol --mov ${subject}.asl.m0.nii.gz --targ ${pvwm} --lta ${subject}.asl.m0.coreg.lta --trilin --o ${pvwm_asl} --inv
 
 # Run FSL BASIL
 oxford_asl -i ${lc} -o basil_spatial --bolus=${bolus} --slicedt=${slicedt} --iaf=tc -c ${m0} --tis=1.8 --mc --wp --spatial --tr=2.5 --pvcorr --pvgm ${pvgm_asl} --pvwm ${pvwm_asl}
