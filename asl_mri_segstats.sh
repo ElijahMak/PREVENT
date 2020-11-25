@@ -7,12 +7,12 @@ module load fsl/6.0.3
 module load freesurfer/7.1.0
 
 # Parameters
-r1="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/${subject}/${subject}_AV-1451_R1_Radio"
-targ="mri/aparc+aseg.mgz"
-lta="r1/coreg.lta"
-interp="nearest"
-aparcaseg_r1="r1/aparcaseg_r1.mgz"
 export SUBJECTS_DIR=/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/freesurfer
+r1="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/${subject}/${subject}_AV-1451_R1_Radio"
+targ="$SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz"
+lta="$SUBJECTS_DIR/${subject}/r1/coreg.lta"
+interp="nearest"
+aparcaseg_r1="$SUBJECTS_DIR/${subject}/r1/aparcaseg_r1.mgz"
 
 # CD to subject
 cd $SUBJECTS_DIR
