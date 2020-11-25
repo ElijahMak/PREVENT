@@ -27,6 +27,7 @@ cd ${subject}
 # Generate M0 and LC
 fslroi ${subject}.asl.nii.gz ${subject}.asl.m0.nii.gz 0 1
 fslroi ${subject}.asl.nii.gz ${subject}.asl.lc.nii.gz 1 90
+gunzip *
 
 # Register M0 to T1 skull stripped brain
 mri_coreg --mov ${subject}.asl.m0.nii --ref ${brain} --reg ${subject}.asl.m0.coreg.lta
