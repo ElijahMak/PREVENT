@@ -12,7 +12,7 @@ mov2="${subject}_AV-1451_BP_Radio"
 mov3="${subject}_PIB_SUVR_Radio"
 mov4="${subject}_PK_mean_Radio"
 mov5="${subject}_wRPMV_BP _Radio"
-brain="t1/mri/${subject}.brain.nii.gz"
+brain="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/t1/mri/${subject}.brain.nii.gz"
 fwhm="4"
 
 cd $subject
