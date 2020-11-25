@@ -4,7 +4,7 @@
 
 # Load modules
 module unload fsl/5.0.10
-module load fsl/6.0.3
+module load fsl/6.0.3 # Necessary, otherwise oxford_asl does not recognise iaf.
 module load freesurfer/7.1.0
 
 # Parameters
