@@ -26,7 +26,7 @@ fwhm="4"
 cd ${subject}
 
 # Generate M0 and LC
-fslroi ${subject}.asl.nii.gz ${subject}.asl.m0.nii  0 1
+fslroi 0 1 ${subject}.asl.nii.gz ${subject}.asl.m0.nii 
 fslroi 1 90 ${subject}.asl.lc.nii.gz
 
 # Register M0 to T1 skull stripped brain
