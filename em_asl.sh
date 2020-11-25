@@ -23,7 +23,7 @@ tr="2.5"
 fwhm="4"
 
 # CD subject directory
-cd ${i}
+cd ${subject}
 
 # Generate M0 and LC
 fslroi ${subject}.asl.nii.gz ${subject}.asl.m0.nii  0 1
