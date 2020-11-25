@@ -23,4 +23,4 @@ cd $subject
 mri_vol2vol --mov ${r1}.nii --targ ${targ} --lta ${lta} --${interp} --o ${aparcaseg_r1} --inv
 
 # Extract statistics
-mri_segstats --seg $SUBJECTS_DIR/${subject}/r1/aparcaseg_r1.mgz --i ${r1}.nii --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --sum $SUBJECTS_DIR/${i}/stats/r1_aparcaseg.stats
+mri_segstats --seg $SUBJECTS_DIR/${subject}/r1/aparcaseg_r1.mgz --i ${r1}.nii --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --sum $SUBJECTS_DIR/${subject}/stats/r1_aparcaseg.stats
