@@ -20,14 +20,13 @@ bolus="0.7"
 slicedt="0.045"
 tis="1.8"
 tr="2.5"
-fwhm="4"
+fwhm="8"
 
 # CD subject directory
 cd ${subject}
-
 # Generate M0 and LC
-fslroi 0 1 ${subject}.asl.nii.gz ${subject}.asl.m0.nii 
-fslroi 1 90 ${subject}.asl.lc.nii.gz
+fslroi ${subject}.asl.nii.gz ${subject}.asl.m0.nii.gz 0 1
+fslroi ${subject}.asl.nii.gz ${subject}.asl.lc.nii.gz 1 90
 
 # Register M0 to T1 skull stripped brain
 mri_coreg --mov ${subject}.asl.m0.nii --ref ${brain} --reg ${subject}.asl.m0.coreg.lta
@@ -37,7 +36,10 @@ mri_vol2vol --mov ${subject}.asl.m0.nii --targ ${pvgm} --lta ${subject}.asl.m0.c
 mri_vol2vol --mov ${subject}.asl.m0.nii --targ ${pvwm} --lta ${subject}.asl.m0.coreg.lta --trilin --o ${pvwm_asl} --inv
 
 # Run FSL BASIL
-oxford_asl -i ${lc} -o basil --bolus=${bolus} --slicedt=${slicedt} --iaf=tc -c ${m0} --tis=1.8 --mc --wp --spatial --tr=2.5 --pvcorr --pvgm ${pvgm_asl} --pvwm ${pvwm_asl}
+oxford_asl -i ${lc} -o basil_spatial --bolus=${bolus} --slicedt=${slicedt} --iaf=tc -c ${m0} --tis=1.8 --mc --wp --spatial --tr=2.5 --pvcorr --pvgm ${pvgm_asl} --pvwm ${pvwm_asl}
+
+# Run FSL BASIL without spatial
+oxford_asl -i ${lc} -o basil_no_spatial --bolus=${bolus} --slicedt=${slicedt} --iaf=tc -c ${m0} --tis=1.8 --mc --wp  --tr=2.5 --pvcorr --pvgm ${pvgm_asl} --pvwm ${pvwm_asl}
 
 # Warp perfusion to T1
 mri_vol2vol --mov basil/pvcorr/perfusion_calib.nii --targ ${brain} --lta ${subject}.asl.m0.coreg.lta --trilin --o basil/pvcorr/perfusion_calib_anat.nii
