@@ -9,7 +9,9 @@ module load freesurfer/7.1.0
 
 # Parameters
 subject=${1}
-mov="${subject}_AV-1451_R1_Radio"
+cd ${i}
+
+
 brain="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/t1/mri/${subject}.brain.nii.gz"
 pvgm="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/t1/mri/p1${subject}.nii"
 pvwm="/lustre/archive/p00423/PREVENT_Elijah/Neuroimage_ASLxR1/t1/mri/p2${subject}.nii"
