@@ -24,7 +24,7 @@ fwhm="8"
 
 # CD subject directory
 cd ${subject}
-# 
+#
 # # Generate M0 and LC
 # fslroi ${subject}.asl.nii.gz ${subject}.asl.m0.nii.gz 0 1
 # fslroi ${subject}.asl.nii.gz ${subject}.asl.lc.nii.gz 1 90
@@ -37,12 +37,18 @@ cd ${subject}
 # mri_vol2vol --mov ${subject}.asl.m0.nii.gz --targ ${pvwm} --lta ${subject}.asl.m0.coreg.lta --trilin --o ${pvwm_asl} --inv
 
 # Load modules
+
+. /etc/profile.d/modules.sh
+module purge
 module unload fsl/5.0.10
 module load fsl/6.0.3 # Necessary, otherwise oxford_asl does not recognise iaf.
 module load freesurfer/7.1.0
+# Load modules
+module unload fsl/5.0.10
+module load fsl/6.0.3 # Necessary, otherwise oxford_asl does not recognise iaf.
 
 # Run FSL BASIL
-oxford_asl -i ${lc} -o basil_spatial --bolus=${bolus} --slicedt=${slicedt} --iaf=tc -c ${m0} --tis=1.8 --mc --wp --spatial --tr=2.5 --pvcorr --pvgm ${pvgm_asl} --pvwm ${pvwm_asl}
+  oxford_asl -i ${lc} -o basil_spatial --bolus=${bolus} --slicedt=${slicedt} --iaf=tc -c ${m0} --tis=1.8 --mc --wp --spatial --tr=2.5 --pvcorr --pvgm ${pvgm_asl} --pvwm ${pvwm_asl}
 
 # Run FSL BASIL without spatial
 oxford_asl -i ${lc} -o basil_no_spatial --bolus=${bolus} --slicedt=${slicedt} --iaf=tc -c ${m0} --tis=1.8 --mc --wp  --tr=2.5 --pvcorr --pvgm ${pvgm_asl} --pvwm ${pvwm_asl}
