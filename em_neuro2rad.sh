@@ -21,9 +21,9 @@ fslchfiletype NIFTI ${subject}_UCB-J_PVC_BP_Neuro.hdr
 fslswapdim ${subject}_UCB-J_PVC_BP_Neuro.nii -x y z ${subject}_UCB-J_PVC_BP_Radio.nii.gz
 fslorient -swaporient ${subject}_UCB-J_PVC_BP_Radio.nii.gz
 
-fslchfiletype NIFTI ${subject}_AV-1451_R1_Neuro.hdr
-fslswapdim ${subject}_AV-1451_R1_Neuro.nii -x y z ${subject}_AV-1451_R1_Radio.nii.gz
-fslorient -swaporient ${subject}_AV-1451_R1_Radio.nii.gz
+fslchfiletype NIFTI ${subject}_AV-1451_BP_Neuro.hdr
+fslswapdim ${subject}_AV-1451_BP_Neuro.nii -x y z ${subject}_AV-1451_BP_Radio.nii.gz
+fslorient -swaporient ${subject}_AV-1451_BP_Radio.nii.gz
 
 fslchfiletype NIFTI ${subject}_UCB-J_R1_Neuro.hdr
 fslswapdim ${subject}_UCB-J_R1_Neuro.nii -x y z ${subject}_UCB-J_R1_Radio.nii.gz
