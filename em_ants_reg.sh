@@ -14,7 +14,8 @@ pet="${1}_${2}"
 t1="${subject}.brain.nii"
 t1n4="${subject}.brain.n4.nii"
 template="/scratch/hphi/fkm24/em_code/MCALT_v1.4/MCALT_T1_brain.nii"
-cd $subjects
+
+cd $subject
 
 # Bias correction on T1
 N4BiasFieldCorrection -i ${t1} -o ${t1n4}
