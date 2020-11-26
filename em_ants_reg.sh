@@ -17,7 +17,7 @@ template="/scratch/hphi/fkm24/em_code/MCALT_v1.4/MCALT_T1_brain.nii"
 cd $subjects
 
 # Bias correction on T1
-N4BiasFieldCorrection ${t1} ${t1n4}
+N4BiasFieldCorrection -i ${t1} -o ${t1n4}
 
 # Register N4 T1 to MCALT
 antsRegistrationSyNQuick -d 3 -f ${template} -m ${t1n4} -o T1xMCALT
