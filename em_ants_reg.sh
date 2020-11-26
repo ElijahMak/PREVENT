@@ -10,7 +10,7 @@ module load ANTS/2.3.4
 
 # Parameters
 subject=${1}
-pet="${2}"
+pet="${1}_${2}"
 t1="${subject}.brain.nii"
 t1n4="${subject}.brain.n4.nii"
 template="/scratch/hphi/fkm24/em_code/MCALT_v1.4/MCALT_T1_brain.nii"
