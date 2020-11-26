@@ -6,7 +6,7 @@ module purge
 module unload fsl/5.0.10
 module load fsl/6.0.3
 module load freesurfer/7.1.0
-module load ANS/2.4.0
+module load ANTS/2.3.4
 
 # Parameters
 subject=${1}
