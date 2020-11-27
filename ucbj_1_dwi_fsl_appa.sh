@@ -1,4 +1,3 @@
-DWI preprocessing, using a single B0 from PA to correct distortions in AP.
 # Author: Elijah Make
 
 # Directory
@@ -26,7 +25,7 @@ cd $subject
 rm ap_pa.bvecs; rm ap_pa.bvals
 fslmerge -t ap_pa.nii ap.nii pa.nii
 paste -d" " ap.bvecs pa.bvecs >> ap_pa.bvecs
-paste -d" " ap.bvals pa.bvals >> ap_pa.bvecs
+paste -d" " ap.bvals pa.bvals >> ap_pa.bvals
 
 # Create ACQPARAMS
 # --------------------------------------------
