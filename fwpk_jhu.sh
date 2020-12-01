@@ -154,5 +154,5 @@ gunzip denoised_degibbs.edc.repol.bfc.tensor.ODI.nii.gz
 # Calculate metrics of JHU labels in native space
 for dti in FA MD RD AD FW ODI
 do
-fslstats -K JHU/JHU.native.nii denoised_degibbs.edc.repol.bfc.tensor.${DTI}.nii -M > JHU/all_${dti}_jhu.txt
+fslstats -K JHU/JHU.native.nii denoised_degibbs.edc.repol.bfc.tensor.${dti}.nii -M > JHU/all_${dti}_jhu.txt
 done
