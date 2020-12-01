@@ -5,14 +5,12 @@
 % enter MATLAB and run code without .m
 
 %%Select the input folder - Uncomment your folder path
-path_data='/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/nba_noddi/';
-%%
-
-addpath('/lustre/scratch/hphi/fkm24/em_code/NODDI_toolbox_v1.01/');
+path_data='/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/lastbatch/';
+addpath('/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/lastbatch/NODDI_toolbox_v1.01/');
 addpath('/lustre/scratch/hphi/fkm24/em_code/');
 
 dir_data=dir(path_data);
-path_script_bash='/lustre/scratch/hphi/fkm24/em_code/runMatlabHPHI_5par.sh';
+path_script_bash='/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/lastbatch/runMatlabHPHI_5par.sh';
 for id=3:numel(dir_data)
     path_subj=[path_data dir_data(id).name '/'];
     cd(path_subj);
