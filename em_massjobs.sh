@@ -19,6 +19,7 @@ nTask=1
 # List of subjects to process
 input=${1}
 script=${2}
+options=${3}
 
 # Execute job submission
 for subject in `cat $input`; do
