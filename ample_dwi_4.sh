@@ -63,17 +63,17 @@ cd ${subject}
 # Freesurfer registration
 export SUBJECTS_DIR=/data/fkm24/archived/AMPLE/sMRI/
 
-mkdir $SUBJECTS_DIR/${subject}/dwi
-mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
-
-# Inverse warp segmentations into DTI space
-mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv --interp nearest --o rbrainmask.nii --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
-
-mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
-
-5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
-
-5tt2gmwmi 5ttseg.mif 5tt_mask.mif
+# mkdir $SUBJECTS_DIR/${subject}/dwi
+# mri_coreg --s ${subject} --mov ${b0} --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
+#
+# # Inverse warp segmentations into DTI space
+# mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/brainmask.mgz --inv --interp nearest --o rbrainmask.nii --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
+#
+# mri_vol2vol --mov ${b0} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o raparcaseg.nii --reg $SUBJECTS_DIR/${subject}/dwi/b0.coreg.lta
+#
+# 5ttgen freesurfer raparcaseg.nii 5ttseg.mif -sgm_amyg_hipp -lut $FREESURFER_HOME/FreeSurferColorLUT.txt -lut $FREESURFER_HOME/FreeSurferColorLUT.txt
+#
+# 5tt2gmwmi 5ttseg.mif 5tt_mask.mif
 
 tckgen -seed_gmwmi 5tt_mask.mif -act 5ttseg.mif -crop_at_gmwmi -seeds 5000000 tournier_response_fod.mif wholebrain.tck
 
