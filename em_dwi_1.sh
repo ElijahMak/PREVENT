@@ -63,25 +63,25 @@ echo "================================"
 # cd ${dir}
 cd ${subject}
 
-echo "--------------------------------"
-echo "          NII to MIF            "
-echo "--------------------------------"
-
-mrconvert ${raw_dwi} ${raw_dwi_mif} -fslgrad bvec bval -datatype float32 -strides 0,0,0,1
-
-echo "--------------------------------"
-echo "          Denoising             "
-echo "--------------------------------"
-
-# Denoising of DWI
-dwidenoise ${raw_dwi} ${denoised_dwi}
-
-echo "--------------------------------"
-echo "            DeGibbs             "
-echo "--------------------------------"
-
-# Remove Gibbs Ringing artifact
-mrdegibbs ${denoised_dwi} ${denoised_degibbs_dwi}
+# echo "--------------------------------"
+# echo "          NII to MIF            "
+# echo "--------------------------------"
+#
+# mrconvert ${raw_dwi} ${raw_dwi_mif} -fslgrad bvec bval -datatype float32 -strides 0,0,0,1
+#
+# echo "--------------------------------"
+# echo "          Denoising             "
+# echo "--------------------------------"
+#
+# # Denoising of DWI
+# dwidenoise ${raw_dwi} ${denoised_dwi}
+#
+# echo "--------------------------------"
+# echo "            DeGibbs             "
+# echo "--------------------------------"
+#
+# # Remove Gibbs Ringing artifact
+# mrdegibbs ${denoised_dwi} ${denoised_degibbs_dwi}
 
 echo "--------------------------------"
 echo "              BET               "
