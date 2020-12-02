@@ -65,7 +65,7 @@ fslnvols ${raw_dwi} > vols
 vols=`cat vols`
 
 indx=""
-for ((i=0; i<`${vols}; ++i)); do indx="$indx 1"; done
+for ((i=0; i<`cat vols`; ++i)); do indx="$indx 1"; done
 echo $indx > index.txt
 
 
