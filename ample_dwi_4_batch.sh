@@ -25,6 +25,6 @@ for subject in `cat $input`; do
 
 sbatch --job-name=em_dwi2 --account hphi --qos=short.q --partition wbic-cs --error=${subject%.*}_%j.err \
 --output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=${nTask} --mem=${mem} \
---wrap="bash ${code}/em_dwi_4.sh ${subject}"
+--wrap="bash ${code}/ample_dwi_4.sh ${subject}"
 
 done
