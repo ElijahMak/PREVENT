@@ -61,8 +61,8 @@ echo "--------------------------------"
 # Generate index file for AP eddy
 # --------------------------------------------
 indx=""
-for ((i=0; i<65; ++i)); do indx="$indx 1"; done
-echo $indx > index.txt 
+for ((i=0; i<66; ++i)); do indx="$indx 1"; done
+echo $indx > index.txt
 
 echo "--------------------------------"
 echo "              Eddy              "
