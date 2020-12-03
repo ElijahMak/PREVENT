@@ -25,7 +25,7 @@ options=${3}
 for subject in `cat $input`; do
 sbatch --job-name=em_dwi2 --account hphi --qos=long.q --partition wbic-cs --error=${subject%.*}_%j.err \
 --output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=${nTask} --mem=${mem} \
---wrap="bash ${code}/${script} ${subject} ${options}"
+--wrap="bash ${script} ${subject} ${options}"
 
 
 done
