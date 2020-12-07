@@ -15,7 +15,7 @@ module load MRtrix/mrtrix-3.0.2
 # --------------------------------------------
 subject=${1}
 
-SUBJECTS_DIR="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
+SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
 
 for h in lh rh; do
 mri_segstats --annot ${subject} ${h} aparc --i ${subject}/ucbj2/${h}_unpvc_ucbj_bp_native.nii.gz --sum ${subject}/stats/${h}_unpvc_ucbj_bp_native.dat
