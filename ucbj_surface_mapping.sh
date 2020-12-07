@@ -36,7 +36,7 @@ for h in lh rh; do
 mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
 reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_pvc_r1.lta"
 projfrac="0.5"
-output="${SUBJECTS_DIR}/${subject}/ucbj2/${h}_pvc_ucbj_bp.nii.gz"
+output="${SUBJECTS_DIR}/${subject}/ucbj2/${h}_pvc_ucbj_bp_native.nii.gz"
 mri_vol2surf --mov $mov --reg $reg --hemi ${h} --projfrac 0.5 --o $output --cortex --trgsubject ${subject}; done
 
 #
@@ -67,7 +67,7 @@ for h in lh rh; do
 mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
 reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_unpvc_r1.lta"
 projfrac="0.5"
-output="${SUBJECTS_DIR}/${subject}/ucbj2/${h}_unpvc_ucbj_bp.nii.gz"
+output="${SUBJECTS_DIR}/${subject}/ucbj2/${h}_unpvc_ucbj_bp_native.nii.gz"
 mri_vol2surf --mov $mov --reg $reg --hemi ${h} --projfrac 0.5 --o $output --cortex --trgsubject ${subject}; done
 
 #
