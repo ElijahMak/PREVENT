@@ -4,13 +4,15 @@
 # Directory
   dir="/lustre/archive/p00423/PREVENT_Elijah/MovDis_LewyPIB/AMPLE/data_jhu"
 
-# # Copy individual data files into folder for collection
-# for i in `cat list_pet_mri`; do
-#   for dti in FA MD RD AD FW ODI; do
-#     cp ${i}/JHU/all_${dti}_jhu.txt ${dir}/${i}_all_${dti}_jhu.txt
-#   done
-#   done
+# Copy individual data files into folder for collection
+for i in `cat list_pet_mri`; do
+  for dti in FA MD RD AD FW ODI; do
+    cp ${i}/JHU/all_${dti}_jhu.txt ${dir}/${i}_all_${dti}_jhu.txt
+  done
+  done
 
+# Check file size
+ls /lustre/archive/p00423/PREVENT_Elijah/MovDis_LewyPIB/AMPLE/data_jhu -ltr -S
 
 
 for dti in FA MD RD AD FW ODI; do
