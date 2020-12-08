@@ -21,7 +21,7 @@ subjectsfile=${1}
 # --------------------------------------------
 for h in lh rh; do
   for x in noddi_odi_native unpvc_ucbj_bp_native; do
-  asegstats2table --subjects ${subjectsfile} --meas mean --stats=${h}_${x}.dat --table ${h}_${x}.csv
+  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${h}_${x}.dat --table ${h}_${x}.csv  --all-segs
 done
 done
 
@@ -29,5 +29,5 @@ done
 # --------------------------------------------
 aparcaseg_2_unpvc_ucbj.dat
 for x in aparcaseg_2_noddi_odi aparcaseg_2_unpvc_ucbj; do
-  asegstats2table --subjects ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv
+  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs
 done
