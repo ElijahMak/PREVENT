@@ -23,4 +23,4 @@ mov_pvc="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${s
 mov_unvpc="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_BP_Radio.nii"
 template="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/MCALT_v1.4/MCALT_T1_brain.nii"
 
-antsRegistrationSyN.sh -d 3 -f ${template}  -m T1.nii -o reg/MNIxT1
+antsRegistrationSyN.sh -d 3 -f ${template} -m T1.nii -o reg/MNIxT1
