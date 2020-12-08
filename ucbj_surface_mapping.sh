@@ -14,7 +14,7 @@ module load MRtrix/mrtrix-3.0.2
 
 # Parameters
 # --------------------------------------------
-SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
+SUBJECTS_DIR="archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
 subject=${1}
 mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/hifi_nodif.nii"
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
@@ -29,7 +29,7 @@ mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
 # --------------------------------------------
 for h in lh rh; do
 fsaverage_output="/lustre${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_fsaverage.nii.gz"
-native_output="/lustre${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_native.nii.gz"
+native_output="/lustre/${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_native.nii.gz"
 projfrac="0.5"
 projfrac="0.5"
 # mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
