@@ -25,6 +25,6 @@ options=${4}
 # Execute job submission
 for subject in `cat $input`; do
 sbatch --job-name=${task} --account hphi --qos=long.q --partition wbic-cs --error=${subject}/${subject%.*}_%x.err \
---output=${subject}/${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=${nTask} --mem=${mem} \
+--output=${subject}/${subject%.*}_%x.out --time=${time} --nodes=1 --ntasks-per-node=${nTask} --mem=${mem} \
 --wrap="bash ${script} ${subject} ${task}"
 done
