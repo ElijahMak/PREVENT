@@ -40,10 +40,11 @@ reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
 seg="$SUBJECTS_DIR/${subject}/noddi/wmparc_2_b0.nii"
 stats="$SUBJECTS_DIR/${subject}/stats/wmparc_2_noddi_odi.dat"
 targ="$SUBJECTS_DIR/${subject}/mri/wmparc.mgz"
+odi="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/NODDI_MATLAB_v101/noddi_odi.nii.gz"
 
 # NODDI
 mri_vol2vol --mov ${mov} --targ ${targ} --inv --interp nearest --o ${seg} --reg ${reg}
-mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${mov}
+mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${odi}
 
 # UCBJ
 #mri_vol2vol --mov ${mov_unvpc} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_unpvc_ucbj.nii --reg ${reg}
