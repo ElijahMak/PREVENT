@@ -14,7 +14,7 @@ module load MRtrix/mrtrix-3.0.2
 
 # Parameters
 # --------------------------------------------
-SUBJECTS_DIR="archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
+SUBJECTS_DIR="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
 subject=${1}
 mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/hifi_nodif.nii"
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
