@@ -35,7 +35,7 @@ SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODD
 # --------------------------------------------
 mdt_odi_gm="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer/archive/data_mdt_odi_gm/${subject}_mdt_odi_gm.nii.gz"
 
-mdt_odi_wm="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer/archive/data_mdt_odi_gm/${subject}_mdt_odi_wm.nii.gz"
+mdt_odi_wm="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer/archive/data_mdt_odi_wm/${subject}_mdt_odi_wm.nii.gz"
 
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
 # reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_unpvc_r1.lta"
