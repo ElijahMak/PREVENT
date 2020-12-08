@@ -2,7 +2,7 @@
 
 # Directory
 # --------------------------------------------
-dir="/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/nba_noddi"
+dir="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi"
 
 # Modules
 # --------------------------------------------
@@ -39,12 +39,12 @@ for ((i=1; i<=$myVar; i+=1)); do indx="$indx 1"; done
 for ((i=1; i<=$myVar; i+=1)); do indx="$indx 2"; done
 echo $indx > index.txt
 
-# # Run TOPUP
-# # --------------------------------------------
-# topup --imain=AP_PA_b0 --datain=acqparams.txt --config=b02b0.cnf --out=topup_AP_PA_b0 --iout=topup_AP_PA_b0_iout --fout=topup_AP_PA_b0_fout
-#
-# # Create mean of corrected B0s
-# # --------------------------------------------
-# fslmaths topup_AP_PA_b0_iout -Tmean hifi_nodif
+# Run TOPUP
+# --------------------------------------------
+topup --imain=AP_PA_b0 --datain=acqparams.txt --config=b02b0.cnf --out=topup_AP_PA_b0 --iout=topup_AP_PA_b0_iout --fout=topup_AP_PA_b0_fout
 
-eddy_openmp --imain=ap_pa.nii --mask=hifi_nodif_brain_mask --acqp=acqparams.txt --index=index.txt --bvecs=ap_pa.bvecs --bvals=ap_pa.bvals --out=eddy_unwarped_images_appa --verbose --data_is_shelled --fwhm=0 --flm=quadratic --repol --cnr_maps --topup=topup_AP_PA_b0
+# Create mean of corrected B0s
+# --------------------------------------------
+fslmaths topup_AP_PA_b0_iout -Tmean hifi_nodif
+
+eddy_openmp --imain=ap_pa.nii --mask=hifi_nodif_brain_f0.2_mask.nii --acqp=acqparams.txt --index=index.txt --bvecs=ap_pa.bvecs --bvals=ap_pa.bvals --out=eddy_unwarped_images_appa --verbose --data_is_shelled --fwhm=0 --flm=quadratic --repol --cnr_maps --topup=topup_AP_PA_b0
