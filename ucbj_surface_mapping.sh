@@ -14,12 +14,11 @@ module load MRtrix/mrtrix-3.0.2
 
 # Parameters
 # --------------------------------------------
-SUBJECTS_DIR="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
+SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
 subject=${1}
-mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/hifi_nodif.nii"
+mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/hifi_nodif.nii"
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
-mov2="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/NODDI_MATLAB_v101/noddi_odi.nii.gz"
-
+mov2="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/NODDI_MATLAB_v101/noddi_odi.nii.gz"
 # mov2="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
 
 #  Coregister UCBJ to T1
@@ -29,8 +28,8 @@ mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
 # Project pvc volume to fsaverage surface
 # --------------------------------------------
 for h in lh rh; do
-fsaverage_output="${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_fsaverage.nii.gz"
-native_output="${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_native.nii.gz"
+fsaverage_output="/lustre${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_fsaverage.nii.gz"
+native_output="/lustre${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_native.nii.gz"
 projfrac="0.5"
 projfrac="0.5"
 # mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
@@ -41,8 +40,8 @@ mri_vol2surf --mov $mov2 --reg $reg --hemi ${h} --projfrac 0.5 --o $fsaverage_ou
 # Project pvc volume to native surface
 # --------------------------------------------
 for h in lh rh; do
-fsaverage_output="${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_fsaverage.nii.gz"
-native_output="${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_native.nii.gz"
+fsaverage_output="/lustre/${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_fsaverage.nii.gz"
+native_output="/lustre/${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_native.nii.gz"
 projfrac="0.5"
 # mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
 # reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_pvc_r1.lta"
@@ -53,8 +52,8 @@ mri_vol2surf --mov $mov --reg $reg --hemi ${h} --projfrac 0.5 --o $native_output
 # --------------------------------------------
 for h in lh rh; do
 fwhm="8"
-fsaverage_output="${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_fsaverage.nii.gz"
-fsaverage_output_smooth="${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_fsaverage_sm${fwhm}.nii.gz"
+fsaverage_output="/lustre/${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_fsaverage.nii.gz"
+fsaverage_output_smooth="/lustre/${SUBJECTS_DIR}/${subject}/noddi/${h}_noddi_odi_fsaverage_sm${fwhm}.nii.gz"
 mris_fwhm --smooth-only --i ${fsaverage_output} --fwhm ${fwhm} --o ${fsaverage_output_smooth} --cortex --s fsaverage --hemi ${h}; done
 
 # # Coregister UNPVC UCBJ to T1
@@ -91,13 +90,13 @@ mris_fwhm --smooth-only --i ${fsaverage_output} --fwhm ${fwhm} --o ${fsaverage_o
 # --------------------------------------------
 # mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
 # reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_pvc_r1.lta"
-targ="$SUBJECTS_DIR/${subject}/mri/brainmask.mgz"
-output_volume="${SUBJECTS_DIR}/${subject}/noddi/vol_noddi_odi.nii.gz"
-mni152_output="${SUBJECTS_DIR}/${subject}/noddi/mni_vol_noddi_odi.nii.gz"
+targ="/lustre/$SUBJECTS_DIR/${subject}/mri/brainmask.mgz"
+output_volume="/lustre/${SUBJECTS_DIR}/${subject}/noddi/vol_noddi_odi.nii.gz"
+mni152_output="/lustre/${SUBJECTS_DIR}/${subject}/noddi/mni_vol_noddi_odi.nii.gz"
 # output_volume="${SUBJECTS_DIR}/${subject}/ucbj2/vol_pvc_ucbj_bp.nii.gz"
 # mni152_output="${SUBJECTS_DIR}/${subject}/ucbj2/mni_vol_pvc_ucbj_bp.nii.gz"
-sm_output="${SUBJECTS_DIR}/${subject}/noddi/vol_noddi_odi_sm${fwhm}.nii.gz"
-sm_mni152_output="${SUBJECTS_DIR}/${subject}/noddi/mni_vol_noddi_odi_sm${fwhm}.nii.gz"
+sm_output="/lustre/${SUBJECTS_DIR}/${subject}/noddi/vol_noddi_odi_sm${fwhm}.nii.gz"
+sm_mni152_output="/lustre/${SUBJECTS_DIR}/${subject}/noddi/mni_vol_noddi_odi_sm${fwhm}.nii.gz"
 fwhm="8"
 
 # Derive PET volume in native T1
