@@ -25,9 +25,19 @@ for h in lh rh; do
 done
 done
 
+# Merge files
+for x in noddi_odi_native unpvc_ucbj_bp_native; do
+cat lh_${x}.csv rh_${x}.csv > lh_rh_${x}.csv
+done
+
 # Compute aparcaseg data
 # --------------------------------------------
 aparcaseg_2_unpvc_ucbj.dat
 for x in aparcaseg_2_noddi_odi aparcaseg_2_unpvc_ucbj; do
   asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs
+done
+
+# Merge files
+for x in aparcaseg_2_noddi_odi aparcaseg_2_unpvc_ucbj; do
+cat ${x}.csv ${x}.csv > lh_rh_${x}.csv
 done
