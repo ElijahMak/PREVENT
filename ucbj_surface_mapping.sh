@@ -86,31 +86,31 @@ mris_fwhm --smooth-only --i ${fsaverage_output} --fwhm ${fwhm} --o ${fsaverage_o
 # output="${SUBJECTS_DIR}/${subject}/ucbj2/${h}_unpvc_ucbj_bp_sm${fwhm}.nii.gz"
 # mris_fwhm --smooth-only --i $input --fwhm $fwhm --o $output  --cortex --s fsaverage --hemi ${h}; done
 
-# # Derive volumes
-# # --------------------------------------------
-# # mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
-# # reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_pvc_r1.lta"
-# targ="$SUBJECTS_DIR/${subject}/mri/brainmask.mgz"
-# output_volume="${SUBJECTS_DIR}/${subject}/noddi/vol_noddi_odi.nii.gz"
-# mni152_output="${SUBJECTS_DIR}/${subject}/noddi/mni_vol_noddi_odi.nii.gz"
-# # output_volume="${SUBJECTS_DIR}/${subject}/ucbj2/vol_pvc_ucbj_bp.nii.gz"
-# # mni152_output="${SUBJECTS_DIR}/${subject}/ucbj2/mni_vol_pvc_ucbj_bp.nii.gz"
-# sm_output="${SUBJECTS_DIR}/${subject}/noddi/vol_noddi_odi_sm${fwhm}.nii.gz"
-# sm_mni152_output="${SUBJECTS_DIR}/${subject}/noddi/mni_vol_noddi_odi_sm${fwhm}.nii.gz"
-# fwhm="8"
-#
-# # Derive PET volume in native T1
-# # --------------------------------------------
-# mri_vol2vol --mov ${mov2} --reg ${reg} --targ ${targ} --o ${output_volume}
-#
-# # Derive PET volume in MNI152 2MM
-# # --------------------------------------------
-# mri_vol2vol --mov ${mov2} --reg ${reg} --targ ${targ} --o ${mni152_output} --mni152reg
-#
-# # Smooth PET volumes in T1 and MNI152 spaces
-# # --------------------------------------------
-# mri_fwhm --smooth-only --i ${output_volume} --fwhm ${fwhm} --o ${sm_output}
-# mri_fwhm --smooth-only --i ${mni152_output} --fwhm $fwhm --o ${sm_mni152_output}
+# Derive volumes
+# --------------------------------------------
+# mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
+# reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_pvc_r1.lta"
+targ="$SUBJECTS_DIR/${subject}/mri/brainmask.mgz"
+output_volume="${SUBJECTS_DIR}/${subject}/noddi/vol_noddi_odi.nii.gz"
+mni152_output="${SUBJECTS_DIR}/${subject}/noddi/mni_vol_noddi_odi.nii.gz"
+# output_volume="${SUBJECTS_DIR}/${subject}/ucbj2/vol_pvc_ucbj_bp.nii.gz"
+# mni152_output="${SUBJECTS_DIR}/${subject}/ucbj2/mni_vol_pvc_ucbj_bp.nii.gz"
+sm_output="${SUBJECTS_DIR}/${subject}/noddi/vol_noddi_odi_sm${fwhm}.nii.gz"
+sm_mni152_output="${SUBJECTS_DIR}/${subject}/noddi/mni_vol_noddi_odi_sm${fwhm}.nii.gz"
+fwhm="8"
+
+# Derive PET volume in native T1
+# --------------------------------------------
+mri_vol2vol --mov ${mov2} --reg ${reg} --targ ${targ} --o ${output_volume}
+
+# Derive PET volume in MNI152 2MM
+# --------------------------------------------
+mri_vol2vol --mov ${mov2} --reg ${reg} --targ ${targ} --o ${mni152_output} --mni152reg
+
+# Smooth PET volumes in T1 and MNI152 spaces
+# --------------------------------------------
+mri_fwhm --smooth-only --i ${output_volume} --fwhm ${fwhm} --o ${sm_output}
+mri_fwhm --smooth-only --i ${mni152_output} --fwhm $fwhm --o ${sm_mni152_output}
 
 # # Project UNPVC volume
 # # --------------------------------------------
