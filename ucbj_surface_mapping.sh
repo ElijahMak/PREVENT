@@ -24,7 +24,7 @@ mov2="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/
 
 # #  Coregister UCBJ to T1
 # #  --------------------------------------------
-# mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
+mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
 
 # Project NODDI volume to fsaverage surface
 # --------------------------------------------
