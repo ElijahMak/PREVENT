@@ -40,7 +40,7 @@ mdt_odi_wm="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
 # reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_unpvc_r1.lta"
 # seg="$SUBJECTS_DIR/${subject}/noddi/aparcaseg_2_noddi_odi.nii"
-wmparc_seg="$SUBJECTS_DIR/${subject}/noddi/wmparc_2_b0_mdt.nii"
+wmparc_seg="$SUBJECTS_DIR/${subject}/noddi/wmparc_2_b0.nii"
 aparcaseg_seg="$SUBJECTS_DIR/${subject}/noddi/aparcaseg_2_noddi_odi.nii"
 
 wmparc_stats="$SUBJECTS_DIR/${subject}/stats/wmparc_2_mdt_odi_gm.dat"
