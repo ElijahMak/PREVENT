@@ -15,9 +15,19 @@ module load MRtrix/mrtrix-3.0.2
 # Parameters
 # --------------------------------------------
 SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
-subject=${1}
-mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/hifi_nodif.nii"
-reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
-mov2="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/NODDI_MATLAB_v101/noddi_odi.nii.gz"
+subjectsfile=${1}
 
-asegstats2table --subjects 21271 --meas mean --stats=lh_unpvc_ucbj_bp_native.dat --table test.txt
+# Compute surface data
+# --------------------------------------------
+for h in lh rh; do
+  for x in noddi_odi_native unpvc_ucbj_bp_native; do
+  asegstats2table --subjects ${subjectsfile} --meas mean --stats=${h}_${x}.dat --table ${h}_${x}.csv
+done
+done
+
+# Compute aparcaseg data
+# --------------------------------------------
+aparcaseg_2_unpvc_ucbj.dat
+for x in aparcaseg_2_noddi_odi aparcaseg_2_unpvc_ucbj; do
+  asegstats2table --subjects ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv
+done
