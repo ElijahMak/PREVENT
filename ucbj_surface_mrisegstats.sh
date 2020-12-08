@@ -25,9 +25,9 @@ SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODD
 # mri_segstats --annot ${subject} ${h} aparc --i ${subject}/ucbj2/${h}_pvc_ucbj_bp_native.nii.gz --sum ${subject}/stats/${h}_pvc_ucbj_bp_native.dat
 # done
 #
-# for h in lh rh; do
-# mri_segstats --annot ${subject} ${h} aparc --i ${subject}/noddi/${h}_noddi_odi_native.nii.gz --sum ${subject}/stats/${h}_noddi_odi_native.dat
-# done
+for h in lh rh; do
+mri_segstats --annot ${subject} ${h} aparc --i ${subject}/noddi/${h}_noddi_odi_native.nii.gz --sum ${subject}/stats/${h}_noddi_odi_native.dat
+done
 
 # Parameters
 # --------------------------------------------
