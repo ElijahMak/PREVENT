@@ -17,18 +17,18 @@ module load MRtrix/mrtrix-3.0.2
 SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
 subjectsfile=${1}
 
-# # Compute surface data
-# # --------------------------------------------
-# for h in lh rh; do
-#   for x in noddi_odi_native unpvc_ucbj_bp_native; do
-#   asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${h}_${x}.dat --table ${h}_${x}.csv  --all-segs
-# done
-# done
-#
-# # Merge files
-# for x in noddi_odi_native unpvc_ucbj_bp_native; do
-# cat lh_${x}.csv rh_${x}.csv > lh_rh_${x}.csv
-# done
+# Compute surface data
+# --------------------------------------------
+for h in lh rh; do
+  for x in noddi_odi_native unpvc_ucbj_bp_native; do
+  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${h}_${x}.dat --table ${h}_${x}.csv  --all-segs
+done
+done
+
+# Merge files
+for x in noddi_odi_native unpvc_ucbj_bp_native; do
+cat lh_${x}.csv rh_${x}.csv > lh_rh_${x}.csv
+done
 
 # Compute aparcaseg data
 # --------------------------------------------
