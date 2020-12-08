@@ -33,11 +33,11 @@ subjectsfile=${1}
 # Compute aparcaseg data
 # --------------------------------------------
 for x in aparcaseg_2_noddi_odi aparcaseg_2_unpvc_ucbj; do
-  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs
+  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs --skip
 done
 
 # Compute wmparc data
 # --------------------------------------------
 for x in wmparc_2_noddi_odi ; do
-  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs
+  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs --skip
 done
