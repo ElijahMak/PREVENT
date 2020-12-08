@@ -20,7 +20,7 @@ subjectsfile=${1}
 # Compute surface data
 # --------------------------------------------
 for h in lh rh; do
-  for x in noddi_odi_native unpvc_ucbj_bp_native; do
+  for x in noddi_odi_native; do
   asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${h}_${x}.dat --table ${h}_${x}.csv  --all-segs
 done
 done
