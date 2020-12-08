@@ -34,26 +34,20 @@ done
 mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/NODDI_MATLAB_v101/noddi_odi.nii.gz"
 mov_pvc="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
 mov_unpvc="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_BP_Radio.nii"
-
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
 # reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_unpvc_r1.lta"
-seg="$SUBJECTS_DIR/${subject}/noddi/aparcaseg_2_noddi_odi.nii"
-stats="$SUBJECTS_DIR/${subject}/stats/aparcaseg_2_noddi_odi.dat"
-pvvol="$SUBJECTS_DIR/${subject}/mri/norm.mgz"
-stats_pvvol="$SUBJECTS_DIR/${subject}/stats/aparcaseg_2_noddi_odi_pvvol.dat"
+# seg="$SUBJECTS_DIR/${subject}/noddi/aparcaseg_2_noddi_odi.nii"
+seg="$SUBJECTS_DIR/${subject}/noddi/wmparc_2_noddi_odi.nii"
+stats="$SUBJECTS_DIR/${subject}/stats/wmparc_2_noddi_odi.dat"
+targ="$SUBJECTS_DIR/${subject}/mri/wmparc.mgz"
 
-mri_vol2vol --mov ${mov} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o ${seg} --reg ${reg}
-
-mri_vol2vol --mov ${mov_unvpc} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_unpvc_ucbj.nii --reg ${reg}
-
-mri_vol2vol --mov ${mov_pvc} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_pvc_ucbj.nii --reg ${reg}
-
-
+# NODDI
+mri_vol2vol --mov ${mov} --targ ${targ} --inv --interp nearest --o ${seg} --reg ${reg}
 mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${mov}
-mri_segstats --seg $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_unpvc_ucbj.nii --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${subject}/stats/aparcaseg_2_unpvc_ucbj.dat --i ${mov_unpvc}
-mri_segstats --seg $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_pvc_ucbj.nii --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${subject}/stats/aparcaseg_2_pvc_ucbj.dat --i ${mov_pvc}
 
-
-# Partial volume correction
-# --------------------------------------------
-# mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${mov} --pv ${pvvol}
+# UCBJ
+#mri_vol2vol --mov ${mov_unvpc} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_unpvc_ucbj.nii --reg ${reg}
+# mri_vol2vol --mov ${mov_pvc} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_pvc_ucbj.nii --reg ${reg}
+# mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${mov}
+# mri_segstats --seg $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_unpvc_ucbj.nii --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${subject}/stats/aparcaseg_2_unpvc_ucbj.dat --i ${mov_unpvc}
+# mri_segstats --seg $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_pvc_ucbj.nii --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${subject}/stats/aparcaseg_2_pvc_ucbj.dat --i ${mov_pvc}
