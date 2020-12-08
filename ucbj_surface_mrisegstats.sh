@@ -37,7 +37,7 @@ mov_unpvc="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/$
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
 # reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_unpvc_r1.lta"
 # seg="$SUBJECTS_DIR/${subject}/noddi/aparcaseg_2_noddi_odi.nii"
-seg="$SUBJECTS_DIR/${subject}/noddi/wmparc_2_noddi_odi.nii"
+seg="$SUBJECTS_DIR/${subject}/noddi/wmparc_2_b0.nii"
 stats="$SUBJECTS_DIR/${subject}/stats/wmparc_2_noddi_odi.dat"
 targ="$SUBJECTS_DIR/${subject}/mri/wmparc.mgz"
 
