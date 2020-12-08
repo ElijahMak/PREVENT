@@ -22,7 +22,7 @@ SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODD
 # done
 
 for h in lh rh; do
-mri_segstats --annot ${subject} ${h} aparc --i ${subject}/noddi/${h}_noddi_odi_native.nii.gz --sum ${subject}/stats/${h}_noddi_odi_native.dat
+mri_segstats --annot ${subject} ${h} aparc --i ${subject}/noddi/${h}_noddi_odi_native.nii.gz --sum ${subject}/stats/${h}_noddi_odi_native.dat --meas means
 done
 
 # Parameters
