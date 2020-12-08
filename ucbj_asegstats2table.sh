@@ -32,7 +32,6 @@ done
 
 # Compute aparcaseg data
 # --------------------------------------------
-aparcaseg_2_unpvc_ucbj.dat
 for x in aparcaseg_2_noddi_odi aparcaseg_2_unpvc_ucbj; do
   asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs
 done
