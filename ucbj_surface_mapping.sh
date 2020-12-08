@@ -64,7 +64,7 @@ mov_unvpc="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subjec
 # Project unpvc to fsaverage surface
 # --------------------------------------------
 for h in lh rh; do
-mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_BP_Radio.nii"
+mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_BP_Radio.nii"
 reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_unpvc_r1.lta"
 projfrac="0.5"
 output="${SUBJECTS_DIR}/${subject}/ucbj2/${h}_unpvc_ucbj_bp.nii.gz"
@@ -73,7 +73,7 @@ mri_vol2surf --mov $mov --reg $reg --hemi ${h} --projfrac 0.5 --o $output --cort
 # Project unpvc to native surface
 # --------------------------------------------
 for h in lh rh; do
-mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_BP_Radio.nii"
+mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_BP_Radio.nii"
 reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_unpvc_r1.lta"
 projfrac="0.5"
 output="${SUBJECTS_DIR}/${subject}/ucbj2/${h}_unpvc_ucbj_bp_native.nii.gz"
@@ -117,7 +117,7 @@ mri_fwhm --smooth-only --i ${mni152_output} --fwhm $fwhm --o ${sm_mni152_output}
 
 # Project UNPVC volume
 # --------------------------------------------
-mov="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_BP_Radio.nii"
+mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_BP_Radio.nii"
 reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_unpvc_r1.lta"
 targ=$SUBJECTS_DIR/${subject}/mri/brainmask.mgz
 output="${SUBJECTS_DIR}/${subject}/ucbj2/vol_unpvc_ucbj_bp.nii.gz"
