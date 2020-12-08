@@ -32,13 +32,13 @@ cp ${dir}/sub-${subject}/ses-*/anat/sub-${subject}_*_acq-mpragesag_rec-nd*.nii.g
 # Copy NODDI
 # Copy AP
 cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddiapcbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.nii.gz ${subject}/ap.nii.gz
-cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddiapcbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bval ${subject}/ap.bval
-cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddiapcbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bvec ${subject}/ap.bvec
+cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddiapcbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bval ${subject}/ap.bvals
+cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddiapcbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bvec ${subject}/ap.bvecs
 
 # Copy PA
 cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddipacbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.nii.gz ${subject}/pa.nii.gz
 cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddipacbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bvec ${subject}/pa.bvec
-cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddipacbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bval ${subject}/pa.bval
+cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddipacbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bval ${subject}/pa.bvals
 
 # To execute, for i in `cat list`; do bash /lustre/scratch/hphi/fkm24/em_code/ucbj_0_rawdata.sh ${i}; done
 
