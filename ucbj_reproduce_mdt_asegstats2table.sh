@@ -15,6 +15,7 @@ module load MRtrix/mrtrix-3.0.2
 # Parameters
 # --------------------------------------------
 SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
+
 subjectsfile=${1}
 
 # # Compute surface data
@@ -32,6 +33,6 @@ subjectsfile=${1}
 
 # Compute data
 # --------------------------------------------
-for x in wmparc_2_mdt_odi_gm.dat aparcaseg_2_mdt_odi_gm.dat; do
+for x in wmparc_2_mdt_odi_gm aparcaseg_2_mdt_odi_gm; do
   asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs --skip
 done
