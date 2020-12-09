@@ -19,7 +19,7 @@ nTask=1
 # List of subjects to process
 input=${1}
 
-# Execute job submission
+# Execute job s
 for subject in `cat $input`; do
 
 sbatch --job-name=mrtrix --account hphi --qos=long.q --partition wbic-cs --error=${subject%.*}_%j.err \
