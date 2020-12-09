@@ -100,7 +100,7 @@ echo "--------------------------------"
 echo "           dwifslpreproc        "
 echo "--------------------------------"
 
-dwifslpreproc ${denoised_degibbs_dwi} ${denoised_degibbs_preproc_dwi} -rpe_header -eddyqc_all eddyqc -eddy_mask hifi_nodif_brain_f0.3_mask.nii -eddy_options '  --repol --data_is_shelled --slm=linear'
+  dwifslpreproc ${denoised_degibbs_dwi} ${denoised_degibbs_preproc_dwi} -rpe_header -eddyqc_all eddyqc -eddy_mask hifi_nodif_brain_f0.3_mask.nii -eddy_options '  --repol --data_is_shelled --slm=linear'
 
 mrconvert ${denoised_degibbs_preproc_dwi} -strides -1,2,3,4 -export_grad_fsl bvecs bvals dwi.nii
 

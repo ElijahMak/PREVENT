@@ -8,10 +8,10 @@
 # Estimated time on HPHI is 4 minutes
 
 # Time
-time="10:00:00"
+time="20:00:00"
 
 # Memory
-mem="5000"
+mem="10000"
 
 # Number of tasks
 nTask=1
@@ -23,7 +23,7 @@ input=${1}
 for subject in `cat $input`; do
 
 sbatch --job-name=mrtrix --account hphi --qos=long.q --partition wbic-cs --error=${subject%.*}_%j.err \
---output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=${nTask} --mem=${mem} \
---wrap="bash ${code}/ucbj_1_dwi_fsl_appa.sh ${subject}"
+--output=${subject%.*}_%j.out --time=${time} --nodes=1 --ntasks-per-node=1 --cpus-per-task=5 --mem=${mem} \
+--wrap="bash ${code}/ucbj_1_dwi_1.sh ${subject}"
 
 done
