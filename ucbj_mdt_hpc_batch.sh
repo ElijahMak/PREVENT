@@ -16,8 +16,6 @@ do
 mem="2000"
 time="02:30:00"
 
-sbatch --gres=gpu:1 --job-name=noddi --account MAK-SL3-GPU --partition pascal --output=${subject%.*}_%x.out --time=$time --nodes=1 --ntasks-per-node=$nTask --mem=$$
---wrap="bash /home/fkm24/em_code/ucbj_mdt_hpc.sh ${subject}" \
---mail-type=ALL
-
+sbatch --gres=gpu:1 --job-name=noddi --account MAK-SL3-GPU --partition pascal --output=${subject%.*}_%x.out --time=$time --nodes=1 --ntasks-per-node=$nTask --mem=$mem --wrap="bash /home/fkm24/em_code/ucbj_mdt_hpc.sh ${subject}"
+done
 sleep 1
