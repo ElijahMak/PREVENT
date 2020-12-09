@@ -77,7 +77,7 @@ done
 cd ..
 
 # Concatenate both DWI dicom folders
-dwicat *AP* *PA* ${raw_dwi} 
+dwicat *AP* *PA* ${raw_dwi} -force
 
 echo "--------------------------------"
 echo "          Denoising             "
