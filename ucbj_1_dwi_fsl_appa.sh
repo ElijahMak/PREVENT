@@ -8,6 +8,7 @@ dir="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi"
 # --------------------------------------------
 module unload fsl/5.0.10
 module load fsl/6.0.3
+module load cuda/8.0
 
 # Parameters
 # --------------------------------------------
@@ -47,4 +48,4 @@ topup --imain=AP_PA_b0 --datain=acqparams.txt --config=b02b0.cnf --out=topup_AP_
 # --------------------------------------------
 fslmaths topup_AP_PA_b0_iout -Tmean hifi_nodif
 
-eddy_openmp --imain=ap_pa.nii --mask=hifi_nodif_brain_f0.2_mask.nii --acqp=acqparams.txt --index=index.txt --bvecs=ap_pa.bvecs --bvals=ap_pa.bvals --out=revisions_appa --verbose --data_is_shelled --fwhm=0 --flm=quadratic --repol --cnr_maps --topup=topup_AP_PA_b0
+eddy_cuda8.0 --imain=ap_pa.nii --mask=hifi_nodif_brain_f0.2_mask.nii --acqp=acqparams.txt --index=index.txt --bvecs=ap_pa.bvecs --bvals=ap_pa.bvals --out=revisions_appa --verbose --data_is_shelled --fwhm=0 --flm=quadratic --repol --cnr_maps --topup=topup_AP_PA_b0
