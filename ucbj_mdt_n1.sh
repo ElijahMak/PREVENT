@@ -15,7 +15,7 @@ mask="hifi_nodif_brain_f0.3_mask.nii"
 input="eddy_unwarped_images.nii"
 rotated_bvecs="eddy_unwarped_images.eddy_rotated_bvecs"
 bval="ap.bvals"
-prtcl="mdt.prtcl"
+prtcl="mdt_n1.prtcl"
 
 # Create protocol
 # ---------------------------------------------------
