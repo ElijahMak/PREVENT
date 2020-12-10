@@ -19,15 +19,15 @@ module load fsl/6.0.3
 
 subject=${1}
 
-dir="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi"
+dir="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi2"
 SUBJECTS_DIR="/scratch/hphi/fkm24/projects/ucbjxnoddi/noddi/t1"
 
 dir=/archive/p00487/nifti/
 
 
 # Copy T1 MPRAGE ND
-cp ${dir}/sub-${subject}/ses-*/anat/sub-${subject}_*_acq-mpragesag_rec-nd* ${subject}
-cp ${dir}/sub-${subject}/ses-*/anat/sub-${subject}_*_acq-mpragesag_rec-nd*.nii.gz ${subject}/${subject}.nii.gz
+# cp ${dir}/sub-${subject}/ses-*/anat/sub-${subject}_*_acq-mpragesag_rec-nd* ${subject}
+# cp ${dir}/sub-${subject}/ses-*/anat/sub-${subject}_*_acq-mpragesag_rec-nd*.nii.gz ${subject}/${subject}.nii.gz
 
 # Copy NODDI
 # Copy AP
@@ -37,7 +37,7 @@ cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddiapcbumbep2d175mmmb4
 
 # Copy PA
 cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddipacbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.nii.gz ${subject}/pa.nii.gz
-cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddipacbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bvec ${subject}/pa.bvec
+cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddipacbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bvec ${subject}/pa.bvecs
 cp ${dir}/sub-${subject}/ses-*/dwi/sub-${subject}_*_acq-noddipacbumbep2d175mmmb498dirb300b1000b2000_run-01_dwi.bval ${subject}/pa.bvals
 
 # To execute, for i in `cat list`; do bash /lustre/scratch/hphi/fkm24/em_code/ucbj_0_rawdata.sh ${i}; done
