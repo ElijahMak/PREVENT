@@ -17,8 +17,8 @@ cd $subject
 
 # Merge B0s from AP and PAs
 # --------------------------------------------
-fslroi ap.nii nodif 0 1
-fslroi pa.nii nodif_PA 0 1
+fslroi ap.nii.gz nodif 0 1
+fslroi pa.nii.gz nodif_PA 0 1
 fslmerge -t AP_PA_b0 nodif nodif_PA
 
 # Create ACQPARAMS
