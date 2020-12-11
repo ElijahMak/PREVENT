@@ -68,6 +68,6 @@ echo "--------------------------------"
 echo "               eddy             "
 echo "--------------------------------"
 
-eddy_openmp --imain=ap.nii --mask=${qc_mask} --acqp=acqparams.txt --index=index_beta.txt --bvecs=ap.bvecs --bvals=ap.bvals --out=eddy_unwarped_images --verbose --data_is_shelled --fwhm=0 --flm=quadratic --repol --cnr_maps --topup=topup_AP_PA_b0
+eddy_openmp --imain=ap.nii.gz --mask=${qc_mask} --acqp=acqparams.txt --index=index_beta.txt --bvecs=ap.bvecs --bvals=ap.bvals --out=eddy_unwarped_images --verbose --data_is_shelled --fwhm=0 --flm=quadratic --repol --cnr_maps --topup=topup_AP_PA_b0
 
 eddy_quad eddy_unwarped_images -idx index_beta.txt -par acqparams.txt -m ${qc_mask} -b ap.bvals
