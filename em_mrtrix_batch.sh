@@ -24,6 +24,6 @@ for subject in `cat $input`; do
 
 sbatch --job-name=dwi_ap --account hphi --qos=long.q --partition wbic-cs --error=${subject%.*}_%j.err \
 --output=${subject%.*}_%j.out --time=${time} --nodes=1 --cpus-per-task=5 --ntasks-per-node=${nTask} --mem=${mem} \
---wrap="bash ${code}/ucbj_1_dwi_fsl_ap.sh ${subject}"
+--wrap="bash ${code}/em_mrtrix.sh ${subject}"
 
 done
