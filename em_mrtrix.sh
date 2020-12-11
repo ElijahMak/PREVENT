@@ -86,8 +86,8 @@ echo "        Convert to mif          "
 echo "--------------------------------"
 
 # MR Convert
-mrconvert ap.nii ap.mif -fslgrad a.bvecs ap.bvals -force
-mrconvert pa.nii pa.mif -fslgrad p.bvecs pa.bvals -force
+mrconvert ap.nii.gz ap.mif -fslgrad a.bvecs ap.bvals -force
+mrconvert pa.nii.gz pa.mif -fslgrad p.bvecs pa.bvals -force
 
 # Concatenate both AP and PA mifs
 dwicat ap.mif pa.mif ${raw_dwi} -force
