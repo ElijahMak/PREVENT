@@ -5,8 +5,6 @@
 # Author: Elijah Mak
 # Date: 21st Nov 2020
 
-# Estimated time on HPHI is 4 minutes
-
 # Time
 time="15:00:00"
 
