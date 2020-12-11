@@ -1,4 +1,4 @@
-i = ${1}
+i=${1}
 
 cp ${i}/eddy_unwarped_images.nii hpc/${i}
 cp ${i}/eddy_unwarped_images.eddy_rotated_bvecs hpc/${i}
