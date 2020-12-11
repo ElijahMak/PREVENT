@@ -17,6 +17,7 @@ module load MRtrix/mrtrix-3.0.2
 # Options
 dir="/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/"
 subject=${1}
+cd $subject
 
 # Inputs
 raw_dwi="all_DWIs.mif"
