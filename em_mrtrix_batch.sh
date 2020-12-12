@@ -21,7 +21,7 @@ input=${1}
 for subject in `cat $input`; do
 
 sbatch --job-name=mrtrixem --account hphi --qos=long.q --partition wbic-cs --error=${subject}/${subject%.*}_%x.err \
---output=${subject}/${subject%.*}_%x.out --time=${time} --nodes=1 --cpus-per-task=1 --ntasks-per-node=${nTask} --mem=${mem} \
+--output=${subject}/${subject%.*}_%x.out --time=${time} --nodes=1 --cpus-per-task=5 --ntasks-per-node=${nTask} --mem=${mem} \
 --wrap="bash ${code}/em_mrtrix.sh ${subject}"
 
 done
