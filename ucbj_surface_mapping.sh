@@ -23,7 +23,7 @@ subject=${1}
 mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi2/${subject}/hifi_nodif.nii"
 # Use coreg files
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
-odi="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/mdt/${i}/mdt/NODDI_GM/ODI.nii.gz"
+odi="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/mdt/${subject}/mdt/NODDI_GM/ODI.nii.gz"
 
 # Project ODI volume to fsaverage and native surfaces, and smooth by 8mm
 # --------------------------------------------
@@ -53,9 +53,9 @@ reg="$SUBJECTS_DIR/${subject}/ucbj2/coreg_pvc_r1.lta"
 
 # Coregister UCBJ to T1
 # --------------------------------------------
-mri_coreg --s ${subject} --mov /archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_R1_Radio.nii --reg $SUBJECTS_DIR/${subject}/ucbj2/coreg_pvc_r1.lta
+# mri_coreg --s ${subject} --mov /archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_R1_Radio.nii --reg $SUBJECTS_DIR/${subject}/ucbj2/coreg_pvc_r1.lta
 
-# Project UCBJ to fsaverage surface
+# Project UCBJ to fsaverage and native surfaces
 # --------------------------------------------
 for h in lh rh; do
 fwhm="8"
@@ -70,7 +70,7 @@ mri_vol2surf --mov $mov_pvc --reg $reg --hemi ${h} --projfrac 0.5 --o $native_ou
 mris_fwhm --smooth-only --i $fsaverage_output --fwhm $fwhm --o $fsaverage_output_smooth  --cortex --s fsaverage --hemi ${h}
 done
 
-
+# --------------------------------------------
 # Derive volumes
 # --------------------------------------------
 
