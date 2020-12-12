@@ -64,7 +64,7 @@ brainstem_stats="$SUBJECTS_DIR/${subject}/stats/brainstem_2_ucbj.dat"
 
 # Aseg
 mri_vol2vol --mov ${mov} --targ ${targ} --inv --interp nearest --o ${seg} --reg ${reg}
-mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${mov_pvc}
+mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${ucbj}
 
 # Brainstem
 mri_vol2vol --mov ${mov} --targ ${brainstem} --inv --interp nearest --o ${brainstem_seg} --reg ${reg}
