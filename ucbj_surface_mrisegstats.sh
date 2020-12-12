@@ -28,27 +28,44 @@ for h in lh rh; do
 mri_segstats --annot ${subject} ${h} aparc --i ${subject}/noddi/${h}_mdt_odi_native.nii.gz --sum ${subject}/stats/${h}_mdt_odi_native.dat
 done
 
-
 # Volumetric data
 # Parameters
 # --------------------------------------------
-mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/hifi_nodif.nii"
-# mov_pvc="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
-# mov_unpvc="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_BP_Radio.nii"
+mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi2/${subject}/hifi_nodif.nii"
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
-# reg="${SUBJECTS_DIR}/${subject}/ucbj2/coreg_unpvc_r1.lta"
-seg="$SUBJECTS_DIR/${subject}/noddi/wmparc_2_noddi_b0.nii"
-stats="$SUBJECTS_DIR/${subject}/stats/wmparc_2_noddi_odi.dat"
-targ="$SUBJECTS_DIR/${subject}/mri/wmparc.mgz"
-odi="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/NODDI_MATLAB_v101/noddi_odi.nii.gz"
+targ="$SUBJECTS_DIR/${subject}/mri/aseg.mgz"
+seg="$SUBJECTS_DIR/${subject}/noddi/aseg_2_hifi_nodif.nii"
+stats="$SUBJECTS_DIR/${subject}/stats/aseg_2_mdt_odi.dat"
+odi="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/mdt/${subject}/mdt/NODDI_GM/ODI.nii.gz"
+brainstem="$SUBJECTS_DIR/${subject}/mri/brainstemSsLabels.v1x.FSvoxelSpace.mgz"
+brainstem_seg="$SUBJECTS_DIR/${subject}/noddi/brainstem_2_hifi_nodif.nii"
+brainstem_stats="$SUBJECTS_DIR/${subject}/stats/brainstem_2_mdt_odi.dat"
 
-# NODDI
+# Aseg
 mri_vol2vol --mov ${mov} --targ ${targ} --inv --interp nearest --o ${seg} --reg ${reg}
 mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${odi}
 
+# Brainstem
+mri_vol2vol --mov ${mov} --targ ${brainstem} --inv --interp nearest --o ${brainstem_seg} --reg ${reg}
+mri_segstats --seg ${brainstem_seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${brainstem_stats} --i ${odi}
+
+# ----------------------------------------------------
+
 # UCBJ
-#mri_vol2vol --mov ${mov_unvpc} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_unpvc_ucbj.nii --reg ${reg}
-# mri_vol2vol --mov ${mov_pvc} --targ $SUBJECTS_DIR/${subject}/mri/aparc+aseg.mgz --inv --interp nearest --o $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_pvc_ucbj.nii --reg ${reg}
-# mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${mov}
-# mri_segstats --seg $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_unpvc_ucbj.nii --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${subject}/stats/aparcaseg_2_unpvc_ucbj.dat --i ${mov_unpvc}
-# mri_segstats --seg $SUBJECTS_DIR/${subject}/ucbj2/aparcaseg_2_pvc_ucbj.nii --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${subject}/stats/aparcaseg_2_pvc_ucbj.dat --i ${mov_pvc}
+mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_R1_Radio.nii"
+targ="$SUBJECTS_DIR/${subject}/mri/aseg.mgz"
+seg="$SUBJECTS_DIR/${subject}/ucbj2/ucbj_2_aseg.nii"
+reg="$SUBJECTS_DIR/${subject}/ucbj2/coreg_pvc_r1.lta"
+stats="$SUBJECTS_DIR/${subject}/stats/aseg_2_aseg.dat"
+ucbj="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
+brainstem="$SUBJECTS_DIR/${subject}/mri/brainstemSsLabels.v1x.FSvoxelSpace.mgz"
+brainstem_seg="$SUBJECTS_DIR/${subject}/ucbj2/brainstem_2_ucbj.nii"
+brainstem_stats="$SUBJECTS_DIR/${subject}/stats/brainstem_2_ucbj.dat"
+
+# Aseg
+mri_vol2vol --mov ${mov} --targ ${targ} --inv --interp nearest --o ${seg} --reg ${reg}
+mri_segstats --seg ${seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${stats} --i ${mov_pvc}
+
+# Brainstem
+mri_vol2vol --mov ${mov} --targ ${brainstem} --inv --interp nearest --o ${brainstem_seg} --reg ${reg}
+mri_segstats --seg ${brainstem_seg} --ctab $FREESURFER_HOME/FreeSurferColorLUT.txt --excludeid 0 --sum ${brainstem_stats} --i ${ucbj}
