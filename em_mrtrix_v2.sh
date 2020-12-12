@@ -107,10 +107,15 @@ echo "--------------------------------"
 mrdegibbs ${denoised_dwi} ${denoised_degibbs_dwi} -force
 
 echo "--------------------------------"
+echo "      Convert back to nii       "
+echo "--------------------------------"
+
+mrconvert  ${denoised_degibbs_dwi} dwi.denoised.degibbs.nii -export_grad_fsl bvecs bvals
+
+echo "--------------------------------"
 echo "           dwifslpreproc        "
 echo "--------------------------------"
 
-dwifslpreproc ${denoised_degibbs_dwi} ${denoised_degibbs_preproc_dwi} -rpe_all -pe_dir AP -eddyqc_all eddyqc -eddy_mask hifi_nodif_brain_f0.3_mask.nii -eddy_options '  --repol --data_is_shelled --slm=linear' -force
 dwifslpreproc dwi.denoised.degibbs.nii -fslgrad bvecs bvals  -export_grad_fsl mrtrix_bvecs mtrix_bvals dwi.denoised.degibbs.preproc.nii  -nthreads 4 -force -rpe_all -pe_dir AP -eddyqc_all eddyqc -eddy_mask hifi_nodif_brain_f0.3_mask.nii -eddy_options '  --repol --data_is_shelled --slm=linear --cnr_maps'
 
 # Bias-field correction and tensor fitting
@@ -120,30 +125,7 @@ echo "================================"
 echo "       Bias field correction    "
 echo "================================"
 
-dwibiascorrect ants -bias bias.mif ${denoised_degibbs_preproc_dwi} ${denoised_degibbs_preproc_bfc_dwi}
-
-echo "================================"
-echo "        Convert to nifti        "
-echo "================================"
-
-mrconvert ${denoised_degibbs_preproc_dwi} -export_grad_fsl bvecs bvals ${denoised_degibbs_preproc_dwi_nii}
-
-echo "================================"
-echo "          MRTRIX Brain mask     "
-echo "================================"
-
-dwi2mask ${denoised_degibbs_preproc_bfc_dwi} ${mask}
-
-echo "--------------------------------"
-echo "            FSLBET              "
-echo "--------------------------------"
-
-fslroi ${denoised_degibbs_preproc_dwi_nii} ${b0} 0 1
-
-for f in 0.1 0.2 0.3 0.4
-    do
-     bet ${b0} denoised_degibbs_preproc_bfc_dwi_b0_brain_f${f} -m -f $f
-    done
+dwibiascorrect ants -bias bias.nii dwi.denoised.degibbs.preproc.nii dwi.denoised.degibbs.preproc.bfc.nii
 
 echo "--------------------------------"
 echo "         Package for NODDI      "
@@ -151,7 +133,7 @@ echo "--------------------------------"
 
 mkdir /lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/mrtrix_hpc/${subject}
 dir_storage="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/mrtrix_hpc/${subject}"
-cp ${denoised_degibbs_preproc_dwi_nii} ${dir_storage}
+cp dwi.denoised.degibbs.preproc.bfc.nii ${dir_storage}
 cp bvals ${dir_storage}
 cp bvecs ${dir_storage}
 cp hifi_nodif_brain_f0.3_mask.nii ${dir_storage}

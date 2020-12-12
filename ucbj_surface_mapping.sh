@@ -16,7 +16,7 @@ module load MRtrix/mrtrix-3.0.2
 # --------------------------------------------
 SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
 subject=${1}
-mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/hifi_nodif.nii"
+mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi2/${subject}/hifi_nodif.nii"
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
 mov2="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/NODDI_MATLAB_v101/noddi_odi.nii.gz"
 # mov_pvc="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
