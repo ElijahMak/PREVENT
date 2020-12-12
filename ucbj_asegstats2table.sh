@@ -28,34 +28,34 @@ done
 
 # Compute UCBJ surface data
 # --------------------------------------------
-for h in lh rh; do
-  for x in pvc_ucbj_bp_native; do
-  asegstats2table --subjectsfile ${subjects_ucbj} --meas mean --stats=${h}_${x}.dat --table fs_outputs/${h}_${x}.csv  --all-segs
-done
-done
+  for h in lh rh; do
+    for x in pvc_ucbj_bp_native; do
+    asegstats2table --subjectsfile ${subjects_ucbj} --meas mean --stats=${h}_${x}.dat --table fs_outputs/${h}_${x}.csv  --all-segs --skip
+  done
+  done
 
 # Compute aseg data
 # --------------------------------------------
-for x in aseg_2_mdt_odi aseg_2_pvc_ucbj; do
+for x in aseg_2_mdt_odi; do
   asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
 done
 
 # Compute UCBJ aseg data
 # --------------------------------------------
 for x in aseg_2_pvc_ucbj; do
-  asegstats2table --subjectsfile ${subjectsfile2} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
+  asegstats2table --subjectsfile ${subjects_ucbj} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
 done
 
 # Compute ODI aseg data
 # --------------------------------------------
-for x in brainstem_2_odi; do
-  asegstats2table --subjectsfile ${subjectsfile2} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
-done
+  for x in brainstem_2_mdt_odi; do
+    asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table  fs_outputs/${x}.csv --all-segs --skip
+  done
 
 # Compute UCBJ aseg data
 # --------------------------------------------
 for x in brainstem_2_ucbj; do
-  asegstats2table --subjectsfile ${subjectsfile2} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
+  asegstats2table --subjectsfile ${subjects_ucbj} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
 done
 
 

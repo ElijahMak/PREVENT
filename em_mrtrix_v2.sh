@@ -85,38 +85,30 @@ echo "--------------------------------"
 echo "        Convert to mif          "
 echo "--------------------------------"
 
-# MR Convert
-mrconvert ap.nii.gz ap.mif -fslgrad a.bvecs ap.bvals -force
-mrconvert pa.nii.gz pa.mif -fslgrad p.bvecs pa.bvals -force
-
-# Concatenate both AP and PA mifs
-dwicat ap.mif pa.mif ${raw_dwi} -force
+# Concatenate both AP and PA nii
+mrcat ap.nii.gz pa.nii.gz appa.nii
+paste -d" " a.bvecs p.bvecs >> ap_pa.bvecs
+paste -d" " ap.bvals pa.bvals >> ap_pa.bvals
 
 echo "--------------------------------"
 echo "          Denoising             "
 echo "--------------------------------"
 
 # Denoising of DWI
-dwidenoise ${raw_dwi} ${denoised_dwi} -force
+dwidenoise appa.nii appa.denoised.nii
 
 echo "--------------------------------"
 echo "            DeGibbs             "
 echo "--------------------------------"
 
 # Remove Gibbs Ringing artifact
-mrdegibbs ${denoised_dwi} ${denoised_degibbs_dwi} -force
-
-echo "--------------------------------"
-echo "      Convert back to nii       "
-echo "--------------------------------"
-
-mrconvert  ${denoised_degibbs_dwi} dwi.denoised.degibbs.nii -export_grad_fsl bvecs bvals
+mrdegibbs appa.denoised.nii appa.denoised.degibbs.nii -force
 
 echo "--------------------------------"
 echo "           dwifslpreproc        "
 echo "--------------------------------"
 
-dwifslpreproc dwi.denoised.degibbs.nii -fslgrad bvecs bvals  -export_grad_fsl mrtrix_bvecs mtrix_bvals dwi.denoised.degibbs.preproc.nii  -nthreads 4 -force -rpe_all -pe_dir AP -eddyqc_all eddyqc -eddy_mask hifi_nodif_brain_f0.3_mask.nii -eddy_options '  --repol --data_is_shelled --slm=linear --cnr_maps'
+dwifslpreproc appa.denoised.degibbs.nii -fslgrad ap_pa.bvecs ap_pa.bvals  -export_grad_fsl mrtrix_bvecs mtrix_bvals appa.denoised.degibbs.preproc.nii -force -rpe_all -pe_dir AP -eddyqc_all eddyqc -eddy_mask hifi_nodif_brain_f0.3_mask.nii -eddy_options '  --repol --data_is_shelled --slm=linear --cnr_maps'
 
 # Bias-field correction and tensor fitting
 # -------------------------------------------------------------------------------------------------
@@ -125,7 +117,7 @@ echo "================================"
 echo "       Bias field correction    "
 echo "================================"
 
-dwibiascorrect ants -bias bias.nii dwi.denoised.degibbs.preproc.nii dwi.denoised.degibbs.preproc.bfc.nii
+dwibiascorrect ants -bias bias.nii appa.denoised.degibbs.preproc.nii appa.denoised.degibbs.preproc.bfc.nii -fslgrad mrtrix_bvecs mtrix_bvals
 
 echo "--------------------------------"
 echo "         Package for NODDI      "
@@ -133,7 +125,7 @@ echo "--------------------------------"
 
 mkdir /lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/mrtrix_hpc/${subject}
 dir_storage="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/mrtrix_hpc/${subject}"
-cp dwi.denoised.degibbs.preproc.bfc.nii ${dir_storage}
-cp bvals ${dir_storage}
-cp bvecs ${dir_storage}
+cp appa.denoised.degibbs.preproc.bfc.nii ${dir_storage}
+cp mtrix_bvals ${dir_storage}
+cp mrtrix_bvecs ${dir_storage}
 cp hifi_nodif_brain_f0.3_mask.nii ${dir_storage}
