@@ -16,8 +16,9 @@ module load MRtrix/mrtrix-3.0.2
 # --------------------------------------------
 SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
 subjectsfile=${1}
+subjects_ucbj=${2}
 
-# Compute surface data
+# Compute ODI surface data
 # --------------------------------------------
 for h in lh rh; do
   for x in mdt_odi; do
@@ -25,10 +26,24 @@ for h in lh rh; do
 done
 done
 
+# Compute UCBJ surface data
+# --------------------------------------------
+for h in lh rh; do
+  for x in pvc_ucbj_bp_native; do
+  asegstats2table --subjectsfile ${subjects_ucbj} --meas mean --stats=${h}_${x}.dat --table fs_outputs/${h}_${x}.csv  --all-segs
+done
+done
+
 # Compute aseg data
 # --------------------------------------------
 for x in aseg_2_mdt_odi aseg_2_pvc_ucbj; do
   asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
+done
+
+# Compute UCBJ aseg data
+# --------------------------------------------
+for x in aseg_2_pvc_ucbj; do
+  asegstats2table --subjectsfile ${subjectsfile2} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
 done
 
 # Compute volumetric aseg data
