@@ -40,7 +40,6 @@ native_output="${SUBJECTS_DIR}/${subject}/noddi/${h}_mdt_odi.nii.gz"
 mri_vol2surf --mov $odi --reg $reg --hemi ${h} --projfrac 0.5 --o $fsaverage_output --cortex --trgsubject fsaverage
 mri_vol2surf --mov $odi --reg $reg --hemi ${h} --projfrac 0.5 --o $native_output --cortex --trgsubject ${subject}
 mris_fwhm --smooth-only --i ${fsaverage_output} --fwhm ${fwhm} --o ${fsaverage_output_smooth} --cortex --s fsaverage --hemi ${h}; done
-done
 
 
 # --------------------------------------------
