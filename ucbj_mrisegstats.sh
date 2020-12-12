@@ -5,7 +5,7 @@
 
 # Modules
 # --------------------------------------------
-module load freesurfer/7.1.0
+module load free  surfer/7.1.0
 module load ANTS/2.2.0
 module unload fsl/5.0.10
 module load fsl/6.0.3
@@ -58,7 +58,7 @@ seg="$SUBJECTS_DIR/${subject}/ucbj2/ucbj_2_aseg.nii"
 reg="$SUBJECTS_DIR/${subject}/ucbj2/coreg_pvc_r1.lta"
 stats="$SUBJECTS_DIR/${subject}/stats/aseg_2_aseg.dat"
 ucbj="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/${subject}/${subject}_UCB-J_PVC_BP_Radio.nii"
-brainstem="$SUBJECTS_DIR/${subject}/mri/brainstemSsLabels.v1x.FSvoxelSpace.mgz"
+brainstem="$SUBJECTS_DIR/${subject}/mri/brainstemSsLabels.v10.FSvoxelSpace.mgz"
 brainstem_seg="$SUBJECTS_DIR/${subject}/ucbj2/brainstem_2_ucbj.nii"
 brainstem_stats="$SUBJECTS_DIR/${subject}/stats/brainstem_2_ucbj.dat"
 
