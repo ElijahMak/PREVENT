@@ -25,7 +25,7 @@ done
 # ODI
 # --------------------------------------------
 for h in lh rh; do
-mri_segstats --annot ${subject} ${h} aparc --i ${subject}/noddi/${h}_mdt_odi_native.nii.gz --sum ${subject}/stats/${h}_mdt_odi_native.dat
+  mri_segstats --annot ${subject} ${h} aparc --i ${subject}/noddi/${h}_mdt_odi.nii.gz --sum ${subject}/stats/${h}_mdt_odi.dat
 done
 
 # Volumetric data
