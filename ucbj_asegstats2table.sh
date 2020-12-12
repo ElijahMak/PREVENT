@@ -46,6 +46,19 @@ for x in aseg_2_pvc_ucbj; do
   asegstats2table --subjectsfile ${subjectsfile2} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
 done
 
+# Compute ODI aseg data
+# --------------------------------------------
+for x in brainstem_2_odi; do
+  asegstats2table --subjectsfile ${subjectsfile2} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
+done
+
+# Compute UCBJ aseg data
+# --------------------------------------------
+for x in brainstem_2_ucbj; do
+  asegstats2table --subjectsfile ${subjectsfile2} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
+done
+
+
 # Compute volumetric aseg data
 # --------------------------------------------
 asegstats2table --subjectsfile list --table fs_outputs/aseg.csv --skip
