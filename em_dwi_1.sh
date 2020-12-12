@@ -67,7 +67,7 @@ cd ${subject}
 # echo "          NII to MIF            "
 # echo "--------------------------------"
 #
-# mrconvert ${raw_dwi} ${raw_dwi_mif} -fslgrad bvec bval -datatype float32 -strides 0,0,0,1
+mrconvert ${raw_dwi} ${raw_dwi_mif} -fslgrad bvec bval -datatype float32 -strides 0,0,0,1
 #
 # echo "--------------------------------"
 # echo "          Denoising             "

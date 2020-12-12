@@ -15,6 +15,7 @@ module load MRtrix/mrtrix-3.0.2
 # ODI
 # --------------------------------------------
 
+
 # Parameters
 # --------------------------------------------
 SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
@@ -24,6 +25,10 @@ mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi2/
 # Use coreg files
 reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
 odi="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/mdt/${subject}/mdt/NODDI_GM/ODI.nii.gz"
+
+
+mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
+
 
 # Project ODI volume to fsaverage and native surfaces, and smooth by 8mm
 # --------------------------------------------

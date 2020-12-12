@@ -1,4 +1,4 @@
-# Author: Elijah Make
+# Author: Elijah Mak
 
 # Directory
 # --------------------------------------------
@@ -14,21 +14,22 @@ module load MRtrix/mrtrix-3.0.2
 # Parameters
 # --------------------------------------------
 subject=${1}
-
 SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
-#
-# for h in lh rh; do
-# mri_segstats --annot ${subject} ${h} aparc --i ${subject}/ucbj2/${h}_unpvc_ucbj_bp_native.nii.gz --sum ${subject}/stats/${h}_unpvc_ucbj_bp_native.dat
-# done
-#
-# for h in lh rh; do
-# mri_segstats --annot ${subject} ${h} aparc --i ${subject}/ucbj2/${h}_pvc_ucbj_bp_native.nii.gz --sum ${subject}/stats/${h}_pvc_ucbj_bp_native.dat
-# done
-#
+
+# UCBJ
+# --------------------------------------------
 for h in lh rh; do
-mri_segstats --annot ${subject} ${h} aparc --i ${subject}/noddi/${h}_noddi_odi_native.nii.gz --sum ${subject}/stats/${h}_noddi_odi_native.dat
+mri_segstats --annot ${subject} ${h} aparc --i ${subject}/ucbj2/${h}_pvc_ucbj_bp_native.nii.gz --sum ${subject}/stats/${h}_pvc_ucbj_bp_native.dat
 done
 
+# ODI
+# --------------------------------------------
+for h in lh rh; do
+mri_segstats --annot ${subject} ${h} aparc --i ${subject}/noddi/${h}_mdt_odi_native.nii.gz --sum ${subject}/stats/${h}_mdt_odi_native.dat
+done
+
+
+# Volumetric data
 # Parameters
 # --------------------------------------------
 mov="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi/${subject}/hifi_nodif.nii"
