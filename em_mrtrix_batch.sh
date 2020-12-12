@@ -9,7 +9,7 @@
 time="15:00:00"
 
 # Memory
-mem="10000"
+mem="7000"
 
 # Number of tasks
 nTask=1

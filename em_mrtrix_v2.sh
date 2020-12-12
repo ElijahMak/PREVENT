@@ -104,7 +104,7 @@ echo "--------------------------------"
 # Remove Gibbs Ringing artifact
 mrdegibbs appa.denoised.nii appa.denoised.degibbs.nii -force
 
-echo "--------------------------------"
+echo "--------------------------------"s
 echo "           dwifslpreproc        "
 echo "--------------------------------"
 
