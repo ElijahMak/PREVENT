@@ -6,7 +6,7 @@
 
 # Modules
 # --------------------------------------------
-module load freesurfer/7.1.0
+module load freesurfer/6.0.0
 module load ANTS/2.2.0
 module unload fsl/5.0.10
 module load fsl/6.0.3
@@ -21,23 +21,30 @@ subjectsfile=${1}
 # --------------------------------------------
 for h in lh rh; do
   for x in mdt_odi; do
-  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${h}_${x}.dat --table ${h}_${x}.csv  --all-segs
+  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${h}_${x}.dat --table fs_outputs/${h}_${x}.csv  --all-segs
 done
 done
 
-# Merge files
-for x in mdt_odi pvc_ucbj_bp_native; do
-cat lh_${x}.csv rh_${x}.csv > lh_rh_${x}.csv
-done
-
-# Compute aparcaseg data
+# Compute aseg data
 # --------------------------------------------
-for x in aparcaseg_2_noddi_odi aparcaseg_2_unpvc_ucbj; do
-  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs --skip
+for x in aseg_2_mdt_odi aseg_2_pvc_ucbj; do
+  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
 done
 
-# Compute wmparc data
+# Compute volumetric aseg data
 # --------------------------------------------
-for x in wmparc_2_noddi_odi ; do
-  asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table ${x}.csv --all-segs --skip
-done
+asegstats2table --subjectsfile list --table fs_outputs/aseg.csv --skip
+
+# Compute thickness
+# --------------------------------------------
+for h in lh rh; do
+aparcstats2table --subjectsfile list --hemi ${h}  --table fs_outputs/${h}_thickness.csv  --meas thickness --skip; done
+
+# Compute surface area
+# --------------------------------------------
+for h in lh rh; do
+aparcstats2table --subjectsfile list --hemi ${h}  --table fs_outputs/${h}_area.csv  --skip; done
+
+# Compute brain stem volumes
+# --------------------------------------------
+quantifyBrainstemStructures.sh fs_outputs/brainstem_vol.csv ${SUBJECTS_DIR}
