@@ -15,7 +15,7 @@ module load MRtrix/mrtrix-3.0.2
 # --------------------------------------------
 subject=${1}
 SUBJECTS_DIR="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/freesurfer"
-#
+
 # # UCBJ
 # # --------------------------------------------
 # for h in lh rh; do
