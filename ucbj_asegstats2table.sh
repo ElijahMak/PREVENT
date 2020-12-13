@@ -34,6 +34,17 @@ done
   done
   done
 
+  # Compute aseg data
+  # --------------------------------------------
+  for x in aparcaseg_2_mdt_odi; do
+    asegstats2table --subjectsfile ${subjectsfile} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
+  done
+
+  for x in aparcaseg_2_pvc_ucbj; do
+    asegstats2table --subjectsfile ${subjects_ucbj} --meas mean --stats=${x}.dat --table fs_outputs/${x}.csv --all-segs --skip
+  done
+
+
 # Compute aseg data
 # --------------------------------------------
 for x in aseg_2_mdt_odi; do
