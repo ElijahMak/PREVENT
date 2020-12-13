@@ -60,4 +60,13 @@ topup --imain=AP_PA_b0 --datain=acqparams.txt --config=b02b0.cnf --out=topup_AP_
 # --------------------------------------------
 fslmaths topup_AP_PA_b0_iout -Tmean hifi_nodif
 
+echo "--------------------------------"
+echo "      Generate brain masks      "
+echo "--------------------------------"
+
+for f in 0.1 0.2 0.3
+  do
+     bet hifi_nodif hifi_nodif_brain_f${f} -m -f $f
+  done
+
 eddy_openmp --imain=dwi.denoised.degibbs.nii --mask=hifi_nodif_brain_f0.3_mask.nii --acqp=acqparams.txt --index=index.txt --bvecs=ap_pa.bvecs --bvals=ap_pa.bvals --out=edc --verbose --data_is_shelled --flm=quadratic --repol --cnr_maps --topup=topup_AP_PA_b0
