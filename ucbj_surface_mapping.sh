@@ -27,7 +27,7 @@ reg="$SUBJECTS_DIR/${subject}/noddi/coreg_hifi_nodif.lta"
 odi="/lustre/archive/p00423/PREVENT_Elijah/NeurobiologyAgeing_UCBJXNODDI/noddi2/${subject}/mdt/NODDI_GM/ODI.nii.gz"
 
 
-mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
+# mri_coreg --s ${subject} --mov ${mov} --reg ${reg}
 
 
 # Project ODI volume to fsaverage and native surfaces, and smooth by 8mm
