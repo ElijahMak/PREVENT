@@ -18,8 +18,8 @@ subject=${1}
 cd $subject
 
 # Denoising of DWI
-dwidenoise ap.nii.gz ap.denoised.nii
-dwidenoise pa.nii.gz pa.denoised.nii
+dwidenoise ap.nii.gz ap.denoised.nii -force
+dwidenoise pa.nii.gz pa.denoised.nii  -force
 
 # Remove Gibbs Ringing artifact
 mrdegibbs ap.denoised.nii ap.denoised.degibbs.nii -force
