@@ -1,4 +1,4 @@
-
+3
 antsCorticalThickness.sh \
 -d 3 \
 -a ${DATA}/ses-1/anat/sub-001-ses-1-T1w.nii \
