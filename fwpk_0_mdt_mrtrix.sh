@@ -3,7 +3,7 @@
 # NODDI modelling
 
 # Example: bash em_hpc_mdt.sh subjectA
-
+s
 # Load modules
 module load mdt/0.21.0
 module load miniconda3/4.5.1
